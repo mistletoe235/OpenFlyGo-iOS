@@ -1,0 +1,6 @@
+// Public defaults. A local file may override these values without entering Git.
+OPENFLY_BUNDLE_ID = com.example.openflygo
+DJI_SDK_APP_KEY =
+DEVELOPMENT_TEAM =
+
+#include? "Local.xcconfig"

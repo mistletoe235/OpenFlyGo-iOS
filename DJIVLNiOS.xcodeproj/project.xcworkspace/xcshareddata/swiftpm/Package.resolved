@@ -1,0 +1,14 @@
+{
+  "originHash" : "c769c32e5e705a4ab448598d85c10efb93b3284bbb781bf336706397c31cd232",
+  "pins" : [
+    {
+      "identity" : "clipper2-swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/zyunlongz/clipper2-swift.git",
+      "state" : {
+        "revision" : "d17885ae7159e5c16e9dc56dd0fbd26c1e941df3"
+      }
+    }
+  ],
+  "version" : 3
+}

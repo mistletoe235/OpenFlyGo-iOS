@@ -1,0 +1,763 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		017B91F0B0B13D757397514A /* SurveyCheckpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4AFCE5BC8830C4328C5F63 /* SurveyCheckpoint.swift */; };
+		04A9D288189D7B37E6563A9B /* SurveyPlanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 561E8040636A1756A1B249AB /* SurveyPlanner.swift */; };
+		0D206CFE759190AB34CAD3E0 /* FlightControlSupervisor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDEB209E148696AF8D186C08 /* FlightControlSupervisor.swift */; };
+		0DB7EC216FC1101D7F7C0867 /* EventLogTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C6780CCA9D8B520BB91E65 /* EventLogTests.swift */; };
+		175ACF50A846727E4B9059D8 /* SurveyCaptureController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC87A40D479D4A033EEA6CB8 /* SurveyCaptureController.swift */; };
+		197CADE9DD09E91072E7012C /* DJIFlightProviderV4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1740D61751DCCA6F98EB0B /* DJIFlightProviderV4.swift */; };
+		292EE97D3D05EEAE27777496 /* SurveyCoveragePlanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBBC55C7E067B724C14FCD5A /* SurveyCoveragePlanner.swift */; };
+		2E55D0DD5D4D32C13CD8893A /* SurveyRuntimeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B687D1A9196B36518DB404C /* SurveyRuntimeTests.swift */; };
+		32564ADCB9B6695863689C11 /* TerrariumTerrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077B054CFC740803E857D795 /* TerrariumTerrain.swift */; };
+		359A001F801206166EEFDA7C /* FlightControlSupervisorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C1DF23F61B044CB70537CD3 /* FlightControlSupervisorTests.swift */; };
+		36EF178584F6A6B89DE9EC56 /* SurveyModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D563D7D36E4A5F5491970EE /* SurveyModels.swift */; };
+		3A6DF1746AB5F47C54CBD12D /* OpenFlyHILController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738984A488106828DBFCBC48 /* OpenFlyHILController.swift */; };
+		3D737352D9B7DAEAED1B7A5A /* ActiveRecaptureMission.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E79311E3330999E80AFFF7 /* ActiveRecaptureMission.swift */; };
+		4501F67EC56F7287B1D08685 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 31F9958EAD6A26D3747226D7 /* Localizable.xcstrings */; };
+		46A3064D34E6E18EBE912D44 /* SurveyReplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B0FCB3E5453A54DD55A884 /* SurveyReplay.swift */; };
+		475D19D1728958BB2326C5B0 /* FlightMapPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DB4AF4E8809CAABE655012 /* FlightMapPanel.swift */; };
+		495CF4DCEA0A7E73225DC8FD /* Providers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC754A726BF1E4200EBEA98 /* Providers.swift */; };
+		4BBED046A24CCB729B15EE0B /* Overlays.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF918F488A1EA4C1016DB211 /* Overlays.swift */; };
+		4D35C39C356855B53F031066 /* SurveyLatestParityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C751F9145E725AE902E895 /* SurveyLatestParityTests.swift */; };
+		50EAEE1BE7BCEEB068A7FB93 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 769C9F6570AE33C2C4EDDD64 /* ContentView.swift */; };
+		58AA4C6A16CA47F903D238E6 /* Clipper2 in Frameworks */ = {isa = PBXBuildFile; productRef = EB01509E83814161C176933C /* Clipper2 */; };
+		5BD85AEDA63A9F4B145F9DCC /* SurveyReadiness.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00ABB7C38478CBC83BBF32B2 /* SurveyReadiness.swift */; };
+		5BF539E61173A7C35FC13DCE /* OpenFlyBuildFeatures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BCD13019B37F461A829B3EF /* OpenFlyBuildFeatures.swift */; };
+		606ED868B3009ACC1B1C89A7 /* SurveyPlannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8BD55EAAFF6A604731408FB /* SurveyPlannerView.swift */; };
+		65ACCA5FE921CF47C25A6E9C /* SurveyExecution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 024C2ECCB0ED99D22E80189E /* SurveyExecution.swift */; };
+		73EFBD016EE791BD0729D7F8 /* PromptPresetCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = D620887779B7FBBF50B166AC /* PromptPresetCatalog.swift */; };
+		7538763D70C6691A197AB66E /* SurveyMissionStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEDFA4EED7DB82BE2542886 /* SurveyMissionStoreTests.swift */; };
+		7866F9FCBEDE8906E834F532 /* SurveyMissionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E821C33EAC45A7491B3D9866 /* SurveyMissionStore.swift */; };
+		7AA2DE297E5604A38FD64F34 /* UnavailableModelSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE1BC0BA7C3208F44BF3E1F /* UnavailableModelSupport.swift */; };
+		7C9FB6B55BE9ED53B97A5AF0 /* MockFlightFlowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C0E97B4B6DE685E635CD0F /* MockFlightFlowTests.swift */; };
+		88F055FBF4D0EB19777ECCCA /* SurveyMissionJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C56B33BCA28A492D47291E /* SurveyMissionJSON.swift */; };
+		8BC8251B0329478E87229428 /* SurveyCameraProfileCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAD38259015DE23D4B1DF9D /* SurveyCameraProfileCatalog.swift */; };
+		8E7899D33640DA9A19EDCCC6 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = BAF6E74DB029EAC050EF749E /* InfoPlist.xcstrings */; };
+		91714BFBE7AB133189AB83FC /* FlightViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F2232928705AD0AD2512F2 /* FlightViewModel.swift */; };
+		97EDCCD643BD14B1E449D3BB /* PositionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6335E55EA434000B69C1DBBF /* PositionController.swift */; };
+		A24BC6AD402D828722B84173 /* SurveyRuntimePoliciesLatest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2665A7AFCE0D65CDD250E3 /* SurveyRuntimePoliciesLatest.swift */; };
+		A4BE20598F571B71E30309A2 /* GeoTIFFTerrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22ADEA53B9CC31C83146B23B /* GeoTIFFTerrain.swift */; };
+		A4ECA90F0933D886257AFCF9 /* CloudUAVFlowModelInstaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48066BDA5DC7FF35EA36A550 /* CloudUAVFlowModelInstaller.swift */; };
+		A749044856A8A573AAD8508F /* PositionControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18857E2CB694B239D8209F2F /* PositionControllerTests.swift */; };
+		A8423CBF69343099449CA19E /* EventLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986B3FC5710CE924C89C394E /* EventLog.swift */; };
+		B29C784CA89104999D7B69B7 /* SafetyGate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B2B7A3E501DCD56A65A05A /* SafetyGate.swift */; };
+		B5CDBDEC16426D34AD6E34E9 /* DJIVLNiOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2CF67DD88683F23CF727BA /* DJIVLNiOSApp.swift */; };
+		B87C8C20E954F7BE54709743 /* OpenFlyHILProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959D5C33A6CFD938D6A26309 /* OpenFlyHILProtocol.swift */; };
+		B9B4287465C2B898B9574E50 /* SurveyPolicies.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB71C0AE3D5BB5A9152EAF34 /* SurveyPolicies.swift */; };
+		BBEDBF4E7DD1D0C29059A378 /* SurveyTerrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C2EFA61BFF17827AC3070A /* SurveyTerrain.swift */; };
+		BD2D755843AFC340176B699C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF8E6347EEC20F9E56EE84C2 /* Assets.xcassets */; };
+		BD74DDFB7B8793DBBF689F27 /* GlobalBuildingHeight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9A1A1B279E297F3EF1F8FB /* GlobalBuildingHeight.swift */; };
+		C2559E9A24EA0C394D8180A2 /* SurveyRuntimeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCFAB11656EEFCF71484655A /* SurveyRuntimeController.swift */; };
+		CD77AF72CFDA1CE2E579B68D /* SurveyMissionCaptureViewFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBBB014D0225686C715E22D /* SurveyMissionCaptureViewFilter.swift */; };
+		CECBE1815C97456324901054 /* SafetyGateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A33B5831B2D3116DE4C7EFB /* SafetyGateTests.swift */; };
+		D8ACD84D2C3BC299C5E90BAB /* FlightModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52663028DEF6E799843ECBC4 /* FlightModels.swift */; };
+		DB8B2FADF13BBAA9972881DD /* UAVFlowPolicyContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = E505EADB6B9B310C042CE5F7 /* UAVFlowPolicyContract.swift */; };
+		E16FADDAF1F44DE89914ED22 /* SurveyCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6819A38FD70B142A656910A3 /* SurveyCoreTests.swift */; };
+		EFFC2DB676AF27BD6CE8EEB2 /* MockFlightProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4516706FC680B154ACADA3 /* MockFlightProvider.swift */; };
+		F05BEE55AA1221887C32FD77 /* DJILiveVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BE888BD01BD6DD62B1B133 /* DJILiveVideoView.swift */; };
+		F084BB5B52A1B85387A33CA1 /* LanguageSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9691CE8F92B2BCECC490EB6 /* LanguageSelectionView.swift */; };
+		F5C1C8F0CC820987A186246D /* SurveyCaptureSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6633092BF78BFAD2A48DF4 /* SurveyCaptureSchedule.swift */; };
+		FDA50496D1D72168EDC6CC17 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 6A1F76EE74720BC091BDE0F5 /* PrivacyInfo.xcprivacy */; };
+		FE7C0A46649A9BA2B662DB7B /* AppLanguage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C9B79CBBC5165F37082C0C /* AppLanguage.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C55917E05491F79B15A0BB22 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 976C176F10C1F3C4EC0173A9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BDB518579EE916DFE566A67C;
+			remoteInfo = DJIVLNiOS;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		00ABB7C38478CBC83BBF32B2 /* SurveyReadiness.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyReadiness.swift; sourceTree = "<group>"; };
+		024C2ECCB0ED99D22E80189E /* SurveyExecution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyExecution.swift; sourceTree = "<group>"; };
+		04C9B79CBBC5165F37082C0C /* AppLanguage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLanguage.swift; sourceTree = "<group>"; };
+		077B054CFC740803E857D795 /* TerrariumTerrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerrariumTerrain.swift; sourceTree = "<group>"; };
+		0E1740D61751DCCA6F98EB0B /* DJIFlightProviderV4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DJIFlightProviderV4.swift; sourceTree = "<group>"; };
+		11C2EFA61BFF17827AC3070A /* SurveyTerrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyTerrain.swift; sourceTree = "<group>"; };
+		18857E2CB694B239D8209F2F /* PositionControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionControllerTests.swift; sourceTree = "<group>"; };
+		1A723588302EE9699249299E /* OpenFlyGo.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = OpenFlyGo.xcconfig; sourceTree = "<group>"; };
+		1E4AFCE5BC8830C4328C5F63 /* SurveyCheckpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyCheckpoint.swift; sourceTree = "<group>"; };
+		22ADEA53B9CC31C83146B23B /* GeoTIFFTerrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoTIFFTerrain.swift; sourceTree = "<group>"; };
+		26C751F9145E725AE902E895 /* SurveyLatestParityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyLatestParityTests.swift; sourceTree = "<group>"; };
+		31F9958EAD6A26D3747226D7 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		388F4C680A3277B3529EF9CA /* DJIVLNiOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DJIVLNiOS.entitlements; sourceTree = "<group>"; };
+		3B87DAE593AC67E4E920AEF9 /* DJIVLN-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DJIVLN-Bridging-Header.h"; sourceTree = "<group>"; };
+		3CAD38259015DE23D4B1DF9D /* SurveyCameraProfileCatalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyCameraProfileCatalog.swift; sourceTree = "<group>"; };
+		43DB4AF4E8809CAABE655012 /* FlightMapPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightMapPanel.swift; sourceTree = "<group>"; };
+		48066BDA5DC7FF35EA36A550 /* CloudUAVFlowModelInstaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudUAVFlowModelInstaller.swift; sourceTree = "<group>"; };
+		49B0FCB3E5453A54DD55A884 /* SurveyReplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyReplay.swift; sourceTree = "<group>"; };
+		4BCD13019B37F461A829B3EF /* OpenFlyBuildFeatures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenFlyBuildFeatures.swift; sourceTree = "<group>"; };
+		4DEDFA4EED7DB82BE2542886 /* SurveyMissionStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyMissionStoreTests.swift; sourceTree = "<group>"; };
+		51F2232928705AD0AD2512F2 /* FlightViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightViewModel.swift; sourceTree = "<group>"; };
+		52663028DEF6E799843ECBC4 /* FlightModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightModels.swift; sourceTree = "<group>"; };
+		53CE4C3B5338C14771DF1491 /* DJIVLNiOSTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = DJIVLNiOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		561E8040636A1756A1B249AB /* SurveyPlanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyPlanner.swift; sourceTree = "<group>"; };
+		5BC754A726BF1E4200EBEA98 /* Providers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Providers.swift; sourceTree = "<group>"; };
+		5C1DF23F61B044CB70537CD3 /* FlightControlSupervisorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightControlSupervisorTests.swift; sourceTree = "<group>"; };
+		5E2665A7AFCE0D65CDD250E3 /* SurveyRuntimePoliciesLatest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyRuntimePoliciesLatest.swift; sourceTree = "<group>"; };
+		62C0E97B4B6DE685E635CD0F /* MockFlightFlowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockFlightFlowTests.swift; sourceTree = "<group>"; };
+		6335E55EA434000B69C1DBBF /* PositionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionController.swift; sourceTree = "<group>"; };
+		63C56B33BCA28A492D47291E /* SurveyMissionJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyMissionJSON.swift; sourceTree = "<group>"; };
+		66B2B7A3E501DCD56A65A05A /* SafetyGate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafetyGate.swift; sourceTree = "<group>"; };
+		6819A38FD70B142A656910A3 /* SurveyCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyCoreTests.swift; sourceTree = "<group>"; };
+		6A1F76EE74720BC091BDE0F5 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		6A33B5831B2D3116DE4C7EFB /* SafetyGateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafetyGateTests.swift; sourceTree = "<group>"; };
+		738984A488106828DBFCBC48 /* OpenFlyHILController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenFlyHILController.swift; sourceTree = "<group>"; };
+		769C9F6570AE33C2C4EDDD64 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		7A0E3C0A713DBAF71FD6743B /* DJIVLNiOS.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = DJIVLNiOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7F9A1A1B279E297F3EF1F8FB /* GlobalBuildingHeight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalBuildingHeight.swift; sourceTree = "<group>"; };
+		8B687D1A9196B36518DB404C /* SurveyRuntimeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyRuntimeTests.swift; sourceTree = "<group>"; };
+		8D563D7D36E4A5F5491970EE /* SurveyModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyModels.swift; sourceTree = "<group>"; };
+		8E4516706FC680B154ACADA3 /* MockFlightProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockFlightProvider.swift; sourceTree = "<group>"; };
+		91C6780CCA9D8B520BB91E65 /* EventLogTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventLogTests.swift; sourceTree = "<group>"; };
+		959D5C33A6CFD938D6A26309 /* OpenFlyHILProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenFlyHILProtocol.swift; sourceTree = "<group>"; };
+		986B3FC5710CE924C89C394E /* EventLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventLog.swift; sourceTree = "<group>"; };
+		9B6633092BF78BFAD2A48DF4 /* SurveyCaptureSchedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyCaptureSchedule.swift; sourceTree = "<group>"; };
+		A2BE888BD01BD6DD62B1B133 /* DJILiveVideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DJILiveVideoView.swift; sourceTree = "<group>"; };
+		AC2CF67DD88683F23CF727BA /* DJIVLNiOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DJIVLNiOSApp.swift; sourceTree = "<group>"; };
+		B9691CE8F92B2BCECC490EB6 /* LanguageSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageSelectionView.swift; sourceTree = "<group>"; };
+		BAF6E74DB029EAC050EF749E /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
+		BB71C0AE3D5BB5A9152EAF34 /* SurveyPolicies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyPolicies.swift; sourceTree = "<group>"; };
+		C8BD55EAAFF6A604731408FB /* SurveyPlannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyPlannerView.swift; sourceTree = "<group>"; };
+		CF918F488A1EA4C1016DB211 /* Overlays.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Overlays.swift; sourceTree = "<group>"; };
+		D4E79311E3330999E80AFFF7 /* ActiveRecaptureMission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveRecaptureMission.swift; sourceTree = "<group>"; };
+		D620887779B7FBBF50B166AC /* PromptPresetCatalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptPresetCatalog.swift; sourceTree = "<group>"; };
+		D7C07CEADB89091EAF8BABA4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		DCBBB014D0225686C715E22D /* SurveyMissionCaptureViewFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyMissionCaptureViewFilter.swift; sourceTree = "<group>"; };
+		DDEB209E148696AF8D186C08 /* FlightControlSupervisor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightControlSupervisor.swift; sourceTree = "<group>"; };
+		E505EADB6B9B310C042CE5F7 /* UAVFlowPolicyContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UAVFlowPolicyContract.swift; sourceTree = "<group>"; };
+		E821C33EAC45A7491B3D9866 /* SurveyMissionStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyMissionStore.swift; sourceTree = "<group>"; };
+		EF8E6347EEC20F9E56EE84C2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FAE1BC0BA7C3208F44BF3E1F /* UnavailableModelSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnavailableModelSupport.swift; sourceTree = "<group>"; };
+		FBBC55C7E067B724C14FCD5A /* SurveyCoveragePlanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyCoveragePlanner.swift; sourceTree = "<group>"; };
+		FC87A40D479D4A033EEA6CB8 /* SurveyCaptureController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyCaptureController.swift; sourceTree = "<group>"; };
+		FCFAB11656EEFCF71484655A /* SurveyRuntimeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyRuntimeController.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C818718F0BAD0F6A494FC8CC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				58AA4C6A16CA47F903D238E6 /* Clipper2 in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0F5C38D1FB28D8B201237A31 = {
+			isa = PBXGroup;
+			children = (
+				DA5E16AC481285E41DE0C754 /* App */,
+				39DB7BBAAF5C2C05BA386DFF /* Config */,
+				C0EA77C7057FAC1F372D7F1C /* Tests */,
+				709EEBE89F6004378D82A23D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		2A38BAFA6CE0FEBBF77DC9A8 /* Providers */ = {
+			isa = PBXGroup;
+			children = (
+				0E1740D61751DCCA6F98EB0B /* DJIFlightProviderV4.swift */,
+				8E4516706FC680B154ACADA3 /* MockFlightProvider.swift */,
+			);
+			path = Providers;
+			sourceTree = "<group>";
+		};
+		39DB7BBAAF5C2C05BA386DFF /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				1A723588302EE9699249299E /* OpenFlyGo.xcconfig */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
+		4C343CA6923116460A83ACEA /* ModelSupport */ = {
+			isa = PBXGroup;
+			children = (
+				FAE1BC0BA7C3208F44BF3E1F /* UnavailableModelSupport.swift */,
+			);
+			path = ModelSupport;
+			sourceTree = "<group>";
+		};
+		6D6CDD2F0A81A3057EE60B5F /* Survey */ = {
+			isa = PBXGroup;
+			children = (
+				D4E79311E3330999E80AFFF7 /* ActiveRecaptureMission.swift */,
+				22ADEA53B9CC31C83146B23B /* GeoTIFFTerrain.swift */,
+				7F9A1A1B279E297F3EF1F8FB /* GlobalBuildingHeight.swift */,
+				3CAD38259015DE23D4B1DF9D /* SurveyCameraProfileCatalog.swift */,
+				FC87A40D479D4A033EEA6CB8 /* SurveyCaptureController.swift */,
+				9B6633092BF78BFAD2A48DF4 /* SurveyCaptureSchedule.swift */,
+				1E4AFCE5BC8830C4328C5F63 /* SurveyCheckpoint.swift */,
+				FBBC55C7E067B724C14FCD5A /* SurveyCoveragePlanner.swift */,
+				024C2ECCB0ED99D22E80189E /* SurveyExecution.swift */,
+				DCBBB014D0225686C715E22D /* SurveyMissionCaptureViewFilter.swift */,
+				63C56B33BCA28A492D47291E /* SurveyMissionJSON.swift */,
+				E821C33EAC45A7491B3D9866 /* SurveyMissionStore.swift */,
+				8D563D7D36E4A5F5491970EE /* SurveyModels.swift */,
+				561E8040636A1756A1B249AB /* SurveyPlanner.swift */,
+				BB71C0AE3D5BB5A9152EAF34 /* SurveyPolicies.swift */,
+				00ABB7C38478CBC83BBF32B2 /* SurveyReadiness.swift */,
+				49B0FCB3E5453A54DD55A884 /* SurveyReplay.swift */,
+				FCFAB11656EEFCF71484655A /* SurveyRuntimeController.swift */,
+				5E2665A7AFCE0D65CDD250E3 /* SurveyRuntimePoliciesLatest.swift */,
+				11C2EFA61BFF17827AC3070A /* SurveyTerrain.swift */,
+				077B054CFC740803E857D795 /* TerrariumTerrain.swift */,
+			);
+			path = Survey;
+			sourceTree = "<group>";
+		};
+		709EEBE89F6004378D82A23D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7A0E3C0A713DBAF71FD6743B /* DJIVLNiOS.app */,
+				53CE4C3B5338C14771DF1491 /* DJIVLNiOSTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		896D9E041A24410659760D4B /* Inference */ = {
+			isa = PBXGroup;
+			children = (
+				48066BDA5DC7FF35EA36A550 /* CloudUAVFlowModelInstaller.swift */,
+			);
+			path = Inference;
+			sourceTree = "<group>";
+		};
+		BEF7E8ACF8C6BE0617B8441B /* Bridge */ = {
+			isa = PBXGroup;
+			children = (
+				3B87DAE593AC67E4E920AEF9 /* DJIVLN-Bridging-Header.h */,
+			);
+			path = Bridge;
+			sourceTree = "<group>";
+		};
+		C0EA77C7057FAC1F372D7F1C /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				91C6780CCA9D8B520BB91E65 /* EventLogTests.swift */,
+				5C1DF23F61B044CB70537CD3 /* FlightControlSupervisorTests.swift */,
+				62C0E97B4B6DE685E635CD0F /* MockFlightFlowTests.swift */,
+				18857E2CB694B239D8209F2F /* PositionControllerTests.swift */,
+				6A33B5831B2D3116DE4C7EFB /* SafetyGateTests.swift */,
+				6819A38FD70B142A656910A3 /* SurveyCoreTests.swift */,
+				26C751F9145E725AE902E895 /* SurveyLatestParityTests.swift */,
+				4DEDFA4EED7DB82BE2542886 /* SurveyMissionStoreTests.swift */,
+				8B687D1A9196B36518DB404C /* SurveyRuntimeTests.swift */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		C7513FE55296BEC2508C45D7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				769C9F6570AE33C2C4EDDD64 /* ContentView.swift */,
+				A2BE888BD01BD6DD62B1B133 /* DJILiveVideoView.swift */,
+				43DB4AF4E8809CAABE655012 /* FlightMapPanel.swift */,
+				B9691CE8F92B2BCECC490EB6 /* LanguageSelectionView.swift */,
+				CF918F488A1EA4C1016DB211 /* Overlays.swift */,
+				C8BD55EAAFF6A604731408FB /* SurveyPlannerView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		D4951EB33C6DE9EE95BA9941 /* HIL */ = {
+			isa = PBXGroup;
+			children = (
+				738984A488106828DBFCBC48 /* OpenFlyHILController.swift */,
+				959D5C33A6CFD938D6A26309 /* OpenFlyHILProtocol.swift */,
+			);
+			path = HIL;
+			sourceTree = "<group>";
+		};
+		DA5E16AC481285E41DE0C754 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				EF8E6347EEC20F9E56EE84C2 /* Assets.xcassets */,
+				388F4C680A3277B3529EF9CA /* DJIVLNiOS.entitlements */,
+				AC2CF67DD88683F23CF727BA /* DJIVLNiOSApp.swift */,
+				51F2232928705AD0AD2512F2 /* FlightViewModel.swift */,
+				D7C07CEADB89091EAF8BABA4 /* Info.plist */,
+				BAF6E74DB029EAC050EF749E /* InfoPlist.xcstrings */,
+				31F9958EAD6A26D3747226D7 /* Localizable.xcstrings */,
+				6A1F76EE74720BC091BDE0F5 /* PrivacyInfo.xcprivacy */,
+				BEF7E8ACF8C6BE0617B8441B /* Bridge */,
+				F0579FD90A2A15A772237087 /* Core */,
+				D4951EB33C6DE9EE95BA9941 /* HIL */,
+				896D9E041A24410659760D4B /* Inference */,
+				4C343CA6923116460A83ACEA /* ModelSupport */,
+				2A38BAFA6CE0FEBBF77DC9A8 /* Providers */,
+				6D6CDD2F0A81A3057EE60B5F /* Survey */,
+				C7513FE55296BEC2508C45D7 /* Views */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		F0579FD90A2A15A772237087 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				04C9B79CBBC5165F37082C0C /* AppLanguage.swift */,
+				986B3FC5710CE924C89C394E /* EventLog.swift */,
+				DDEB209E148696AF8D186C08 /* FlightControlSupervisor.swift */,
+				52663028DEF6E799843ECBC4 /* FlightModels.swift */,
+				4BCD13019B37F461A829B3EF /* OpenFlyBuildFeatures.swift */,
+				6335E55EA434000B69C1DBBF /* PositionController.swift */,
+				D620887779B7FBBF50B166AC /* PromptPresetCatalog.swift */,
+				5BC754A726BF1E4200EBEA98 /* Providers.swift */,
+				66B2B7A3E501DCD56A65A05A /* SafetyGate.swift */,
+				E505EADB6B9B310C042CE5F7 /* UAVFlowPolicyContract.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		0590A43E95F9CC9AF4489CF9 /* DJIVLNiOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4AA2B2C3C394858592CA52A7 /* Build configuration list for PBXNativeTarget "DJIVLNiOSTests" */;
+			buildPhases = (
+				C48E3BBB82C3858BAD8DD985 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				94AF09C96806CCA2CFCDE5BD /* PBXTargetDependency */,
+			);
+			name = DJIVLNiOSTests;
+			packageProductDependencies = (
+			);
+			productName = DJIVLNiOSTests;
+			productReference = 53CE4C3B5338C14771DF1491 /* DJIVLNiOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		BDB518579EE916DFE566A67C /* DJIVLNiOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6DE0A04575B61419C0C09BE1 /* Build configuration list for PBXNativeTarget "DJIVLNiOS" */;
+			buildPhases = (
+				DC6502137C31F16B6BED5186 /* Sources */,
+				F95F3F7B550A042E806E02E4 /* Resources */,
+				C818718F0BAD0F6A494FC8CC /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DJIVLNiOS;
+			packageProductDependencies = (
+				EB01509E83814161C176933C /* Clipper2 */,
+			);
+			productName = DJIVLNiOS;
+			productReference = 7A0E3C0A713DBAF71FD6743B /* DJIVLNiOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		976C176F10C1F3C4EC0173A9 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 2600;
+				TargetAttributes = {
+					0590A43E95F9CC9AF4489CF9 = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Automatic;
+					};
+					BDB518579EE916DFE566A67C = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 5CA65C3AD2228838576E887A /* Build configuration list for PBXProject "DJIVLNiOS" */;
+			developmentRegion = "zh-Hans";
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+				"zh-Hans",
+			);
+			mainGroup = 0F5C38D1FB28D8B201237A31;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				7593DBC9720B7A592AAF86C4 /* XCRemoteSwiftPackageReference "clipper2-swift" */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 709EEBE89F6004378D82A23D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BDB518579EE916DFE566A67C /* DJIVLNiOS */,
+				0590A43E95F9CC9AF4489CF9 /* DJIVLNiOSTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F95F3F7B550A042E806E02E4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BD2D755843AFC340176B699C /* Assets.xcassets in Resources */,
+				8E7899D33640DA9A19EDCCC6 /* InfoPlist.xcstrings in Resources */,
+				4501F67EC56F7287B1D08685 /* Localizable.xcstrings in Resources */,
+				FDA50496D1D72168EDC6CC17 /* PrivacyInfo.xcprivacy in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C48E3BBB82C3858BAD8DD985 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0DB7EC216FC1101D7F7C0867 /* EventLogTests.swift in Sources */,
+				359A001F801206166EEFDA7C /* FlightControlSupervisorTests.swift in Sources */,
+				7C9FB6B55BE9ED53B97A5AF0 /* MockFlightFlowTests.swift in Sources */,
+				A749044856A8A573AAD8508F /* PositionControllerTests.swift in Sources */,
+				CECBE1815C97456324901054 /* SafetyGateTests.swift in Sources */,
+				E16FADDAF1F44DE89914ED22 /* SurveyCoreTests.swift in Sources */,
+				4D35C39C356855B53F031066 /* SurveyLatestParityTests.swift in Sources */,
+				7538763D70C6691A197AB66E /* SurveyMissionStoreTests.swift in Sources */,
+				2E55D0DD5D4D32C13CD8893A /* SurveyRuntimeTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DC6502137C31F16B6BED5186 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3D737352D9B7DAEAED1B7A5A /* ActiveRecaptureMission.swift in Sources */,
+				FE7C0A46649A9BA2B662DB7B /* AppLanguage.swift in Sources */,
+				A4ECA90F0933D886257AFCF9 /* CloudUAVFlowModelInstaller.swift in Sources */,
+				50EAEE1BE7BCEEB068A7FB93 /* ContentView.swift in Sources */,
+				197CADE9DD09E91072E7012C /* DJIFlightProviderV4.swift in Sources */,
+				F05BEE55AA1221887C32FD77 /* DJILiveVideoView.swift in Sources */,
+				B5CDBDEC16426D34AD6E34E9 /* DJIVLNiOSApp.swift in Sources */,
+				A8423CBF69343099449CA19E /* EventLog.swift in Sources */,
+				0D206CFE759190AB34CAD3E0 /* FlightControlSupervisor.swift in Sources */,
+				475D19D1728958BB2326C5B0 /* FlightMapPanel.swift in Sources */,
+				D8ACD84D2C3BC299C5E90BAB /* FlightModels.swift in Sources */,
+				91714BFBE7AB133189AB83FC /* FlightViewModel.swift in Sources */,
+				A4BE20598F571B71E30309A2 /* GeoTIFFTerrain.swift in Sources */,
+				BD74DDFB7B8793DBBF689F27 /* GlobalBuildingHeight.swift in Sources */,
+				F084BB5B52A1B85387A33CA1 /* LanguageSelectionView.swift in Sources */,
+				EFFC2DB676AF27BD6CE8EEB2 /* MockFlightProvider.swift in Sources */,
+				5BF539E61173A7C35FC13DCE /* OpenFlyBuildFeatures.swift in Sources */,
+				3A6DF1746AB5F47C54CBD12D /* OpenFlyHILController.swift in Sources */,
+				B87C8C20E954F7BE54709743 /* OpenFlyHILProtocol.swift in Sources */,
+				4BBED046A24CCB729B15EE0B /* Overlays.swift in Sources */,
+				97EDCCD643BD14B1E449D3BB /* PositionController.swift in Sources */,
+				73EFBD016EE791BD0729D7F8 /* PromptPresetCatalog.swift in Sources */,
+				495CF4DCEA0A7E73225DC8FD /* Providers.swift in Sources */,
+				B29C784CA89104999D7B69B7 /* SafetyGate.swift in Sources */,
+				8BC8251B0329478E87229428 /* SurveyCameraProfileCatalog.swift in Sources */,
+				175ACF50A846727E4B9059D8 /* SurveyCaptureController.swift in Sources */,
+				F5C1C8F0CC820987A186246D /* SurveyCaptureSchedule.swift in Sources */,
+				017B91F0B0B13D757397514A /* SurveyCheckpoint.swift in Sources */,
+				292EE97D3D05EEAE27777496 /* SurveyCoveragePlanner.swift in Sources */,
+				65ACCA5FE921CF47C25A6E9C /* SurveyExecution.swift in Sources */,
+				CD77AF72CFDA1CE2E579B68D /* SurveyMissionCaptureViewFilter.swift in Sources */,
+				88F055FBF4D0EB19777ECCCA /* SurveyMissionJSON.swift in Sources */,
+				7866F9FCBEDE8906E834F532 /* SurveyMissionStore.swift in Sources */,
+				36EF178584F6A6B89DE9EC56 /* SurveyModels.swift in Sources */,
+				04A9D288189D7B37E6563A9B /* SurveyPlanner.swift in Sources */,
+				606ED868B3009ACC1B1C89A7 /* SurveyPlannerView.swift in Sources */,
+				B9B4287465C2B898B9574E50 /* SurveyPolicies.swift in Sources */,
+				5BD85AEDA63A9F4B145F9DCC /* SurveyReadiness.swift in Sources */,
+				46A3064D34E6E18EBE912D44 /* SurveyReplay.swift in Sources */,
+				C2559E9A24EA0C394D8180A2 /* SurveyRuntimeController.swift in Sources */,
+				A24BC6AD402D828722B84173 /* SurveyRuntimePoliciesLatest.swift in Sources */,
+				BBEDBF4E7DD1D0C29059A378 /* SurveyTerrain.swift in Sources */,
+				32564ADCB9B6695863689C11 /* TerrariumTerrain.swift in Sources */,
+				DB8B2FADF13BBAA9972881DD /* UAVFlowPolicyContract.swift in Sources */,
+				7AA2DE297E5604A38FD64F34 /* UnavailableModelSupport.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		94AF09C96806CCA2CFCDE5BD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BDB518579EE916DFE566A67C /* DJIVLNiOS */;
+			targetProxy = C55917E05491F79B15A0BB22 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		2C52854658D9BF88E4E4E30D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		40548B56F46089DD96968539 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1A723588302EE9699249299E /* OpenFlyGo.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "$(OPENFLY_BUNDLE_ID).tests";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DJIVLNiOS.app/DJIVLNiOS";
+			};
+			name = Debug;
+		};
+		60E7D123E58F4E605EBB958A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		65C232840915ED62F87250EC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1A723588302EE9699249299E /* OpenFlyGo.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = App/DJIVLNiOS.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = App/Info.plist;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				OTHER_LDFLAGS = "$(inherited) -ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = "$(OPENFLY_BUNDLE_ID)";
+				PRODUCT_NAME = DJIVLNiOS;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) OPENFLY_ENABLE_TERRAIN";
+				SWIFT_OBJC_BRIDGING_HEADER = "App/Bridge/DJIVLN-Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		D53B77DDEB9346595DC0421A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1A723588302EE9699249299E /* OpenFlyGo.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "$(OPENFLY_BUNDLE_ID).tests";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DJIVLNiOS.app/DJIVLNiOS";
+			};
+			name = Release;
+		};
+		ED7D7A3D66A657D9C2783C33 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1A723588302EE9699249299E /* OpenFlyGo.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = App/DJIVLNiOS.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = App/Info.plist;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				OTHER_LDFLAGS = "$(inherited) -ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = "$(OPENFLY_BUNDLE_ID)";
+				PRODUCT_NAME = DJIVLNiOS;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_OBJC_BRIDGING_HEADER = "App/Bridge/DJIVLN-Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4AA2B2C3C394858592CA52A7 /* Build configuration list for PBXNativeTarget "DJIVLNiOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				40548B56F46089DD96968539 /* Debug */,
+				D53B77DDEB9346595DC0421A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		5CA65C3AD2228838576E887A /* Build configuration list for PBXProject "DJIVLNiOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				60E7D123E58F4E605EBB958A /* Debug */,
+				2C52854658D9BF88E4E4E30D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		6DE0A04575B61419C0C09BE1 /* Build configuration list for PBXNativeTarget "DJIVLNiOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				65C232840915ED62F87250EC /* Debug */,
+				ED7D7A3D66A657D9C2783C33 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		7593DBC9720B7A592AAF86C4 /* XCRemoteSwiftPackageReference "clipper2-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/zyunlongz/clipper2-swift.git";
+			requirement = {
+				kind = revision;
+				revision = d17885ae7159e5c16e9dc56dd0fbd26c1e941df3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		EB01509E83814161C176933C /* Clipper2 */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7593DBC9720B7A592AAF86C4 /* XCRemoteSwiftPackageReference "clipper2-swift" */;
+			productName = Clipper2;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 976C176F10C1F3C4EC0173A9 /* Project object */;
+}

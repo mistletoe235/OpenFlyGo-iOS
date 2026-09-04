@@ -1,0 +1,4 @@
+// Copy this file to Local.xcconfig and keep the real file out of Git.
+OPENFLY_BUNDLE_ID = com.example.openflygo
+DJI_SDK_APP_KEY = your_dji_msdk_v4_key_for_the_bundle_identifier
+DEVELOPMENT_TEAM = YOUR_APPLE_TEAM_ID

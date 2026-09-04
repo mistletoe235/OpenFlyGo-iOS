@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024" role="img" aria-labelledby="title desc">
+  <title id="title">OpenFly Go A1 — subtle climb</title>
+  <desc id="desc">The original A1 geometry with only the complete aircraft group rotated upward by thirteen degrees.</desc>
+
+  <rect width="1024" height="1024" fill="#0A0E16"/>
+  <path
+    d="M 783.64 549.92 A 286 286 0 1 1 575.88 246.57"
+    fill="none"
+    stroke="#F6F9FC"
+    stroke-width="108"
+    stroke-linecap="round"
+  />
+
+  <!-- Original A1 aircraft geometry. Only this group has a -13 degree rotation. -->
+  <g transform="rotate(-13 579 280)">
+    <path d="M 562 251 L 925 360 L 695 529 L 721 399 Z" fill="#19CFE8"/>
+    <path d="M 579 280 L 818 358 L 721 399 Z" fill="#81EBF9"/>
+    <polygon points="579,280 721,399 680,434" fill="#7DB5BE"/>
+  </g>
+</svg>

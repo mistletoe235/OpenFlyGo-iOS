@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>CFBundleDevelopmentRegion</key>
+    <string>$(DEVELOPMENT_LANGUAGE)</string>
+    <key>CFBundleDisplayName</key>
+    <string>OpenFly Go</string>
+    <key>CFBundleExecutable</key>
+    <string>$(EXECUTABLE_NAME)</string>
+    <key>CFBundleIdentifier</key>
+    <string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+    <key>CFBundleInfoDictionaryVersion</key>
+    <string>6.0</string>
+    <key>CFBundleName</key>
+    <string>$(PRODUCT_NAME)</string>
+    <key>CFBundlePackageType</key>
+    <string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
+    <key>CFBundleShortVersionString</key>
+    <string>1.0</string>
+    <key>CFBundleVersion</key>
+	<string>20260903</string>
+    <key>DJISDKAppKey</key>
+    <string>$(DJI_SDK_APP_KEY)</string>
+    <key>ITSAppUsesNonExemptEncryption</key>
+    <false/>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>LSSupportsOpeningDocumentsInPlace</key>
+	<true/>
+    <key>NSBluetoothAlwaysUsageDescription</key>
+    <string>用于发现并连接支持蓝牙通信的兼容 DJI 设备。</string>
+    <key>NSBonjourServices</key>
+    <array>
+        <string>_openfly-hil._udp</string>
+    </array>
+    <key>NSCameraUsageDescription</key>
+    <string>用于在用户主动选择的兼容功能中访问 iPhone 相机，采集任务记录所需的图像或视频；DJI 图传本身不会访问 iPhone 相机。</string>
+    <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+    <string>用于兼容 DJI SDK 的位置相关安全能力。OpenFly Go 当前仅在使用 App 时请求定位，不会自行在后台持续跟踪。</string>
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>用于在地图上显示当前设备或遥控器位置、辅助设置返航点和记录本次飞行任务的位置状态。</string>
+	<key>NSLocalNetworkUsageDescription</key>
+	<string>用于通过局域网或手机热点连接 UE/AirSim 仿真器，交换飞行状态、控制信息和虚拟相机画面。</string>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsLocalNetworking</key>
+		<true/>
+	</dict>
+	<key>UIApplicationSupportsIndirectInputEvents</key>
+	<true/>
+	<key>UIFileSharingEnabled</key>
+	<true/>
+    <key>UILaunchScreen</key>
+    <dict/>
+    <key>UIRequiresFullScreen</key>
+    <true/>
+    <key>UISupportedExternalAccessoryProtocols</key>
+    <array>
+        <string>com.dji.video</string>
+        <string>com.dji.protocol</string>
+        <string>com.dji.common</string>
+        <string>com.dji.logiclink</string>
+    </array>
+    <key>UISupportedInterfaceOrientations</key>
+    <array>
+        <string>UIInterfaceOrientationLandscapeLeft</string>
+        <string>UIInterfaceOrientationLandscapeRight</string>
+    </array>
+</dict>
+</plist>

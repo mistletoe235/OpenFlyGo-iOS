@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+     width="1024" height="1024" viewBox="0 0 1024 1024" role="img" aria-labelledby="title desc">
+  <title id="title">OpenFly Go A1 — source-locked subtle climb</title>
+  <desc id="desc">The exact aircraft pixels from the shipping A1 icon, clipped as one immutable object and rotated upward thirteen degrees.</desc>
+
+  <defs>
+    <!-- Union of the original aircraft silhouette and both original fold facets. -->
+    <clipPath id="aircraft-clip" clipPathUnits="userSpaceOnUse">
+      <path d="M 562 251 L 925 360 L 695 529 L 721 399 Z"/>
+      <path d="M 579 280 L 818 358 L 721 405 Z"/>
+      <path d="M 579 280 L 721 399 L 680 434 Z"/>
+    </clipPath>
+  </defs>
+
+  <rect width="1024" height="1024" fill="#0A0E16"/>
+  <path d="M 783.64 549.92 A 286 286 0 1 1 575.88 246.57"
+        fill="none" stroke="#F6F9FC" stroke-width="108" stroke-linecap="round"/>
+
+  <!-- No aircraft vertex or facet is redrawn: the original A1 artwork is moved as one object. -->
+  <g transform="rotate(-13 579 280)" clip-path="url(#aircraft-clip)">
+    <image x="0" y="0" width="1024" height="1024"
+           href="../../App/Assets.xcassets/AppIcon.appiconset/AppIcon-1024.png"
+           xlink:href="../../App/Assets.xcassets/AppIcon.appiconset/AppIcon-1024.png"
+           preserveAspectRatio="none"/>
+  </g>
+</svg>

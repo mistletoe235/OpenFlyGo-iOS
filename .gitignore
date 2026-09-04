@@ -1,0 +1,16 @@
+.DS_Store
+build/
+DerivedData/
+Pods/
+*.xcresult
+*.ipa
+*.dSYM/
+*.xcuserstate
+xcuserdata/
+.swiftpm/
+.env
+.env.*
+Config/Secrets.xcconfig
+Config/Local.xcconfig
+ModelPacks/
+*.mnn

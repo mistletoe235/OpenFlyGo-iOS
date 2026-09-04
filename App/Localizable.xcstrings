@@ -1,0 +1,4536 @@
+{
+  "sourceLanguage": "zh-Hans",
+  "strings": {
+    "取消": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancel"
+          }
+        }
+      }
+    },
+    "手机充电：等待 RC": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phone charging: Waiting for RC"
+          }
+        }
+      }
+    },
+    "手机充电：不支持": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phone charging: Unsupported"
+          }
+        }
+      }
+    },
+    "手机充电：写入中": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phone charging: Updating"
+          }
+        }
+      }
+    },
+    "手机充电：尝试开启": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phone charging: Try Enable"
+          }
+        }
+      }
+    },
+    "手机充电：开": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phone charging: On"
+          }
+        }
+      }
+    },
+    "手机充电：关": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phone charging: Off"
+          }
+        }
+      }
+    },
+    "连接遥控器后读取 DJI ChargeMobileMode": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Connect the remote controller to read DJI ChargeMobileMode."
+          }
+        }
+      }
+    },
+    "当前遥控器或固件未提供 iOS 手机充电控制": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The current remote controller or firmware does not provide iOS phone-charging control."
+          }
+        }
+      }
+    },
+    "正在写入 DJI ChargeMobileMode，成功后将自动回读": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Updating DJI ChargeMobileMode. The app will read it back after success."
+          }
+        }
+      }
+    },
+    "自动读取暂时失败，仍可点击尝试开启": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Automatic reading failed temporarily. You can still tap to try enabling it."
+          }
+        }
+      }
+    },
+    "正在读取遥控器充电能力；失败时将于 1/2/4 秒重试": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reading the remote controller charging capability. Failures retry after 1, 2, and 4 seconds."
+          }
+        }
+      }
+    },
+    "当前模式：%@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Current mode: %@"
+          }
+        }
+      }
+    },
+    "DJI 账号": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "DJI Account"
+          }
+        }
+      }
+    },
+    "DJI 账号登录失败：%@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "DJI account sign-in failed: %@"
+          }
+        }
+      }
+    },
+    "DJI 账号登录成功": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "DJI account signed in"
+          }
+        }
+      }
+    },
+    "DJI 账号退出失败：%@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "DJI account sign-out failed: %@"
+          }
+        }
+      }
+    },
+    "DJI 账号退出成功": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Signed out of DJI account"
+          }
+        }
+      }
+    },
+    "DJI 账号：已登录": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "DJI account: Signed in"
+          }
+        }
+      }
+    },
+    "DJI 账号：已登录（%@）": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "DJI account: Signed in (%@)"
+          }
+        }
+      }
+    },
+    "DJI 账号：未登录（真机飞行可能受限）": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "DJI account: Not signed in (real-aircraft functions may be limited)"
+          }
+        }
+      }
+    },
+    "DJI 账号：登录已过期": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "DJI account: Sign-in expired"
+          }
+        }
+      }
+    },
+    "DJI 账号：状态确认中": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "DJI account: Checking status"
+          }
+        }
+      }
+    },
+    "%@\n最近登录错误：%@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@\nLatest sign-in error: %2$@"
+          }
+        }
+      }
+    },
+    "登录 DJI 账号": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sign In to DJI"
+          }
+        }
+      }
+    },
+    "退出 DJI 账号": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sign Out of DJI"
+          }
+        }
+      }
+    },
+    "退出后，真机飞行能力可能受 DJI 激活与地区规则限制；你可以随时重新登录。": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "After signing out, real-aircraft features may be limited by DJI activation and regional rules. You can sign in again at any time."
+          }
+        }
+      }
+    },
+    "退出登录": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sign Out"
+          }
+        }
+      }
+    },
+    "退出中…": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Signing Out…"
+          }
+        }
+      }
+    },
+    "确认退出": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Confirm Sign Out"
+          }
+        }
+      }
+    },
+    "重新登录 DJI 账号": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sign In to DJI Again"
+          }
+        }
+      }
+    },
+    "登录中…": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Signing In…"
+          }
+        }
+      }
+    },
+    "模拟中…": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Simulating…"
+          }
+        }
+      }
+    },
+    "模拟登录回调": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Simulate Sign-in Callback"
+          }
+        }
+      }
+    },
+    "Mock 登录回调成功（非真实 DJI 登录）": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mock sign-in callback succeeded (not a real DJI sign-in)"
+          }
+        }
+      }
+    },
+    "当前为模拟器 Mock：按钮只验证应用回调和状态刷新，不会连接 DJI 账号服务。": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Simulator Mock is active. This button only verifies callbacks and state refresh; it does not connect to DJI account services."
+          }
+        }
+      }
+    },
+    "登录页面已结束，但 DJI SDK 尚未确认账号已登录，请重试或检查网络。": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The sign-in page closed, but DJI SDK has not confirmed the account. Retry or check the network."
+          }
+        }
+      }
+    },
+    "暂不登录": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Not Now"
+          }
+        }
+      }
+    },
+    "DJI 登录已过期。重新登录后可恢复需要账号激活的真机飞行能力。": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your DJI sign-in has expired. Sign in again to restore real-aircraft features that require account activation."
+          }
+        }
+      }
+    },
+    "登录后可使用需要 DJI 账号激活的真机飞行能力；也可以暂不登录，仅使用预览和仿真功能。": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sign in to use real-aircraft features that require DJI account activation, or continue without signing in for preview and simulation."
+          }
+        }
+      }
+    },
+    "登录由 DJI MSDK 安全页面完成；OpenFly 不读取或保存账号密码。未登录仍可使用预览和仿真，真机飞行能力可能受 DJI 激活与地区规则限制。": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sign-in is completed on DJI MSDK's secure page. OpenFly does not read or store account passwords. Preview and simulation remain available without sign-in; real-aircraft features may be limited by DJI activation and regional rules."
+          }
+        }
+      }
+    },
+    "信号": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Signal"
+          }
+        }
+      }
+    },
+    "速度": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Speed"
+          }
+        }
+      }
+    },
+    "高度": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Altitude"
+          }
+        }
+      }
+    },
+    "中国地图坐标校准": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "China Map Coordinate Calibration"
+          }
+        }
+      }
+    },
+    "自动（中国大陆 GCJ‑02）": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Automatic (mainland China GCJ‑02)"
+          }
+        }
+      }
+    },
+    "关闭（WGS‑84）": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Off (WGS‑84)"
+          }
+        }
+      }
+    },
+    "默认自动：任务、飞控、日志和导出始终使用 WGS‑84；仅中国大陆地图显示采用 GCJ‑02。若当前 Apple 地图底图已自行校准，可在此关闭，国外坐标不受影响。": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Automatic by default: missions, flight control, logs, and exports always use WGS‑84; only map display in mainland China uses GCJ‑02. Turn this off if the current Apple map is already calibrated. Coordinates outside China are unaffected."
+          }
+        }
+      }
+    },
+    "任务 WGS‑84 · 中国地图已校准": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mission WGS‑84 · China map calibrated"
+          }
+        }
+      }
+    },
+    "任务/地图 WGS‑84 · 中国校准关闭": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mission/map WGS‑84 · China calibration off"
+          }
+        }
+      }
+    },
+    "实时图传": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Live Video"
+          }
+        }
+      }
+    },
+    "· %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "· %@"
+          }
+        }
+      }
+    },
+    "· %@ · %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "· %1$@ · %2$@"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "new",
+            "value": "· %1$@ · %2$@"
+          }
+        }
+      }
+    },
+    "· %@ · 控制权：%@ · %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "· %1$@ · Control: %2$@ · %3$@"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "new",
+            "value": "· %1$@ · 控制权：%2$@ · %3$@"
+          }
+        }
+      }
+    },
+    "%@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@"
+          }
+        }
+      }
+    },
+    "%@ · %@ · %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ · %2$@ · %3$@"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%1$@ · %2$@ · %3$@"
+          }
+        }
+      }
+    },
+    "%@ [%@] %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ [%2$@] %3$@"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%1$@ [%2$@] %3$@"
+          }
+        }
+      }
+    },
+    "%@ Hz": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ Hz"
+          }
+        }
+      }
+    },
+    "%@ 条测线 · %@ 张照片": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ flight lines · %2$@ photos"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%1$@ 条测线 · %2$@ 张照片"
+          }
+        }
+      }
+    },
+    "%@°": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@°"
+          }
+        }
+      }
+    },
+    "+%@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "+%@"
+          }
+        }
+      }
+    },
+    "▶ %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "▶ %@"
+          }
+        }
+      }
+    },
+    "1 下载/导入高程 → 2 核对数据与坐标 → 3 点“应用到航线”。": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "1 Download/import elevation → 2 Verify data and coordinates → 3 Tap Apply to Route."
+          }
+        }
+      }
+    },
+    "AGL %@ · ASL~ %@ m · GIM %@° · RC %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "AGL %1$@ · ASL~ %2$@ m · GIM %3$@° · RC %4$@"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "new",
+            "value": "AGL %1$@ · ASL~ %2$@ m · GIM %3$@° · RC %4$@"
+          }
+        }
+      }
+    },
+    "cm/px": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "cm/px"
+          }
+        }
+      }
+    },
+    "DEM/DTM（仅裸地）": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "DEM/DTM (bare earth only)"
+          }
+        }
+      }
+    },
+    "DJI code %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "DJI code %@"
+          }
+        }
+      }
+    },
+    "DJI 产品信息由 MSDK 连接后自动识别": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "DJI product information is detected automatically after MSDK connects."
+          }
+        }
+      }
+    },
+    "DJI 内置仿真器": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "DJI Built-in Simulator"
+          }
+        }
+      }
+    },
+    "DJI 飞行器": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "DJI Aircraft"
+          }
+        }
+      }
+    },
+    "DSM（含建筑/树冠）": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "DSM (buildings/tree canopy)"
+          }
+        }
+      }
+    },
+    "F%@ · %@×%@ · %@ ms": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "F%1$@ · %2$@×%3$@ · %4$@ ms"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "new",
+            "value": "F%1$@ · %2$@×%3$@ · %4$@ ms"
+          }
+        }
+      }
+    },
+    "H": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "H"
+          }
+        }
+      }
+    },
+    "H%@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "H%@"
+          }
+        }
+      }
+    },
+    "Inference：%@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inference: %@"
+          }
+        }
+      }
+    },
+    "m": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "m"
+          }
+        }
+      }
+    },
+    "Mac Simulator 测试工具": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mac Simulator Test Tools"
+          }
+        }
+      }
+    },
+    "N": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "N"
+          }
+        }
+      }
+    },
+    "openfly.hil.v1：UDP 30020/30021，TCP 虚拟相机 30022；虚拟相机直接进入模型，不经过飞控。": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "openfly.hil.v1: UDP 30020/30021, TCP virtual camera 30022; virtual-camera frames go directly to the model without passing through flight control."
+          }
+        }
+      }
+    },
+    "Provider：%@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Provider: %@"
+          }
+        }
+      }
+    },
+    "r%@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "r%@"
+          }
+        }
+      }
+    },
+    "SIMULATED CAMERA · %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SIMULATED CAMERA · %@"
+          }
+        }
+      }
+    },
+    "Stop 阈值": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stop Threshold"
+          }
+        }
+      }
+    },
+    "UAVFlow H10 连续执行": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "UAVFlow H10 Continuous Execution"
+          }
+        }
+      }
+    },
+    "UAVFlow 模型": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "UAVFlow Model"
+          }
+        }
+      }
+    },
+    "UE / AirSim 出站桥（只镜像，不接受飞控命令）": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "UE / AirSim Outbound Bridge (mirror only; no flight-control commands)"
+          }
+        }
+      }
+    },
+    "UE 地址": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "UE Address"
+          }
+        }
+      }
+    },
+    "UE 当前帧不可用": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Current UE frame unavailable"
+          }
+        }
+      }
+    },
+    "UE 热点 IP": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "UE Hotspot IP"
+          }
+        }
+      }
+    },
+    "UE/AirSim 硬件在环": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "UE/AirSim Hardware-in-the-Loop"
+          }
+        }
+      }
+    },
+    "VLN": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "VLN"
+          }
+        }
+      }
+    },
+    "VLN 相对位置执行": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "VLN Relative-Position Execution"
+          }
+        }
+      }
+    },
+    "WGS‑84 · 地图点选规划区": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "WGS‑84 · Tap the map to define the planning area"
+          }
+        }
+      }
+    },
+    "X %@  Y %@  Z %@  YAW %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "X %1$@  Y %2$@  Z %3$@  YAW %4$@"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "new",
+            "value": "X %1$@  Y %2$@  Z %3$@  YAW %4$@"
+          }
+        }
+      }
+    },
+    "X/Y 单步平面距离不超过 10m；Z 范围 ±0.5m，下降保留 0.8m 安全高度。": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Each X/Y step is limited to 10 m; Z is limited to ±0.5 m, with a 0.8 m safety height when descending."
+          }
+        }
+      }
+    },
+    "与飞行高度实时联动": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Linked to flight altitude in real time"
+          }
+        }
+      }
+    },
+    "主动补缺分组（修改后需重新安全预检）": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Active recapture groups (rerun safety check after changes)"
+          }
+        }
+      }
+    },
+    "云端仅接受固定 Azure HTTPS 主机；本地 ZIP 与云端包都会核对 manifest、目录大小、SHA-256 和每个模型文件，再原子安装。": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cloud downloads accept only the fixed Azure HTTPS host. Local ZIP and cloud packages are validated by manifest, directory size, SHA-256, and every model file before atomic installation."
+          }
+        }
+      }
+    },
+    "仅在 Simulator 关闭且飞机未起飞时可修改；下次启动生效。": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Can be changed only while Simulator is off and the aircraft is grounded; takes effect on the next start."
+          }
+        }
+      }
+    },
+    "任务": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Task"
+          }
+        }
+      }
+    },
+    "任务与文件": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tasks & Files"
+          }
+        }
+      }
+    },
+    "任务库是本机 App 内的历史记录；导出 JSON 才会保存到“文件”App，可用于分享或换设备导入。": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The task library stores history inside this app. Export JSON to save it in Files for sharing or importing on another device."
+          }
+        }
+      }
+    },
+    "任务自动起飞（仅仿真）": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Automatic task takeoff (simulation only)"
+          }
+        }
+      }
+    },
+    "仿真源 / 位姿发送": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Simulation Source / Pose Streaming"
+          }
+        }
+      }
+    },
+    "仿真起点（WGS84）": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Simulation Origin (WGS84)"
+          }
+        }
+      }
+    },
+    "低电量：%@ 秒后自动返航": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Low battery: automatic RTH in %@ s"
+          }
+        }
+      }
+    },
+    "兼容 Android openfly.survey.ue.v1：mission / telemetry / target / capture；若 HIL 已发现 UE，会自动复用其主机地址并保留 30010 端口。": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Compatible with Android openfly.survey.ue.v1 mission / telemetry / target / capture. If HIL has discovered UE, its host is reused automatically while retaining port 30010."
+          }
+        }
+      }
+    },
+    "最多保留 %@ 个版本": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Keep up to %@ versions"
+          }
+        }
+      }
+    },
+    "删除后无法恢复，当前已载入的航线不会被清空。": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deletion cannot be undone. The currently loaded route will not be cleared."
+          }
+        }
+      }
+    },
+    "固定观察方向（可倒/侧飞）": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fixed viewing direction (reverse/sideways flight allowed)"
+          }
+        }
+      }
+    },
+    "地图与检查": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Map & Inspection"
+          }
+        }
+      }
+    },
+    "地面分辨率 GSD": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ground Sampling Distance (GSD)"
+          }
+        }
+      }
+    },
+    "失联动作：返航（Mock 配置）": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Link-loss action: Return to Home (Mock setting)"
+          }
+        }
+      }
+    },
+    "安全门：%@\nVS：%@ · 控制权：%@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Safety gate: %1$@\nVS: %2$@ · Control: %3$@"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "new",
+            "value": "安全门：%1$@\nVS：%2$@ · 控制权：%3$@"
+          }
+        }
+      }
+    },
+    "定时拍照": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Timed capture"
+          }
+        }
+      }
+    },
+    "尚无已保存任务": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No saved tasks"
+          }
+        }
+      }
+    },
+    "开启后中间点保留动量并携带残差；最终点仍减速悬停。": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "When enabled, intermediate points retain momentum and carry residual motion; the final point still decelerates to a hover."
+          }
+        }
+      }
+    },
+    "悬停": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hover"
+          }
+        }
+      }
+    },
+    "手动 XYZ 相对位置": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Manual XYZ Relative Position"
+          }
+        }
+      }
+    },
+    "手动兜底：填写 UE 电脑加入 iPhone 热点后获得的 IP。": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Manual fallback: enter the IP assigned to the UE computer after it joins the iPhone hotspot."
+          }
+        }
+      }
+    },
+    "手动起飞（默认）": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Manual takeoff (default)"
+          }
+        }
+      }
+    },
+    "打开相册会让 DJI 相机暂时进入回放/媒体下载模式；关闭后自动恢复拍照和图传。": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Opening the gallery temporarily switches the DJI camera to playback/media-download mode. Capture and live video resume automatically after closing it."
+          }
+        }
+      }
+    },
+    "执行环境自动选择：DJI Simulator 激活时走仿真；否则仅允许真机手动起飞、稳定悬停后执行。": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The execution environment is selected automatically: DJI Simulator when active; otherwise real-aircraft execution requires manual takeoff and a stable hover."
+          }
+        }
+      }
+    },
+    "执行航带（颜色与地图航线一致，点选后立即更新任务）": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Flight lines to execute (colors match the map; tapping updates the task immediately)"
+          }
+        }
+      }
+    },
+    "操作统一放在底部：预演 / 安全预检 / 执行。Simulator 激活时执行仿真；否则要求真机手动起飞并稳定悬停。人工介入会自动暂停、归零、释放控制并保存断点。": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use the bottom controls for Preview / Safety Check / Execute. When Simulator is active, execution is simulated; otherwise manually take off and hold a stable hover. Manual intervention pauses automatically, zeros commands, releases control, and saves a checkpoint."
+          }
+        }
+      }
+    },
+    "本段剩余 %@ · 全部剩余 %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Current segment %1$@ remaining · Total %2$@ remaining"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "new",
+            "value": "本段剩余 %1$@ · 全部剩余 %2$@"
+          }
+        }
+      }
+    },
+    "机头沿航迹（不倒飞）": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Heading follows track (no reverse flight)"
+          }
+        }
+      }
+    },
+    "模型原始 stop 分数 ≥ %@ 时立即悬停；修改会安全退出当前 VLN 控制。": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hover immediately when the model's raw stop score is ≥ %@. Changing this safely exits current VLN control."
+          }
+        }
+      }
+    },
+    "模型始终预测 H10；开启后按所选 H1–H10 前缀执行，首个 stop 命中行只作停止哨兵、不执行移动。": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The model always predicts H10. When enabled, execute the selected H1–H10 prefix; the first row meeting the stop condition is a stop sentinel and is not executed as motion."
+          }
+        }
+      }
+    },
+    "模型监视器": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Model Monitor"
+          }
+        }
+      }
+    },
+    "此操作会终止当前预演/执行，并删除当前区域、生成航线和已保存恢复点。": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This stops the current preview/execution and deletes the current area, generated route, and saved checkpoint."
+          }
+        }
+      }
+    },
+    "水平限速": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Horizontal Speed Limit"
+          }
+        }
+      }
+    },
+    "界面语言": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Interface language"
+          }
+        }
+      }
+    },
+    "目标面上方": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Above target surface"
+          }
+        }
+      }
+    },
+    "相对起飞点": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Relative to takeoff point"
+          }
+        }
+      }
+    },
+    "真机仿地必须核验近期表面 DSM 与建筑位置；未核验数据只允许预演/仿真。": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Real terrain-following flight requires verification of a recent surface DSM and building locations. Unverified data is limited to preview/simulation."
+          }
+        }
+      }
+    },
+    "稍后可在设置中随时更改": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You can change this later in Settings."
+          }
+        }
+      }
+    },
+    "等距离拍照": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Distance-based capture"
+          }
+        }
+      }
+    },
+    "继续": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Continue"
+          }
+        }
+      }
+    },
+    "自动就近": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nearest automatically"
+          }
+        }
+      }
+    },
+    "自定义": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Custom"
+          }
+        }
+      }
+    },
+    "航线": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Route"
+          }
+        }
+      }
+    },
+    "航线 · 任务库": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Routes · Task Library"
+          }
+        }
+      }
+    },
+    "航线执行状态": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Route Execution Status"
+          }
+        }
+      }
+    },
+    "航线摘要": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Route Summary"
+          }
+        }
+      }
+    },
+    "角点 1": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Corner 1"
+          }
+        }
+      }
+    },
+    "角点 2": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Corner 2"
+          }
+        }
+      }
+    },
+    "角点 3": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Corner 3"
+          }
+        }
+      }
+    },
+    "角点 4": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Corner 4"
+          }
+        }
+      }
+    },
+    "该分类下没有媒体文件": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No media in this category"
+          }
+        }
+      }
+    },
+    "语言": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Language"
+          }
+        }
+      }
+    },
+    "调试时建议保持开启；关闭后再次启动可能需要重启飞机。": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Keep this enabled while debugging. Restarting it after disabling may require restarting the aircraft."
+          }
+        }
+      }
+    },
+    "返回": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Back"
+          }
+        }
+      }
+    },
+    "返回航线起点": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Return to route start"
+          }
+        }
+      }
+    },
+    "返航": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Return to Home"
+          }
+        }
+      }
+    },
+    "返航高度": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "RTH Altitude"
+          }
+        }
+      }
+    },
+    "这些操作只驱动 MockFlightProvider，不连接真实 DJI 飞机。": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "These actions drive only MockFlightProvider and do not connect to a real DJI aircraft."
+          }
+        }
+      }
+    },
+    "选择语言": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choose Language"
+          }
+        }
+      }
+    },
+    "飞控与安全": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Flight Control & Safety"
+          }
+        }
+      }
+    },
+    "飞机": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aircraft"
+          }
+        }
+      }
+    },
+    "飞机状态": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aircraft Status"
+          }
+        }
+      }
+    },
+    "飞机相册": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aircraft Gallery"
+          }
+        }
+      }
+    },
+    "飞行告警（%@）": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Flight Warnings (%@)"
+          }
+        }
+      }
+    },
+    "默认同时使用 Bonjour 和旧 Android UE 的 OFHL HELLO 单播探测；无需填写电脑 IP，失联后自动重新发现。": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "By default, discovery uses both Bonjour and the legacy Android UE OFHL HELLO unicast probe. No computer IP is required, and discovery resumes automatically after link loss."
+          }
+        }
+      }
+    },
+    "未连接": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Disconnected"
+          }
+        }
+      }
+    },
+    "人工": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Manual"
+          }
+        }
+      }
+    },
+    "降落": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Land"
+          }
+        }
+      }
+    },
+    "保护": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Failsafe"
+          }
+        }
+      }
+    },
+    "平稳": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cine"
+          }
+        }
+      }
+    },
+    "普通": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Normal"
+          }
+        }
+      }
+    },
+    "运动": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sport"
+          }
+        }
+      }
+    },
+    "未知": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unknown"
+          }
+        }
+      }
+    },
+    "GPS 位置闭环": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GPS Position Closed Loop"
+          }
+        }
+      }
+    },
+    "速度积分估算": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Velocity Integration Estimate"
+          }
+        }
+      }
+    },
+    "GPS闭环": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GPS Loop"
+          }
+        }
+      }
+    },
+    "速度估算": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Velocity Estimate"
+          }
+        }
+      }
+    },
+    "使用飞机经纬度反馈；无有效 GPS 时拒绝执行": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uses aircraft latitude/longitude feedback; execution is rejected without valid GPS."
+          }
+        }
+      }
+    },
+    "按飞控速度模长与指令方向积分；适合室内 OPTI/仿真短距离测试": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Integrates flight-controller speed magnitude along the command direction; suitable for short indoor OPTI or simulation tests."
+          }
+        }
+      }
+    },
+    "人工控制": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Manual Control"
+          }
+        }
+      }
+    },
+    "VLN 待命": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "VLN Standby"
+          }
+        }
+      }
+    },
+    "VLN 执行": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "VLN Executing"
+          }
+        }
+      }
+    },
+    "航测待命": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Survey Standby"
+          }
+        }
+      }
+    },
+    "航测执行": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Survey Executing"
+          }
+        }
+      }
+    },
+    "航测暂停": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Survey Paused"
+          }
+        }
+      }
+    },
+    "自动返航": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Automatic RTH"
+          }
+        }
+      }
+    },
+    "自动降落": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Automatic Landing"
+          }
+        }
+      }
+    },
+    "急停/失联保护": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Emergency / Link-loss Failsafe"
+          }
+        }
+      }
+    },
+    "遥控器": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Remote Controller"
+          }
+        }
+      }
+    },
+    "航测": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Survey"
+          }
+        }
+      }
+    },
+    "飞控": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Autopilot"
+          }
+        }
+      }
+    },
+    "无": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "None"
+          }
+        }
+      }
+    },
+    "飞行器连接丢失": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aircraft connection lost"
+          }
+        }
+      }
+    },
+    "本地急停已锁定": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Local emergency stop is latched"
+          }
+        }
+      }
+    },
+    "检测到人工摇杆，VLN 已释放": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Manual stick input detected; VLN released"
+          }
+        }
+      }
+    },
+    "飞控执行自动降落": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Autopilot is performing automatic landing"
+          }
+        }
+      }
+    },
+    "飞控执行自动返航": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Autopilot is performing automatic RTH"
+          }
+        }
+      }
+    },
+    "航测状态机持有 Virtual Stick": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Survey state machine owns Virtual Stick"
+          }
+        }
+      }
+    },
+    "航测正在申请 Virtual Stick": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Survey is requesting Virtual Stick"
+          }
+        }
+      }
+    },
+    "航测断点已保存，Virtual Stick 已释放": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Survey checkpoint saved; Virtual Stick released"
+          }
+        }
+      }
+    },
+    "VLN 控制未启用": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "VLN control is disabled"
+          }
+        }
+      }
+    },
+    "模型指令正在执行": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Model command is executing"
+          }
+        }
+      }
+    },
+    "控制已就绪": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Control is ready"
+          }
+        }
+      }
+    },
+    "指令过期，持续零速度": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Command expired; holding zero velocity"
+          }
+        }
+      }
+    },
+    "HIL仿真/UE在线": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HIL Simulation / UE Online"
+          }
+        }
+      }
+    },
+    "HIL仿真/等待UE": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HIL Simulation / Waiting for UE"
+          }
+        }
+      }
+    },
+    "DJI仿真切换中": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Switching DJI Simulation"
+          }
+        }
+      }
+    },
+    "DJI仿真启动中": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Starting DJI Simulation"
+          }
+        }
+      }
+    },
+    "DJI仿真": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "DJI Simulation"
+          }
+        }
+      }
+    },
+    "真机": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Real Aircraft"
+          }
+        }
+      }
+    },
+    "仿真飞行中": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Simulation Flying"
+          }
+        }
+      }
+    },
+    "仿真电机已启动": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Simulation Motors On"
+          }
+        }
+      }
+    },
+    "仿真等待 RAW 状态": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Simulation Waiting for RAW State"
+          }
+        }
+      }
+    },
+    "飞行中": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Flying"
+          }
+        }
+      }
+    },
+    "地面": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ground"
+          }
+        }
+      }
+    },
+    "取消返航": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancel RTH"
+          }
+        }
+      }
+    },
+    "取消降落": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancel Landing"
+          }
+        }
+      }
+    },
+    "状态": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Status"
+          }
+        }
+      }
+    },
+    "长按起飞": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hold to Take Off"
+          }
+        }
+      }
+    },
+    "长按自动起飞": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hold for Automatic Takeoff"
+          }
+        }
+      }
+    },
+    "当前不可起飞": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Takeoff unavailable"
+          }
+        }
+      }
+    },
+    "飞机未连接": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aircraft not connected"
+          }
+        }
+      }
+    },
+    "飞机已在飞行": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aircraft is already flying"
+          }
+        }
+      }
+    },
+    "DJI 正在返航": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "DJI is returning to home"
+          }
+        }
+      }
+    },
+    "DJI 正在降落": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "DJI is landing"
+          }
+        }
+      }
+    },
+    "DJI 处于保护状态": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "DJI is in failsafe state"
+          }
+        }
+      }
+    },
+    "链路": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Link"
+          }
+        }
+      }
+    },
+    "执行": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Execution"
+          }
+        }
+      }
+    },
+    "仿真": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Simulation"
+          }
+        }
+      }
+    },
+    "设置分类": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Settings Category"
+          }
+        }
+      }
+    },
+    "位置闭环": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Position Closure"
+          }
+        }
+      }
+    },
+    "局域网": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Local Network"
+          }
+        }
+      }
+    },
+    "手机热点直连": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Personal Hotspot"
+          }
+        }
+      }
+    },
+    "自动发现": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Automatic Discovery"
+          }
+        }
+      }
+    },
+    "手动 IP": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Manual IP"
+          }
+        }
+      }
+    },
+    "卫星图": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Satellite"
+          }
+        }
+      }
+    },
+    "标准图": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Standard"
+          }
+        }
+      }
+    },
+    "暂停": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pause"
+          }
+        }
+      }
+    },
+    "预演": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Preview"
+          }
+        }
+      }
+    },
+    "停止预演": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stop Preview"
+          }
+        }
+      }
+    },
+    "安全预检": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Safety Check"
+          }
+        }
+      }
+    },
+    "定位飞机": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Locate Aircraft"
+          }
+        }
+      }
+    },
+    "撤销": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Undo"
+          }
+        }
+      }
+    },
+    "删除选中点": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete Selected Point"
+          }
+        }
+      }
+    },
+    "清空": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clear"
+          }
+        }
+      }
+    },
+    "全选": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Select All"
+          }
+        }
+      }
+    },
+    "生成正射航线": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Generate Nadir Route"
+          }
+        }
+      }
+    },
+    "生成五向倾斜": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Generate Five-direction Oblique"
+          }
+        }
+      }
+    },
+    "正射": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nadir"
+          }
+        }
+      }
+    },
+    "前倾": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Forward Oblique"
+          }
+        }
+      }
+    },
+    "后倾": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Backward Oblique"
+          }
+        }
+      }
+    },
+    "左倾": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Left Oblique"
+          }
+        }
+      }
+    },
+    "右倾": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Right Oblique"
+          }
+        }
+      }
+    },
+    "局部倾斜": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Local Oblique"
+          }
+        }
+      }
+    },
+    "1 俯": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "1 Nadir"
+          }
+        }
+      }
+    },
+    "2 前": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "2 Front"
+          }
+        }
+      }
+    },
+    "3 后": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "3 Rear"
+          }
+        }
+      }
+    },
+    "4 左": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "4 Left"
+          }
+        }
+      }
+    },
+    "5 右": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "5 Right"
+          }
+        }
+      }
+    },
+    "局部": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Local"
+          }
+        }
+      }
+    },
+    " · 控制权：": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": " · Control: "
+          }
+        }
+      }
+    },
+    "区域": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Area"
+          }
+        }
+      }
+    },
+    "飞行": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Flight"
+          }
+        }
+      }
+    },
+    "影像": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Capture"
+          }
+        }
+      }
+    },
+    "仿地设置": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Terrain"
+          }
+        }
+      }
+    },
+    "仿地·开": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Terrain · On"
+          }
+        }
+      }
+    },
+    "任务库": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Task Library"
+          }
+        }
+      }
+    },
+    "区域航线": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Area Survey"
+          }
+        }
+      }
+    },
+    "任务名称": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Task Name"
+          }
+        }
+      }
+    },
+    "规划区域": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Planning Area"
+          }
+        }
+      }
+    },
+    "在地图上依次点选至少 3 个边界点；点击已有顶点可选中并调整。": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tap at least 3 boundary points on the map. Tap an existing vertex to select and adjust it."
+          }
+        }
+      }
+    },
+    "设备与采集方式": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aircraft & Capture"
+          }
+        }
+      }
+    },
+    "自动识别": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Detected"
+          }
+        }
+      }
+    },
+    "固定相机": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fixed Camera"
+          }
+        }
+      }
+    },
+    "全线": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Full Route"
+          }
+        }
+      }
+    },
+    "街道": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Street"
+          }
+        }
+      }
+    },
+    "卫星": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Satellite"
+          }
+        }
+      }
+    },
+    "2D": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "2D"
+          }
+        }
+      }
+    },
+    "3D": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "3D"
+          }
+        }
+      }
+    },
+    "统计：生成航线后显示照片、存储和架次估算": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Summary: generate a route to estimate photos, storage, and sorties"
+          }
+        }
+      }
+    },
+    "统计：%d 张照片 · %.0f m · 约 %.1f min": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Summary: %d photos · %.0f m · about %.1f min"
+          }
+        }
+      }
+    },
+    "交叉正射": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crosshatch Nadir"
+          }
+        }
+      }
+    },
+    "五向倾斜 · %d组": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Five-direction Oblique · %d sets"
+          }
+        }
+      }
+    },
+    "%@ · GSD %.2f cm/px · 航点高 %.1f m": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ · GSD %2$.2f cm/px · Waypoint %3$.1f m"
+          }
+        }
+      }
+    },
+    "航测硬上限 10.0 m/s；正在计算相机上限": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Survey hard limit 10.0 m/s; calculating camera limit"
+          }
+        }
+      }
+    },
+    "航测硬上限 10.0 m/s · 相机有效上限 %.1f m/s": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Survey hard limit 10.0 m/s · Camera limit %.1f m/s"
+          }
+        }
+      }
+    },
+    "航线暂停": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Route Paused"
+          }
+        }
+      }
+    },
+    "航线执行": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Route Executing"
+          }
+        }
+      }
+    },
+    "安全爬升": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Safe Climb"
+          }
+        }
+      }
+    },
+    "飞向起始点": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Transit to Start"
+          }
+        }
+      }
+    },
+    "返回暂停点": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Return to Pause Point"
+          }
+        }
+      }
+    },
+    "航测采集": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Survey Capture"
+          }
+        }
+      }
+    },
+    "返回 Home": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Return Home"
+          }
+        }
+      }
+    },
+    "准备控制": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Preparing Control"
+          }
+        }
+      }
+    },
+    "%@ · %@ · %d/%d": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ · %2$@ · %3$d/%4$d"
+          }
+        }
+      }
+    },
+    "当前航带": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Current Flight Line"
+          }
+        }
+      }
+    },
+    "当前阶段": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Current Phase"
+          }
+        }
+      }
+    },
+    "%@ %@  ·  整体 %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ %2$@  ·  Total %3$@"
+          }
+        }
+      }
+    },
+    "暂停原因：%@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pause reason: %@"
+          }
+        }
+      }
+    },
+    "实时 %.1f m/s · 垂直 %+.1f m/s · 已拍 %d · 已计入转弯": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Live %.1f m/s · Vertical %+.1f m/s · %d captured · Turns included"
+          }
+        }
+      }
+    },
+    "已恢复上次生成或导入的航线": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Restored the last generated or imported route"
+          }
+        }
+      }
+    },
+    "点击地图依次添加至少 3 个边界点": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tap the map to add at least 3 boundary points"
+          }
+        }
+      }
+    },
+    "已导出 %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Exported %@"
+          }
+        }
+      }
+    },
+    "导出失败：%@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Export failed: %@"
+          }
+        }
+      }
+    },
+    "五向倾斜俯角已设为 %.0f°": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Five-direction oblique pitch set to %.0f°"
+          }
+        }
+      }
+    },
+    "Simulator UI 回归任务 · NO CONTROL": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Simulator UI regression task · NO CONTROL"
+          }
+        }
+      }
+    },
+    "Simulator UI 回归任务失败：%@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Simulator UI regression task failed: %@"
+          }
+        }
+      }
+    },
+    "已恢复上次航测断点，保持暂停；请复检后再继续": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Restored the last survey checkpoint and kept it paused. Recheck before resuming."
+          }
+        }
+      }
+    },
+    "已恢复断点并回退到航带起点；需手动点击继续": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Checkpoint restored and rewound to the start of the flight line; tap Continue manually"
+          }
+        }
+      }
+    },
+    "已恢复断点，保持暂停；需手动点击继续": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Checkpoint restored and paused; tap Continue manually"
+          }
+        }
+      }
+    },
+    "当前任务恢复失败：%@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Current task restore failed: %@"
+          }
+        }
+      }
+    },
+    "正在切换仿真起点…": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Changing simulation origin…"
+          }
+        }
+      }
+    },
+    "航线正在执行或已暂停待续飞；请先终止航线再编辑": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The route is running or paused for resume. Stop it before editing."
+          }
+        }
+      }
+    },
+    "已移动边界点 %d；请重新生成航线": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Moved boundary point %d. Regenerate the route."
+          }
+        }
+      }
+    },
+    "已添加第 %d 个边界点；至少需要 3 点": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Added boundary point %d. At least 3 points are required."
+          }
+        }
+      }
+    },
+    "边界点最多 %d 个": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Up to %d boundary points are allowed"
+          }
+        }
+      }
+    },
+    "已适配显示完整航线": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fitted the full route on the map"
+          }
+        }
+      }
+    },
+    "请在地图点选仿真起点；本次点击不会添加航线边界点": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tap the simulation origin on the map. This tap will not add a route boundary point."
+          }
+        }
+      }
+    },
+    "已取消设置仿真起点": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancelled simulation-origin selection"
+          }
+        }
+      }
+    },
+    "预演已停止 · NO CONTROL": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Preview stopped · NO CONTROL"
+          }
+        }
+      }
+    },
+    "已恢复断点，保持暂停；请复检后再继续": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Checkpoint restored and kept paused. Recheck before resuming."
+          }
+        }
+      }
+    },
+    "至少保留 1 组航线": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Keep at least 1 route set"
+          }
+        }
+      }
+    },
+    "已生成所选 %d 组航线": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Generated the selected %d route sets"
+          }
+        }
+      }
+    },
+    "无法应用所选航带：%@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unable to apply selected flight lines: %@"
+          }
+        }
+      }
+    },
+    "五向执行组：%d 组；点击“生成五向倾斜”应用": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%d five-direction sets selected. Tap Generate Five-direction Oblique to apply."
+          }
+        }
+      }
+    },
+    "至少保留 1 个补缺组": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Keep at least 1 recapture group"
+          }
+        }
+      }
+    },
+    "当前不是可编辑的主动补缺任务": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The current task is not an editable active-recapture task"
+          }
+        }
+      }
+    },
+    "已选择 %d/%d 个补缺组 · 已保存 r%d · 请重新安全预检": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Selected %1$d/%2$d recapture groups · Saved r%3$d · Rerun Safety Check"
+          }
+        }
+      }
+    },
+    "补缺分组应用失败：%@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Applying recapture groups failed: %@"
+          }
+        }
+      }
+    },
+    "只读预演运行中 · NO CONTROL": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Read-only preview running · NO CONTROL"
+          }
+        }
+      }
+    },
+    "只读预演 %.0f%% · 航带 %d · NO CONTROL": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Read-only preview %.0f%% · Flight line %d · NO CONTROL"
+          }
+        }
+      }
+    },
+    "只读预演完成 · NO CONTROL": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Read-only preview complete · NO CONTROL"
+          }
+        }
+      }
+    },
+    "预演失败：%@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Preview failed: %@"
+          }
+        }
+      }
+    },
+    "请先终止航线，再执行云台诊断": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stop the route before running gimbal diagnostics"
+          }
+        }
+      }
+    },
+    "云台诊断失败：飞机未连接": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gimbal diagnostic failed: aircraft not connected"
+          }
+        }
+      }
+    },
+    "已发送云台 %.0f°；请核对实际俯角": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sent gimbal %.0f°. Verify the actual pitch."
+          }
+        }
+      }
+    },
+    "返航高度写入失败：请输入整数": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "RTH altitude write failed: enter a whole number"
+          }
+        }
+      }
+    },
+    "返航高度写入失败：必须在 20–500 m": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "RTH altitude write failed: value must be 20–500 m"
+          }
+        }
+      }
+    },
+    "返航高度写入失败：飞控未连接": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "RTH altitude write failed: flight controller not connected"
+          }
+        }
+      }
+    },
+    "返航高度写入失败：请在地面设置": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "RTH altitude write failed: set it while grounded"
+          }
+        }
+      }
+    },
+    "返航高度写入失败：不得低于任务最高高度 %.0f m": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "RTH altitude write failed: cannot be below the task maximum of %.0f m"
+          }
+        }
+      }
+    },
+    "正在写入返航高度 %d m…": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Writing RTH altitude %d m…"
+          }
+        }
+      }
+    },
+    "返航高度已写入：%d m": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "RTH altitude written: %d m"
+          }
+        }
+      }
+    },
+    "返航高度写入失败：%@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "RTH altitude write failed: %@"
+          }
+        }
+      }
+    },
+    "已撤销最后一个边界点": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Undid the last boundary point"
+          }
+        }
+      }
+    },
+    "已删除边界点 %d": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deleted boundary point %d"
+          }
+        }
+      }
+    },
+    "已清空；点击地图依次添加规划区边界点": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cleared. Tap the map to add planning-area boundary points."
+          }
+        }
+      }
+    },
+    "拟合航向 %.1f°": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fitted heading %.1f°"
+          }
+        }
+      }
+    },
+    "航向计算失败：%@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Heading calculation failed: %@"
+          }
+        }
+      }
+    },
+    "已生成当前位置附近 50×40m 回归区域": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Generated a 50×40 m regression area near the current location"
+          }
+        }
+      }
+    },
+    "回归区域生成失败：%@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Regression-area generation failed: %@"
+          }
+        }
+      }
+    },
+    "本地 DSM 仿地航线已生成；首次仍需仿真和人工核验": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Local DSM terrain-following route generated. Simulation and manual verification are still required before first use."
+          }
+        }
+      }
+    },
+    "全球地形 + 建筑高度仿地航线已生成；仅允许预览/仿真": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Global terrain + building-height route generated. Preview/simulation only."
+          }
+        }
+      }
+    },
+    "全球地形仿地航线已生成；仅允许预览/仿真": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Global terrain-following route generated. Preview/simulation only."
+          }
+        }
+      }
+    },
+    "普通航线已生成，尚未发送到飞机": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Standard route generated; not sent to the aircraft"
+          }
+        }
+      }
+    },
+    " · 已自动保存 r%d": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": " · Auto-saved r%d"
+          }
+        }
+      }
+    },
+    " · 保存失败：%@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": " · Save failed: %@"
+          }
+        }
+      }
+    },
+    "生成失败：%@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Generation failed: %@"
+          }
+        }
+      }
+    },
+    "已保存 %@ r%d": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Saved %1$@ r%2$d"
+          }
+        }
+      }
+    },
+    "保存失败：%@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Save failed: %@"
+          }
+        }
+      }
+    },
+    "航线正在执行或已暂停待续飞；请先终止航线再载入任务": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The route is running or paused for resume. Stop it before loading a task."
+          }
+        }
+      }
+    },
+    "已载入 %@ r%d": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Loaded %1$@ r%2$d"
+          }
+        }
+      }
+    },
+    "载入失败：%@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Load failed: %@"
+          }
+        }
+      }
+    },
+    "已删除任务版本": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deleted task version"
+          }
+        }
+      }
+    },
+    "删除失败：%@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete failed: %@"
+          }
+        }
+      }
+    },
+    "航线正在执行或已暂停待续飞；请先终止航线再导入任务": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The route is running or paused for resume. Stop it before importing a task."
+          }
+        }
+      }
+    },
+    "任务已校验、导入并保存": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Task validated, imported, and saved"
+          }
+        }
+      }
+    },
+    "导入失败：%@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Import failed: %@"
+          }
+        }
+      }
+    },
+    "当前发布版本未启用仿地飞行，不能载入带 terrainPlan 的任务": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Terrain following is disabled in this release, so tasks containing terrainPlan cannot be loaded"
+          }
+        }
+      }
+    },
+    "图传等待帧": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Waiting for Video Frame"
+          }
+        }
+      }
+    },
+    "最新图传帧": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Latest Video Frame"
+          }
+        }
+      }
+    },
+    "已定位到飞机": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Centered on aircraft"
+          }
+        }
+      }
+    },
+    "飞机位置不可用，已定位到遥控器": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aircraft position unavailable; centered on remote controller"
+          }
+        }
+      }
+    },
+    "飞机/遥控器 GPS 不可用，已定位到 iPhone": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aircraft/remote-controller GPS unavailable; centered on iPhone"
+          }
+        }
+      }
+    },
+    "无实时定位，已显示当前航线": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No live position; showing current route"
+          }
+        }
+      }
+    },
+    "无实时定位，已显示规划区域": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No live position; showing planning area"
+          }
+        }
+      }
+    },
+    "等待飞机、遥控器或 iPhone 定位": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Waiting for aircraft, remote-controller, or iPhone location"
+          }
+        }
+      }
+    },
+    "iPhone 定位\n等待飞机/遥控器 GPS": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iPhone Location\nWaiting for aircraft/remote-controller GPS"
+          }
+        }
+      }
+    },
+    "等待飞机/遥控器定位": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Waiting for aircraft/remote-controller location"
+          }
+        }
+      }
+    },
+    "段 %d/%d · h %.2fm · v %+.2fm · 已拍 %d": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Leg %1$d/%2$d · h %3$.2fm · v %4$+.2fm · %5$d captured"
+          }
+        }
+      }
+    },
+    "未下载地形": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Terrain not downloaded"
+          }
+        }
+      }
+    },
+    "当前任务保存失败：%@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Current task save failed: %@"
+          }
+        }
+      }
+    },
+    "准备下载全球地形…": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Preparing global-terrain download…"
+          }
+        }
+      }
+    },
+    "地形瓦片 %d/%d": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Terrain tiles %1$d/%2$d"
+          }
+        }
+      }
+    },
+    "裸地 DEM 已就绪：下载 %d，缓存 %d；请核对后点“应用到航线”": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bare-earth DEM ready: %1$d downloaded, %2$d cached. Verify it, then tap Apply to Route."
+          }
+        }
+      }
+    },
+    "下载失败：%@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Download failed: %@"
+          }
+        }
+      }
+    },
+    "请先在地图上添加至少 3 个边界点": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add at least 3 boundary points on the map first"
+          }
+        }
+      }
+    },
+    "表面 DSM 需要导入 DSM，或同时准备裸地 DEM 与建筑高度": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Surface DSM requires an imported DSM or both a bare-earth DEM and building heights"
+          }
+        }
+      }
+    },
+    "请先下载裸地 DEM": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Download the bare-earth DEM first"
+          }
+        }
+      }
+    },
+    "请先核对表面 DSM 与规划区坐标，并勾选对齐确认": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verify the surface DSM and planning-area coordinates, then confirm alignment"
+          }
+        }
+      }
+    },
+    "准备下载建筑高度…": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Preparing building-height download…"
+          }
+        }
+      }
+    },
+    "建筑高度分块 %d/%d": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Building-height tiles %1$d/%2$d"
+          }
+        }
+      }
+    },
+    "建筑高度已就绪：下载 %d，缓存 %d；请核对后点“应用到航线”": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Building heights ready: %1$d downloaded, %2$d cached. Verify them, then tap Apply to Route."
+          }
+        }
+      }
+    },
+    "建筑高度下载失败：%@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Building-height download failed: %@"
+          }
+        }
+      }
+    },
+    "已导入 %@ · EPSG:%d · %d×%d；请核对后点“应用到航线”": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Imported %1$@ · EPSG:%2$d · %3$d×%4$d. Verify it, then tap Apply to Route."
+          }
+        }
+      }
+    },
+    "DSM 导入失败：%@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "DSM import failed: %@"
+          }
+        }
+      }
+    },
+    "已导入建筑相对高度 %@；请先下载裸地 DEM，再点“应用到航线”": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Imported relative building heights %@. Download the bare-earth DEM, then tap Apply to Route."
+          }
+        }
+      }
+    },
+    "建筑高度导入失败：%@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Building-height import failed: %@"
+          }
+        }
+      }
+    },
+    "等待高程数据准备完成": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Waiting for elevation data"
+          }
+        }
+      }
+    },
+    "请导入表面 DSM，或准备裸地 DEM + 建筑高度": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Import a surface DSM or prepare a bare-earth DEM + building heights"
+          }
+        }
+      }
+    },
+    "核对图层后勾选上方的 DSM 对齐确认": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verify the layer, then confirm DSM alignment above"
+          }
+        }
+      }
+    },
+    "数据已就绪；点击后会启用仿地并重新生成航线": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Data is ready. Tap to enable terrain following and regenerate the route."
+          }
+        }
+      }
+    },
+    "GSD 必须为有效正数": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GSD must be a valid positive number"
+          }
+        }
+      }
+    },
+    "GSD %.2f cm/px → 飞行高度 %.1f m": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GSD %.2f cm/px → Flight altitude %.1f m"
+          }
+        }
+      }
+    },
+    "航线任务仍在占用控制状态": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A route task still owns the control state"
+          }
+        }
+      }
+    },
+    "先终止任务，才能切换 DJI 内置仿真器": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "End the task before switching the DJI built-in simulator."
+          }
+        }
+      }
+    },
+    "终止任务": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "End Task"
+          }
+        }
+      }
+    },
+    "终止当前航线任务？": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "End the current route task?"
+          }
+        }
+      }
+    },
+    "终止任务并释放控制": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "End Task and Release Control"
+          }
+        }
+      }
+    },
+    "飞机将立即发送零速度并释放 Virtual Stick；本次任务断点会被清除。": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The aircraft will immediately receive a zero-velocity command and Virtual Stick will be released. This task checkpoint will be cleared."
+          }
+        }
+      }
+    },
+    "航线已暂停，切换仿真不会清除任务断点。": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The route is paused. Switching the simulator will keep its checkpoint."
+          }
+        }
+      }
+    },
+    "航线已自动暂停并释放控制；断点已保留": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The route was paused and control released; its checkpoint was preserved."
+          }
+        }
+      }
+    },
+    "已拍摄": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Captured"
+          }
+        }
+      }
+    },
+    "拍摄失败": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Capture Failed"
+          }
+        }
+      }
+    },
+    "DJI 未提供可读故障原因。若仿真无法解锁，请关闭并重启飞机，待遥控器重新连接后再试。": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "DJI did not provide a readable fault reason. If simulation cannot unlock, power-cycle the aircraft and wait for the controller to reconnect before retrying."
+          }
+        }
+      }
+    },
+    "若同时出现“DJI 设备状态异常”且仿真无法解锁，请关闭并重启飞机（不是只重启 App），待遥控器重新连接后再试。": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "If DJI Device Status Error also appears and simulation cannot unlock, power-cycle the aircraft—not only the app—and wait for the controller to reconnect before retrying."
+          }
+        }
+      }
+    },
+    "关于与支持": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "About & Support"
+          }
+        }
+      }
+    },
+    "隐私政策": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Privacy Policy"
+          }
+        }
+      }
+    },
+    "支持与联系": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Support & Contact"
+          }
+        }
+      }
+    },
+    "在浏览器中打开 OpenFly Go 隐私政策": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open the OpenFly Go privacy policy in your browser"
+          }
+        }
+      }
+    },
+    "在浏览器中打开 OpenFly Go 支持页面": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open the OpenFly Go support page in your browser"
+          }
+        }
+      }
+    },
+    "OpenFly Go · 1.0 · you_zhongrui@outlook.com": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "OpenFly Go · 1.0 · you_zhongrui@outlook.com"
+          }
+        }
+      }
+    },
+    "openfly.hil.v1：UDP 30020/30021，TCP 虚拟相机 30022；首版用于仿真图像预览和记录，不启用模型推理。": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "openfly.hil.v1: UDP 30020/30021 and TCP virtual camera 30022. Version 1.0 supports simulation preview and recording without model inference."
+          }
+        }
+      }
+    },
+    "仿真待内八解锁": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Simulation Awaiting CSC Unlock"
+          }
+        }
+      }
+    },
+    "GPS 无信号，谨慎起飞": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No GPS Signal — Use Caution Before Takeoff"
+          }
+        }
+      }
+    },
+    "飞行器无法可靠定位，返航点可能无法记录。请在开阔区域等待 GNSS 信号恢复。": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The aircraft cannot position reliably and may be unable to record a home point. Wait in an open area for GNSS signal to recover."
+          }
+        }
+      }
+    },
+    "GPS 信号很弱，谨慎起飞": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Very Weak GPS Signal — Use Caution Before Takeoff"
+          }
+        }
+      }
+    },
+    "当前定位可靠性不足，请避免远距离飞行。": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Positioning reliability is currently insufficient. Avoid long-distance flight."
+          }
+        }
+      }
+    },
+    "GPS 信号较弱": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Weak GPS Signal"
+          }
+        }
+      }
+    },
+    "返航可用，但建议等待信号增强后再起飞。": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Return-to-home is available, but wait for a stronger signal before takeoff."
+          }
+        }
+      }
+    },
+    "返航点尚未记录": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Home Point Not Recorded"
+          }
+        }
+      }
+    },
+    "请等待返航点记录成功后再进行远距离飞行。": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wait until the home point is recorded before flying long distances."
+          }
+        }
+      }
+    },
+    "飞机与遥控器已连接": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aircraft and remote controller connected"
+          }
+        }
+      }
+    },
+    "仅遥控器已连接": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Remote controller connected; aircraft unavailable"
+          }
+        }
+      }
+    },
+    "DJI 产品已断开，等待自动重连": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "DJI product disconnected; waiting to reconnect"
+          }
+        }
+      }
+    },
+    "等待连接 DJI 遥控器": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Waiting for DJI remote controller"
+          }
+        }
+      }
+    },
+    "正在重新连接 DJI 产品": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reconnecting to DJI product"
+          }
+        }
+      }
+    },
+    "MSDK 已注册，等待产品": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "MSDK registered; waiting for product"
+          }
+        }
+      }
+    },
+    "飞控遥测正常": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Flight-controller telemetry ready"
+          }
+        }
+      }
+    },
+    "产品已连接：%@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Product connected: %@"
+          }
+        }
+      }
+    },
+    "MSDK 注册失败：%@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "MSDK registration failed: %@"
+          }
+        }
+      }
+    },
+    "已连接": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Connected"
+          }
+        }
+      }
+    },
+    "断开": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Disconnected"
+          }
+        }
+      }
+    },
+    "已注册": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Registered"
+          }
+        }
+      }
+    },
+    "未注册": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Not Registered"
+          }
+        }
+      }
+    },
+    "Mock 已连接": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mock Connected"
+          }
+        }
+      }
+    },
+    "等待 DJI MSDK": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Waiting for DJI MSDK"
+          }
+        }
+      }
+    },
+    "默认使用上海市中心（人民广场）公开演示坐标，不读取当前设备位置。": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The default is a public demo coordinate at People's Square in central Shanghai; the current device location is not read."
+          }
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}

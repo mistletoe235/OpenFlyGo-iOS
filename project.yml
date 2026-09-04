@@ -1,0 +1,69 @@
+name: DJIVLNiOS
+options:
+  bundleIdPrefix: com.openfly
+  developmentLanguage: zh-Hans
+  deploymentTarget:
+    iOS: "16.0"
+  xcodeVersion: "26.0"
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+    CLANG_CXX_LANGUAGE_STANDARD: c++17
+    CLANG_CXX_LIBRARY: libc++
+packages:
+  Clipper2:
+    url: https://github.com/zyunlongz/clipper2-swift.git
+    revision: d17885ae7159e5c16e9dc56dd0fbd26c1e941df3
+targets:
+  DJIVLNiOS:
+    type: application
+    platform: iOS
+    configFiles:
+      Debug: Config/OpenFlyGo.xcconfig
+      Release: Config/OpenFlyGo.xcconfig
+    sources:
+      - path: App
+    dependencies:
+      - package: Clipper2
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: $(OPENFLY_BUNDLE_ID)
+        PRODUCT_NAME: DJIVLNiOS
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        TARGETED_DEVICE_FAMILY: 1
+        GENERATE_INFOPLIST_FILE: NO
+        INFOPLIST_FILE: App/Info.plist
+        INFOPLIST_KEY_UISupportedInterfaceOrientations: UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight
+        SWIFT_OBJC_BRIDGING_HEADER: App/Bridge/DJIVLN-Bridging-Header.h
+        OTHER_LDFLAGS: $(inherited) -ObjC
+        CODE_SIGN_ENTITLEMENTS: App/DJIVLNiOS.entitlements
+        CODE_SIGN_STYLE: Automatic
+      configs:
+        Debug:
+          SWIFT_ACTIVE_COMPILATION_CONDITIONS: $(inherited) OPENFLY_ENABLE_TERRAIN
+        Release:
+          SWIFT_ACTIVE_COMPILATION_CONDITIONS: $(inherited)
+  DJIVLNiOSTests:
+    type: bundle.unit-test
+    platform: iOS
+    configFiles:
+      Debug: Config/OpenFlyGo.xcconfig
+      Release: Config/OpenFlyGo.xcconfig
+    sources:
+      - path: Tests
+    dependencies:
+      - target: DJIVLNiOS
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: $(OPENFLY_BUNDLE_ID).tests
+        GENERATE_INFOPLIST_FILE: YES
+        CODE_SIGN_STYLE: Automatic
+schemes:
+  DJIVLNiOS:
+    build:
+      targets:
+        DJIVLNiOS: all
+        DJIVLNiOSTests: [test]
+    test:
+      targets:
+        - DJIVLNiOSTests
