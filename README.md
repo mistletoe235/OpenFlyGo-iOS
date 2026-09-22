@@ -23,6 +23,21 @@ planning, simulator/HIL integration, resumable execution and reconstruction-orie
 The current public release intentionally excludes VLN, model inference, model distribution and all
 native model runtimes. The corresponding UI is not compiled into the public build.
 
+## Installation: TestFlight
+
+The iOS app is **not currently distributed on the App Store because of MFi-related
+authorization requirements** for the DJI accessory connection. Contact
+[@mistletoe235](https://github.com/mistletoe235) to request a **TestFlight invitation**;
+you can start with a [TestFlight access request](https://github.com/mistletoe235/OpenFlyGo-iOS/issues/new?title=TestFlight%20invitation%20request). Do not post your Apple ID,
+email address or other enrollment details in a public issue; arrange those details
+privately with the maintainer. No directly installable IPA is distributed here.
+
+[Release/access information](https://github.com/mistletoe235/OpenFlyGo-iOS/releases/tag/testflight-20260922) · [Main project releases](https://github.com/mistletoe235/OpenFlyScan/releases/tag/preview-20260922)
+
+The source-build instructions below are for developers and do not constitute a
+TestFlight invitation or an App Store release. Read the flight-safety warning above
+before using the app with hardware.
+
 ## Client selection and aircraft support
 
 Reviewed September 21, 2026. **V4 and V5 are different DJI SDK product lines,
