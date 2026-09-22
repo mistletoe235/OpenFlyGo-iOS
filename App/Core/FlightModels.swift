@@ -240,7 +240,14 @@ struct FlightTelemetry: Codable, Equatable {
     /// telemetry snapshots decodable; nil is treated as unknown/inactive.
     var sticksActive: Bool? = false
     var heading: Double = 357
+    var aircraftRoll: Double?
+    var aircraftPitch: Double?
+    var aircraftYaw: Double?
     var gimbalPitch: Double = -18
+    var gimbalRoll: Double?
+    var gimbalYaw: Double?
+    var gimbalYawRelativeToAircraftHeading: Double?
+    var gimbalStateTimestamp: Date?
     /// Raw DJI gimbal mechanical-limit signal for nadir capture policy.
     var gimbalPitchAtStop = false
     var satellites = 15
@@ -371,6 +378,10 @@ struct CameraStatus: Equatable {
     /// providers that only reported `sdInserted`.
     var storageReady: Bool? = nil
     var storageName = "SD"
+
+    var surveyGeometryRequired = false
+    var surveyCameraProfile: SurveyCameraProfile?
+    var surveyCameraUpdatedAt = Date.distantPast
 
     var captureStorageReady: Bool { storageReady ?? sdInserted }
     var canCapturePhotos: Bool {

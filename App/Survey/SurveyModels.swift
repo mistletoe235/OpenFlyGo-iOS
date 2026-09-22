@@ -497,6 +497,33 @@ struct SurveyTerrainPlan: Codable, Equatable {
     var bareEarthBaseSHA256: String? = nil
 }
 
+enum SurveyRecaptureFlightMode: String, Codable {
+    case stopAndCapture = "STOP_AND_CAPTURE"
+    case continuousExperimental = "CONTINUOUS_EXPERIMENTAL"
+}
+
+extension SurveyMission {
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        id = try values.decode(String.self, forKey: .id)
+        name = try values.decode(String.self, forKey: .name)
+        createdAtEpochMillis = try values.decode(Int64.self, forKey: .createdAtEpochMillis)
+        coordinateFrame = try values.decode(String.self, forKey: .coordinateFrame)
+        cameraProfile = try values.decode(SurveyCameraProfile.self, forKey: .cameraProfile)
+        constraints = try values.decode(SurveyConstraints.self, forKey: .constraints)
+        roi = try values.decode([SurveyGeoPoint].self, forKey: .roi)
+        waypoints = try values.decode([SurveyWaypoint].self, forKey: .waypoints)
+        estimatedPathMeters = try values.decode(Double.self, forKey: .estimatedPathMeters)
+        estimatedPhotoCount = try values.decode(Int.self, forKey: .estimatedPhotoCount)
+        estimatedFlightSeconds = try values.decode(Double.self, forKey: .estimatedFlightSeconds)
+        terrainPlan = try values.decodeIfPresent(SurveyTerrainPlan.self, forKey: .terrainPlan)
+        activeMapping = try values.decodeIfPresent(ActiveMappingMetadata.self, forKey: .activeMapping)
+        recaptureFlightMode = try values.decodeIfPresent(SurveyRecaptureFlightMode.self,
+                                                        forKey: .recaptureFlightMode) ?? .stopAndCapture
+        try validate()
+    }
+}
+
 struct SurveyMission: Codable, Equatable, Identifiable {
     var id = UUID().uuidString
     var name: String
@@ -511,6 +538,7 @@ struct SurveyMission: Codable, Equatable, Identifiable {
     var estimatedFlightSeconds: Double
     var terrainPlan: SurveyTerrainPlan? = nil
     var activeMapping: ActiveMappingMetadata? = nil
+    var recaptureFlightMode: SurveyRecaptureFlightMode = .stopAndCapture
 
     func surveyPasses() throws -> [SurveyPassWaypoints] {
         var result: [SurveyPassWaypoints] = []
@@ -544,6 +572,9 @@ struct SurveyMission: Codable, Equatable, Identifiable {
         guard !waypoints.isEmpty else { throw SurveyValidationError.invalid("mission requires waypoints") }
         try waypoints.forEach { try $0.validate() }
         try activeMapping?.validate()
+        guard recaptureFlightMode == .stopAndCapture || activeMapping != nil else {
+            throw SurveyValidationError.invalid("continuous recapture requires active mapping metadata")
+        }
         for (index, pass) in try surveyPasses().enumerated() {
             let start = pass.start, end = pass.end
             if pass.isPointCapture {

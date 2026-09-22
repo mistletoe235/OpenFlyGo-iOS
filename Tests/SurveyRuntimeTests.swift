@@ -3,6 +3,65 @@ import XCTest
 
 @MainActor
 final class SurveyRuntimeTests: XCTestCase {
+    func testPhysicalCameraGeometryReadbackIsRequiredBeforeControl() async throws {
+        let provider = SurveyFakeProvider()
+        let runtime = SurveyRuntimeController(provider: provider, log: EventLog())
+        let mission = try makeMission()
+        runtime.updateTelemetry(provider.telemetry)
+        runtime.updateSimulator(provider.simulatorStatus)
+        provider.camera.surveyGeometryRequired = true
+        runtime.updateCamera(provider.camera)
+        XCTAssertTrue(runtime.preflight(mission).blocks.contains(.cameraGeometryUnverified))
+        runtime.startSimulator(mission, anotherControllerActive: false)
+        XCTAssertTrue(provider.virtualStickRequests.isEmpty)
+        provider.camera.surveyCameraProfile = mission.cameraProfile
+        provider.camera.surveyCameraUpdatedAt = Date()
+        runtime.updateCamera(provider.camera)
+        XCTAssertTrue(runtime.preflight(mission).allowed)
+        provider.camera.surveyCameraUpdatedAt = Date().addingTimeInterval(-3)
+        runtime.updateCamera(provider.camera)
+        XCTAssertTrue(runtime.preflight(mission).blocks.contains(.cameraGeometryUnverified))
+        provider.camera.surveyCameraUpdatedAt = Date()
+        provider.camera.surveyCameraProfile?.horizontalFieldOfViewDegrees = 60
+        runtime.updateCamera(provider.camera)
+        XCTAssertTrue(runtime.preflight(mission).blocks.contains(.cameraGeometryUnverified))
+        runtime.abort("test cleanup")
+    }
+
+    func testCameraGeometryChangePausesAndBlocksResumeUntilReadbackMatches() async throws {
+        let provider = SurveyFakeProvider()
+        let runtime = SurveyRuntimeController(provider: provider, log: EventLog())
+        let mission = try makeMission()
+        runtime.updateTelemetry(provider.telemetry)
+        runtime.updateSimulator(provider.simulatorStatus)
+        provider.camera.surveyGeometryRequired = true
+        provider.camera.surveyCameraProfile = mission.cameraProfile
+        provider.camera.surveyCameraUpdatedAt = Date()
+        runtime.updateCamera(provider.camera)
+        runtime.startSimulator(mission, anotherControllerActive: false)
+        XCTAssertEqual(provider.virtualStickRequests, [true])
+        provider.telemetry.virtualStickActive = true
+        provider.telemetry.flightStateTimestamp = Date()
+        runtime.updateTelemetry(provider.telemetry)
+        await waitUntil { runtime.snapshot.state == .running }
+        XCTAssertEqual(runtime.snapshot.state, .running)
+        provider.camera.surveyCameraProfile = nil
+        runtime.updateCamera(provider.camera)
+        await waitUntil { runtime.snapshot.state == .paused }
+        XCTAssertEqual(runtime.snapshot.state, .paused)
+        XCTAssertEqual(provider.commands.last, .zero)
+        XCTAssertEqual(provider.virtualStickRequests.last, false)
+        let requestCount = provider.virtualStickRequests.count
+        runtime.resume(anotherControllerActive: false)
+        XCTAssertEqual(provider.virtualStickRequests.count, requestCount)
+        XCTAssertTrue(runtime.snapshot.gateBlocks.contains(.cameraGeometryUnverified))
+        provider.camera.surveyCameraProfile = mission.cameraProfile
+        provider.camera.surveyCameraUpdatedAt = Date()
+        runtime.updateCamera(provider.camera)
+        XCTAssertEqual(runtime.snapshot.state, .paused)
+        runtime.abort("test cleanup")
+    }
+
     func testRuntimeAcquiresSimulatorControlAndManualTakeoverReleasesIt() async throws {
         let provider = SurveyFakeProvider()
         let runtime = SurveyRuntimeController(provider: provider, log: EventLog())
@@ -686,7 +745,7 @@ final class SurveyRuntimeTests: XCTestCase {
 }
 
 @MainActor
-private final class SurveyFakeProvider: DJIFlightProvider {
+final class SurveyFakeProvider: DJIFlightProvider {
     var telemetry: FlightTelemetry = {
         var value = FlightTelemetry()
         value.connected = true
@@ -723,6 +782,8 @@ private final class SurveyFakeProvider: DJIFlightProvider {
     var returnHomeRequests = 0
     var returnHomeCallbackError: Error?
     var takePhotoRequests = 0
+    var deferSurveyPhotoCompletion = false
+    var pendingPhotoCompletions: [(Error?) -> Void] = []
 
     func start() {}
     func stop() {}
@@ -745,6 +806,11 @@ private final class SurveyFakeProvider: DJIFlightProvider {
     func send(_ command: VelocityCommand) { commands.append(command) }
     func setGimbalPitch(degrees: Double) throws {}
     func takePhoto() throws { takePhotoRequests += 1 }
+    func takeSurveyPhoto(completion: @escaping (Error?) -> Void) {
+        takePhotoRequests += 1
+        if deferSurveyPhotoCompletion { pendingPhotoCompletions.append(completion) }
+        else { completion(nil) }
+    }
     func toggleRecording() throws {}
     func captureModelFrame() async throws -> CameraFrame { throw FlightActionError.unavailable("unused") }
     func setSimulator(enabled: Bool) async throws {}

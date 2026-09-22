@@ -34,13 +34,49 @@ enum SurveyCameraProfileCatalog {
     static func resolve(_ identities: String?...) -> Resolution {
         let values = identities.compactMap { $0?.trimmingCharacters(in: .whitespacesAndNewlines) }
             .filter { !$0.isEmpty && !sentinels.contains(normalize($0)) }
-        let joined = values.map(normalize).joined(separator: " ")
-        if let match = entries.first(where: { $0.aliases.contains(where: joined.contains) }) {
+        let normalized = Set(values.map(canonicalIdentity))
+        let matches = entries.filter { entry in entry.aliases.contains { normalized.contains(canonicalIdentity($0)) } }
+        let sources = Set(values.map(normalize))
+        if matches.count == 1, let match = matches.first,
+           normalized.isSubset(of: Set(match.aliases.map(canonicalIdentity)).union(familyIdentities(match.resolution.profile.id)).union(["WIDE", "RGB", "DEFAULT"])),
+           sources.isDisjoint(with: nonSurveyLenses),
+           !multiLensProfiles.contains(match.resolution.profile.id) || sources.contains("WIDECAMERA") ||
+            (match.resolution.profile.id == "dji-mavic-3m-rgb-20mp" && sources.contains("RGBCAMERA")),
+           match.resolution.profile.id != "dji-mavic-2-zoom-wide-photo-12mp" {
             return match.resolution
         }
         return .init(profile: .generic4By3,
                      displayName: values.isEmpty ? "未识别相机" : values.joined(separator: " / "),
                      officialSourceURL: nil, verifiedProfile: false)
+    }
+
+    static func validatedCaptureProfile(
+        resolution: Resolution, aspectRatio: Double?, zoomRatio: Double?, zoomRequired: Bool,
+        highResolution: Bool?, resolutionRequired: Bool
+    ) -> SurveyCameraProfile? {
+        guard resolution.verifiedProfile, let aspectRatio, aspectRatio.isFinite,
+              abs(aspectRatio - Double(resolution.profile.imageWidthPixels) /
+                  Double(resolution.profile.imageHeightPixels)) <= 0.01,
+              highResolution != true, !resolutionRequired || highResolution == false,
+              !zoomRequired || zoomRatio != nil else { return nil }
+        if let zoomRatio, !zoomRatio.isFinite || abs(zoomRatio - 1) > 0.01 { return nil }
+        return resolution.profile
+    }
+
+    static func compatibleRecapture(_ planned: SurveyCameraProfile, current: SurveyCameraProfile) -> Bool {
+        current.imageWidthPixels >= planned.imageWidthPixels &&
+        current.imageHeightPixels >= planned.imageHeightPixels &&
+        abs(Double(planned.imageWidthPixels) / Double(planned.imageHeightPixels) -
+            Double(current.imageWidthPixels) / Double(current.imageHeightPixels)) <= 0.01 &&
+        abs(planned.horizontalFieldOfViewDegrees - current.horizontalFieldOfViewDegrees) <= 0.1 &&
+        abs(planned.verticalFieldOfViewDegrees - current.verticalFieldOfViewDegrees) <= 0.1
+    }
+
+    static func matchesMission(_ mission: SurveyCameraProfile, current: SurveyCameraProfile) -> Bool {
+        mission.imageWidthPixels == current.imageWidthPixels &&
+        mission.imageHeightPixels == current.imageHeightPixels &&
+        abs(mission.horizontalFieldOfViewDegrees - current.horizontalFieldOfViewDegrees) <= 0.1 &&
+        abs(mission.verticalFieldOfViewDegrees - current.verticalFieldOfViewDegrees) <= 0.1
     }
 
     static var allVerified: [Resolution] { entries.map(\.resolution) }
@@ -60,8 +96,46 @@ enum SurveyCameraProfileCatalog {
             displayName: name, officialSourceURL: URL(string: source), verifiedProfile: true))
     }
 
+    private static func familyIdentities(_ profileID: String) -> Set<String> {
+        switch profileID {
+        case "dji-mavic-3e-wide-20mp", "dji-mavic-3t-wide-12mp", "dji-mavic-3m-rgb-20mp": return ["MAVIC3ENTERPRISESERIES"]
+        case "dji-matrice-4e-wide-20mp", "dji-matrice-4t-wide-48mp": return ["MATRICE4SERIES"]
+        case "dji-mavic-2-pro-photo-20mp", "dji-mavic-2-zoom-wide-photo-12mp": return ["MAVIC2"]
+        default: return []
+        }
+    }
+
     private static func normalize(_ value: String) -> String {
         value.uppercased().filter { $0.isLetter || $0.isNumber }
     }
+    private static func canonicalIdentity(_ value: String) -> String {
+        var name = normalize(value)
+        if name.hasPrefix("DJI") { name.removeFirst(3) }
+        if name.hasSuffix("CAMERA") { name.removeLast(6) }
+        switch name {
+        case "MATRICE30", "MATRICE30SERIES", "M30SERIES": return "M30"
+        case "MATRICE30T": return "M30T"
+        case "MATRICE4E": return "M4E"
+        case "MATRICE4T": return "M4T"
+        case "MAVIC3E": return "M3E"
+        case "MAVIC3T": return "M3T"
+        case "MAVIC3TA": return "M3TA"
+        case "MAVIC3M": return "M3M"
+        case "P4A": return "PHANTOM4ADVANCED"
+        case "P4P", "P4PV2": return "PHANTOM4PRO"
+        case "MAVICMINI2": return "MINI2"
+        case "MAVICMINISE": return "MINISE"
+        case "PHANTOM4PROFESSIONAL", "PHANTOM4PROV20", "PHANTOM4PROV2": return "PHANTOM4PRO"
+        default: return name
+        }
+    }
+    private static let nonSurveyLenses: Set<String> = [
+        "ZOOMCAMERA", "INFRAREDCAMERA", "THERMAL", "NDVICAMERA", "VISIONCAMERA",
+        "MSGCAMERA", "MSRCAMERA", "MSRECAMERA", "MSNIRCAMERA", "POINTCLOUDCAMERA"
+    ]
+    private static let multiLensProfiles: Set<String> = [
+        "dji-matrice-4e-wide-20mp", "dji-matrice-4t-wide-48mp", "dji-mavic-3e-wide-20mp",
+        "dji-mavic-3t-wide-12mp", "dji-mavic-3m-rgb-20mp", "dji-matrice-30-wide-12mp"
+    ]
     private static let sentinels: Set<String> = ["UNKNOWN", "NOTSUPPORTED", "NONE", "DEFAULT", "OTHER"]
 }

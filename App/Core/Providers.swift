@@ -107,6 +107,7 @@ protocol DJIFlightProvider: AnyObject {
     func fetchMediaThumbnail(id: String, completion: @escaping (UIImage?) -> Void)
     func exitMediaMode()
     func captureModelFrame() async throws -> CameraFrame
+    func captureSurveyFrame() async throws -> CameraFrame
     func setSimulator(enabled: Bool) async throws
     /// Persists the WGS84 origin used by the next DJI Simulator start.
     /// Implementations must reject changes while the simulated aircraft is airborne.
@@ -152,6 +153,7 @@ extension EmbeddedInferenceEngine {
 }
 
 extension DJIFlightProvider {
+    func captureSurveyFrame() async throws -> CameraFrame { try await captureModelFrame() }
     var onVirtualStickSendFailure: ((String) -> Void)? {
         get { nil }
         set {}

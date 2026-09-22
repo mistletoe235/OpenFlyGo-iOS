@@ -465,6 +465,7 @@ final class MockFlightProvider: DJIFlightProvider {
             let now = Date()
             telemetry.timestamp = now
             telemetry.flightStateTimestamp = now
+            telemetry.gimbalStateTimestamp = now
             telemetry.frameTimestamp = now
             if camera.connected { liveVideoTimestamp = now }
         }

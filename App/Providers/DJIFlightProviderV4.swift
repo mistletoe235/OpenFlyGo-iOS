@@ -234,7 +234,10 @@ final class DJIFlightProviderV4: NSObject, DJIFlightProvider {
     private(set) var telemetry = FlightTelemetry.disconnectedShanghai
     private(set) var camera = CameraStatus(connected: false, sdInserted: false, photosRemaining: 0,
                                            message: "等待 DJI 相机", storageReady: false,
-                                           storageName: "存储")
+                                           storageName: "存储", surveyGeometryRequired: true)
+    private var surveyReadbackValues: [String: (value: DJIKeyedValue, receivedAt: Date)] = [:]
+    private var surveyReadbackRequests: [String: Date] = [:]
+    private var surveyReadbackGeneration = 0
     private(set) var latestFrame: CameraFrame?
     /// Timestamp captured at the raw DJIVideoFeed callback boundary. This is
     /// deliberately independent from the on-demand model JPEG conversion so a
@@ -272,6 +275,8 @@ final class DJIFlightProviderV4: NSObject, DJIFlightProvider {
     private let decodedFrameClaimLock = NSLock()
     nonisolated(unsafe) private var decodedFrameClaimed = false
     nonisolated(unsafe) private var decodedFrameGeneration = 0
+    nonisolated(unsafe) private var surveyFrameRequested = false
+    private var latestSurveyFrame: CameraFrame?
     private var modelFrameCaptureInFlight = false
     private var commandTimer: Timer?
     private var desiredCommand = VelocityCommand.zero
@@ -1095,6 +1100,30 @@ final class DJIFlightProviderV4: NSObject, DJIFlightProvider {
         throw unavailable("等待 DJI 当前画面超时")
     }
 
+    func captureSurveyFrame() async throws -> CameraFrame {
+        guard !surveyFrameRequestActive() else { throw unavailable("航测图传帧正在读取") }
+        setSurveyFrameRequest(true)
+        let requestedAt = Date()
+        defer { setSurveyFrameRequest(false); latestSurveyFrame = nil }
+        _ = try await captureModelFrame()
+        guard let frame = latestSurveyFrame, frame.capturedAt >= requestedAt else {
+            throw unavailable("未取得保持原始比例的航测图传帧")
+        }
+        return frame
+    }
+
+    nonisolated private func surveyFrameRequestActive() -> Bool {
+        decodedFrameClaimLock.lock()
+        defer { decodedFrameClaimLock.unlock() }
+        return surveyFrameRequested
+    }
+
+    private func setSurveyFrameRequest(_ enabled: Bool) {
+        decodedFrameClaimLock.lock()
+        surveyFrameRequested = enabled
+        decodedFrameClaimLock.unlock()
+    }
+
     func setSimulator(enabled: Bool) async throws {
         guard let simulator = djiSimulator ?? flightController?.simulator else {
             throw unavailable("当前飞机或固件不支持 DJI 内置仿真器")
@@ -1377,6 +1406,11 @@ final class DJIFlightProviderV4: NSObject, DJIFlightProvider {
         latestFrame = nil
         liveVideoTimestamp = nil
         frameSequence = 0
+        surveyReadbackGeneration += 1
+        surveyReadbackValues.removeAll()
+        surveyReadbackRequests.removeAll()
+        camera.surveyCameraProfile = nil
+        camera.surveyCameraUpdatedAt = .distantPast
         cameraHealthObserved = false
         cameraStorageStates.removeAll()
         selectedCameraStorageRawValue = nil
@@ -1669,6 +1703,11 @@ final class DJIFlightProviderV4: NSObject, DJIFlightProvider {
         selectedCameraStorageRawValue = nil
         mediaRefreshGeneration += 1
         mediaFilesByID.removeAll()
+        surveyReadbackGeneration += 1
+        surveyReadbackValues.removeAll()
+        surveyReadbackRequests.removeAll()
+        camera.surveyCameraProfile = nil
+        camera.surveyCameraUpdatedAt = .distantPast
         cameraHealthObserved = false
         simulatorStatus = FlightSimulatorStatus(message: "等待 DJI 飞机连接")
         onTelemetry?(telemetry)
@@ -2168,6 +2207,9 @@ extension DJIFlightProviderV4: DJIFlightControllerDelegate {
             self.telemetry.velocityEast = Double(state.velocityY)
             self.telemetry.velocityDown = Double(state.velocityZ)
             self.telemetry.heading = Double(state.attitude.yaw)
+            self.telemetry.aircraftRoll = Double(state.attitude.roll)
+            self.telemetry.aircraftPitch = Double(state.attitude.pitch)
+            self.telemetry.aircraftYaw = Double(state.attitude.yaw)
             self.telemetry.satellites = Int(state.satelliteCount)
             self.telemetry.gpsSignalLevel = Int(state.gpsSignalLevel.rawValue)
             // DJI can transiently report `isHomeLocationSet` before exposing a
@@ -2416,9 +2458,14 @@ extension DJIFlightProviderV4: DJIAirLinkDelegate {
 
 extension DJIFlightProviderV4: DJIGimbalDelegate {
     nonisolated func gimbal(_ gimbal: DJIGimbal, didUpdate state: DJIGimbalState) {
+        let receivedAt = Date()
         Task { @MainActor in
             guard gimbal === self.djiGimbal else { return }
             self.telemetry.gimbalPitch = Double(state.attitudeInDegrees.pitch)
+            self.telemetry.gimbalRoll = Double(state.attitudeInDegrees.roll)
+            self.telemetry.gimbalYaw = Double(state.attitudeInDegrees.yaw)
+            self.telemetry.gimbalYawRelativeToAircraftHeading = state.yawRelativeToAircraftHeading
+            self.telemetry.gimbalStateTimestamp = receivedAt
             self.telemetry.gimbalPitchAtStop = state.isPitchAtStop
             self.onTelemetry?(self.telemetry)
         }
@@ -2426,9 +2473,63 @@ extension DJIFlightProviderV4: DJIGimbalDelegate {
 }
 
 extension DJIFlightProviderV4: DJICameraDelegate {
+    private func refreshSurveyCameraGeometry(_ target: DJICamera) {
+        func value(_ parameter: String) -> DJIKeyedValue? {
+            guard let key = DJICameraKey(index: Int(target.index), andParam: parameter) else { return nil }
+            let now = Date()
+            if now.timeIntervalSince(surveyReadbackRequests[parameter] ?? .distantPast) >= 1 {
+                let generation = surveyReadbackGeneration
+                surveyReadbackRequests[parameter] = now
+                DJISDKManager.keyManager()?.getValueFor(key, withCompletion: { [weak self, weak target] result, error in
+                    Task { @MainActor in
+                        guard let self, let target, target === self.djiCamera,
+                              self.surveyReadbackGeneration == generation,
+                              self.surveyReadbackRequests[parameter] == now else { return }
+                        if let result, error == nil {
+                            self.surveyReadbackValues[parameter] = (result, Date())
+                        } else {
+                            self.surveyReadbackValues.removeValue(forKey: parameter)
+                        }
+                    }
+                })
+            }
+            guard let sample = surveyReadbackValues[parameter],
+                  now.timeIntervalSince(sample.receivedAt) >= 0,
+                  now.timeIntervalSince(sample.receivedAt) <= 2 else { return nil }
+            return sample.value
+        }
+        let resolution = SurveyCameraProfileCatalog.resolve(telemetry.productModel, telemetry.cameraModel)
+        let ratioValue = value(DJICameraParamPhotoAspectRatio)?.unsignedIntegerValue
+        let ratio: Double? = ratioValue.flatMap { raw in
+            switch raw {
+            case DJICameraPhotoAspectRatio.ratio4_3.rawValue: return 4.0 / 3.0
+            case DJICameraPhotoAspectRatio.ratio3_2.rawValue: return 3.0 / 2.0
+            case DJICameraPhotoAspectRatio.ratio16_9.rawValue: return 16.0 / 9.0
+            default: return nil
+            }
+        }
+        let mode = value(DJICameraParamFlatMode)?.unsignedIntegerValue
+        let highResolution: Bool? = mode.flatMap { raw in
+            switch raw {
+            case DJIFlatCameraMode.photoSingle.rawValue, DJIFlatCameraMode.photoInterval.rawValue: return false
+            case DJIFlatCameraMode.photoHighResolution.rawValue: return true
+            default: return nil
+            }
+        }
+        camera.surveyCameraProfile = SurveyCameraProfileCatalog.validatedCaptureProfile(
+            resolution: resolution, aspectRatio: ratio,
+            zoomRatio: value(DJICameraParamDigitalZoomFactor)?.doubleValue,
+            zoomRequired: target.isDigitalZoomSupported(),
+            highResolution: highResolution,
+            resolutionRequired: resolution.profile.id == "dji-mavic-air-2-photo-12mp"
+        )
+        camera.surveyCameraUpdatedAt = Date()
+    }
+
     nonisolated func camera(_ camera: DJICamera, didUpdate systemState: DJICameraSystemState) {
         Task { @MainActor in
             guard camera === self.djiCamera else { return }
+            self.refreshSurveyCameraGeometry(camera)
             self.cameraHealthObserved = true
             self.camera.connected = true
             self.camera.recording = systemState.isRecording
@@ -2481,19 +2582,20 @@ extension DJIFlightProviderV4: VideoFrameProcessor {
     private nonisolated static let modelFrameWidth = 1440
     private nonisolated static let modelFrameHeight = 1080
 
-    private nonisolated static func normalizedModelJPEG(from source: CGImage) -> Data? {
+    private nonisolated static func normalizedModelJPEG(from source: CGImage,
+                                                       width: Int = modelFrameWidth, height: Int = modelFrameHeight) -> Data? {
         let colorSpace = CGColorSpaceCreateDeviceRGB()
         guard let context = CGContext(
             data: nil,
-            width: modelFrameWidth,
-            height: modelFrameHeight,
+            width: width,
+            height: height,
             bitsPerComponent: 8,
-            bytesPerRow: modelFrameWidth * 4,
+            bytesPerRow: width * 4,
             space: colorSpace,
             bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue
         ) else { return nil }
         context.interpolationQuality = .high
-        context.draw(source, in: CGRect(x: 0, y: 0, width: modelFrameWidth, height: modelFrameHeight))
+        context.draw(source, in: CGRect(x: 0, y: 0, width: width, height: height))
         guard let scaled = context.makeImage() else { return nil }
         return UIImage(cgImage: scaled).jpegData(compressionQuality: 0.92)
     }
@@ -2521,6 +2623,13 @@ extension DJIFlightProviderV4: VideoFrameProcessor {
                 guard status == noErr, let cgImage else { return nil as Data? }
                 return Self.normalizedModelJPEG(from: cgImage)
             }
+            let surveySize = SurveyUploadImage.previewSize(width: width, height: height)
+            let surveyWidth = surveySize.width
+            let surveyHeight = surveySize.height
+            let surveyJPEG = autoreleasepool {
+                guard self?.surveyFrameRequestActive() == true, status == noErr, let cgImage else { return nil as Data? }
+                return Self.normalizedModelJPEG(from: cgImage, width: surveyWidth, height: surveyHeight)
+            }
             Task { @MainActor in
                 guard let self else { return }
                 defer {
@@ -2533,6 +2642,10 @@ extension DJIFlightProviderV4: VideoFrameProcessor {
                       self.camera.connected, self.videoFeed != nil,
                       let jpeg else { return }
                 self.frameSequence += 1
+                if let surveyJPEG, self.surveyFrameRequestActive() {
+                    self.latestSurveyFrame = CameraFrame(sequence: self.frameSequence, capturedAt: capturedAt,
+                        jpeg: surveyJPEG, width: surveyWidth, height: surveyHeight)
+                }
                 let modelFrame = CameraFrame(
                     sequence: self.frameSequence,
                     capturedAt: capturedAt,

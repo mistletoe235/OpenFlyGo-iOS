@@ -19,8 +19,8 @@ targets:
     type: application
     platform: iOS
     configFiles:
-      Debug: Config/OpenFlyGo.xcconfig
-      Release: Config/OpenFlyGo.xcconfig
+      Debug: Config/App-Debug.xcconfig
+      Release: Config/App-Release.xcconfig
     sources:
       - path: App
     dependencies:
@@ -47,8 +47,8 @@ targets:
     type: bundle.unit-test
     platform: iOS
     configFiles:
-      Debug: Config/OpenFlyGo.xcconfig
-      Release: Config/OpenFlyGo.xcconfig
+      Debug: Config/Tests-Debug.xcconfig
+      Release: Config/Tests-Release.xcconfig
     sources:
       - path: Tests
     dependencies:

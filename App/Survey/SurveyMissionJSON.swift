@@ -1,12 +1,12 @@
 import Foundation
 
 enum SurveyMissionJSON {
-    static let schemaVersion = 13
+    static let schemaVersion = 14
 
     static func encode(_ mission: SurveyMission) throws -> String {
         try mission.validate()
-        let root: [String: Any] = [
-            "schema_version": schemaVersion,
+        var root: [String: Any] = [
+            "schema_version": mission.recaptureFlightMode == .stopAndCapture ? 13 : schemaVersion,
             "id": mission.id,
             "name": mission.name,
             "created_at_epoch_ms": mission.createdAtEpochMillis,
@@ -21,6 +21,9 @@ enum SurveyMissionJSON {
             "terrain_plan": mission.terrainPlan.map(encodeTerrainPlan) ?? NSNull(),
             "active_mapping": mission.activeMapping.map(encodeActiveMapping) ?? NSNull(),
         ]
+        if mission.recaptureFlightMode != .stopAndCapture {
+            root["recapture_flight_mode"] = mission.recaptureFlightMode.rawValue
+        }
         let data = try JSONSerialization.data(withJSONObject: root, options: [.prettyPrinted, .sortedKeys])
         return String(decoding: data, as: UTF8.self)
     }
@@ -33,6 +36,18 @@ enum SurveyMissionJSON {
         let schema = try integer(root, "schema_version")
         guard (1...schemaVersion).contains(schema) else {
             throw SurveyValidationError.invalid("unsupported mission schema")
+        }
+        let recaptureMode: SurveyRecaptureFlightMode
+        if schema >= 14 {
+            guard let mode = SurveyRecaptureFlightMode(rawValue: try string(root, "recapture_flight_mode")) else {
+                throw SurveyValidationError.invalid("unsupported recapture flight mode")
+            }
+            recaptureMode = mode
+        } else {
+            guard root["recapture_flight_mode"] == nil else {
+                throw SurveyValidationError.invalid("recapture flight mode requires schema 14")
+            }
+            recaptureMode = .stopAndCapture
         }
         let coordinateFrame = try string(root, "coordinate_frame")
         guard coordinateFrame == "WGS84" else {
@@ -53,7 +68,8 @@ enum SurveyMissionJSON {
             estimatedPhotoCount: try integer(root, "estimated_photo_count"),
             estimatedFlightSeconds: try double(root, "estimated_flight_s"),
             terrainPlan: schema >= 7 ? try optionalTerrainPlan(root["terrain_plan"]) : nil,
-            activeMapping: schema >= 11 ? try optionalActiveMapping(root["active_mapping"]) : nil
+            activeMapping: schema >= 11 ? try optionalActiveMapping(root["active_mapping"]) : nil,
+            recaptureFlightMode: recaptureMode
         )
         try mission.validate()
         return mission
@@ -216,6 +232,9 @@ enum SurveyMissionJSON {
         "priority": value.priority,
         "kind": value.kind,
         "risk_score": value.riskScore,
+        // Keep the legacy singular key for older Android V4 readers while
+        // publishing the V5-compatible plural spelling as well.
+        "reasons": value.reasons,
         "reason": value.reasons,
         "target_wgs84": value.targetWGS84.map(encodeActiveTarget) ?? NSNull(),
         "pass_indices": value.passIndices,
@@ -223,12 +242,18 @@ enum SurveyMissionJSON {
     ]}
 
     private static func decodeActiveRegion(_ value: [String: Any]) throws -> ActiveMappingRegionMetadata {
-        .init(
+        let reasonValues: [Any]
+        if value["reasons"] != nil {
+            reasonValues = try optionalArray(value, "reasons")
+        } else {
+            reasonValues = try optionalArray(value, "reason")
+        }
+        return .init(
             regionID: try string(value, "region_id"),
             priority: try integer(value, "priority"),
             kind: try string(value, "kind"),
             riskScore: try double(value, "risk_score"),
-            reasons: try optionalArray(value, "reason").map { item in
+            reasons: try reasonValues.map { item in
                 guard let result = item as? String else { throw SurveyValidationError.invalid("invalid active region reason") }
                 return result
             },

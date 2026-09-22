@@ -7,11 +7,15 @@ without model inference.
 
 ```bash
 xcodegen generate
-xcodebuild -project DJIVLNiOS.xcodeproj -scheme DJIVLNiOS \
+pod install --no-repo-update
+xcodebuild -workspace DJIVLNiOS.xcworkspace -scheme DJIVLNiOS \
   -destination 'generic/platform=iOS Simulator' CODE_SIGNING_ALLOWED=NO build
 ```
 
 ## Required checks
+
+For a physical phone and DJI Simulator, follow [HIL quick start](HIL_QUICKSTART.md).
+The Xcode simulator uses Mock flight state and does not validate DJI hardware callbacks.
 
 - a known X-only HIL displacement appears east and a Y-only displacement appears north;
 - stale, replayed and out-of-order pose packets are rejected;

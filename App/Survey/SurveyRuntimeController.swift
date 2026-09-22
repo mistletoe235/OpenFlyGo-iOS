@@ -50,6 +50,7 @@ final class SurveyRuntimeController: ObservableObject {
     var virtualFrameCaptureEnabled: (() -> Bool)?
     var latestVirtualFrame: (() -> CameraFrame?)?
     var onVirtualFrameCaptured: ((SurveyFrameCaptureRecord) -> Void)?
+    var onSurveyFrameSaved: ((SurveyFrameCaptureRecord, SurveyCaptureView) -> Void)?
 
     private let provider: DJIFlightProvider
     private let log: EventLog
@@ -84,6 +85,10 @@ final class SurveyRuntimeController: ObservableObject {
     private var postTriggerFrameCapturesPending = 0
     private var pointCapturePendingLegIndex: Int?
     private var pointCaptureCompletedLegIndex: Int?
+    private var capturePoseWaypointIndex: Int?
+    private var capturePoseStableSinceElapsedMillis: Int64 = 0
+    private var capturePoseVerificationStartedElapsedMillis: Int64 = 0
+    private var capturePoseTimeoutHandled = false
     private var armingDeadline: Int64 = 0
     private var autoTakeoffPending = false
     private var autoTakeoffDeadlineElapsedMillis: Int64 = 0
@@ -457,6 +462,7 @@ final class SurveyRuntimeController: ObservableObject {
             return
         }
 
+        let current = currentPoint()
         let target = machine.currentTarget
         if !requestedGimbalPitch.isFinite || abs(requestedGimbalPitch - target.gimbalPitchDegrees) > 0.1 {
             requestedGimbalPitch = target.gimbalPitchDegrees
@@ -465,6 +471,12 @@ final class SurveyRuntimeController: ObservableObject {
             gimbalVerificationStartedElapsedMillis = now
             gimbalCommandGeneration += 1
             gimbalCommandInFlight = false
+        }
+        if capturePoseWaypointIndex != machine.executionLegIndex {
+            capturePoseWaypointIndex = machine.executionLegIndex
+            capturePoseStableSinceElapsedMillis = 0
+            capturePoseVerificationStartedElapsedMillis = 0
+            capturePoseTimeoutHandled = false
         }
         let settled = SurveyGimbalSettlePolicy.isSettled(
             targetPitchDegrees: target.gimbalPitchDegrees, actualPitchDegrees: telemetry.gimbalPitch
@@ -519,7 +531,18 @@ final class SurveyRuntimeController: ObservableObject {
             }
         }
 
-        let current = currentPoint()
+        let poseAligned = SurveyStoppedCapturePosePolicy.aligned(
+            telemetry: telemetry, target: target, position: current
+        ) && gimbalVerifiedForCapture
+        capturePoseStableSinceElapsedMillis = SurveyStoppedCapturePosePolicy.updateStableSince(
+            aligned: poseAligned,
+            previous: capturePoseStableSinceElapsedMillis,
+            now: now,
+        )
+        let capturePoseReady = SurveyStoppedCapturePosePolicy.stable(
+            since: capturePoseStableSinceElapsedMillis,
+            now: now,
+        )
         let pose = SurveyFollowerPose(latitude: current.latitude,
                                       longitude: current.longitude,
                                       altitudeMeters: current.altitudeMeters,
@@ -527,6 +550,9 @@ final class SurveyRuntimeController: ObservableObject {
         let verticalMaximum = target.point.altitudeMeters < current.altitudeMeters
             ? mission.constraints.descentSpeedMetersPerSecond
             : mission.constraints.takeoffSpeedMetersPerSecond
+        if runContinuousCaptureTick(mission: mission, machine: machine, pose: pose,
+                                    position: current, gimbalVerified: gimbalVerifiedForCapture,
+                                    maximumVerticalSpeed: verticalMaximum, now: now) { return }
         let command: SurveyFollowerCommand
         do {
             command = try SurveyWaypointFollower.command(
@@ -599,6 +625,18 @@ final class SurveyRuntimeController: ObservableObject {
                 publishProgress(machine)
                 return
             }
+            if (startsCapture || target.captureAction == .captureOnReach) &&
+                !deferCaptureStart && !capturePoseReady {
+                if capturePoseVerificationStartedElapsedMillis == 0 {
+                    capturePoseVerificationStartedElapsedMillis = now
+                }
+                if now - capturePoseVerificationStartedElapsedMillis >= SurveyGimbalSettlePolicy.timeoutMillis {
+                    pause(reason: "到点后机头或云台姿态长时间未稳定，航线已自动暂停")
+                    return
+                }
+                publishProgress(machine)
+                return
+            }
             if stopsCapture, let pendingStartIndex = pendingGimbalCaptureStartWaypointIndex {
                 send(.zero)
                 pendingGimbalCaptureStartWaypointIndex = nil
@@ -655,16 +693,7 @@ final class SurveyRuntimeController: ObservableObject {
                capture.active || photoInFlight || now < photoBusyUntil {
                 publishProgress(machine); return
             }
-            let reachedPhase = machine.currentPhase
-            let reachedLeg = machine.executionLegIndex
-            let status = machine.reachWaypoint()
-            persistCheckpoint()
-            log.append("SURVEY", String(format: "到达航段 %d/%d · %@ · h=%.2fm v=%+.2fm",
-                                         reachedLeg + 1, machine.executionLegCount,
-                                         phaseLabel(reachedPhase), command.horizontalErrorMeters,
-                                         command.verticalErrorMeters))
-            if status.state == .completed { complete(); return }
-            setWaypointDeadline()
+            guard advanceWaypoint(machine: machine, command: command) else { return }
             publishProgress(machine)
             return
         }
@@ -673,6 +702,67 @@ final class SurveyRuntimeController: ObservableObject {
                    up: command.upMetersPerSecond,
                    yawRate: command.yawRateDegreesPerSecond))
         publishProgress(machine)
+    }
+
+    private func advanceWaypoint(machine: SurveyExecutionStateMachine, command: SurveyFollowerCommand) -> Bool {
+        let reachedPhase = machine.currentPhase
+        let reachedLeg = machine.executionLegIndex
+        let status = machine.reachWaypoint()
+        persistCheckpoint()
+        log.append("SURVEY", String(format: "到达航段 %d/%d · %@ · h=%.2fm v=%+.2fm",
+                                   reachedLeg + 1, machine.executionLegCount,
+                                   phaseLabel(reachedPhase), command.horizontalErrorMeters,
+                                   command.verticalErrorMeters))
+        if status.state == .completed { complete(); return false }
+        setWaypointDeadline()
+        return true
+    }
+
+    private func runContinuousCaptureTick(mission: SurveyMission, machine: SurveyExecutionStateMachine,
+                                          pose: SurveyFollowerPose, position: SurveyGeoPoint,
+                                          gimbalVerified: Bool, maximumVerticalSpeed: Double, now: Int64) -> Bool {
+        let index = machine.status.waypointIndex
+        let target = machine.currentTarget
+        guard machine.currentPhase == .survey, target.captureAction == .captureOnReach,
+              SurveyContinuousRecapturePolicy.eligible(mission, index: index) else { return false }
+        let pending = pointCapturePendingLegIndex == machine.executionLegIndex
+        let completed = pointCaptureCompletedLegIndex == machine.executionLegIndex
+        if !pending && !completed && SurveyContinuousRecapturePolicy.missedWindow(mission, index: index, pose: pose) {
+            pause(reason: "连续补拍已越过拍照窗口，未确认照片；请检查后恢复")
+            return true
+        }
+        let aligned = gimbalVerified && SurveyContinuousRecapturePolicy.poseReady(
+            telemetry: telemetry, pose: pose, target: target)
+        guard aligned else {
+            if !pending && !completed { return false }
+            pause(reason: "连续补拍等待确认期间姿态或遥测失效，已暂停")
+            return true
+        }
+        do {
+            let command = try SurveyContinuousRecapturePolicy.command(mission, index: index, pose: pose,
+                maximumSpeed: mission.constraints.speed(for: target.captureView), maximumVerticalSpeed: maximumVerticalSpeed)
+            snapshot.horizontalErrorMeters = command.horizontalErrorMeters
+            snapshot.verticalErrorMeters = command.verticalErrorMeters
+            let cameraReady = camera.canCapturePhotos && !photoInFlight
+                && !camera.message.contains("写入") && now >= photoBusyUntil
+            if !pending && !completed && command.reached,
+               try capture.onWaypointReached(target, position: position, nowElapsedMillis: now, cameraReady: cameraReady) {
+                pointCapturePendingLegIndex = machine.executionLegIndex
+                log.append("SURVEY", "连续补拍请求 leg=\(machine.executionLegIndex)")
+                triggerPhoto(reason: "CONTINUOUS_CAPTURE_ON_REACH", position: position)
+            }
+            guard snapshot.state == .running else { return true }
+            if pointCaptureCompletedLegIndex == machine.executionLegIndex {
+                log.append("SURVEY", "连续补拍确认 leg=\(machine.executionLegIndex)")
+                guard advanceWaypoint(machine: machine, command: command) else { return true }
+            }
+            send(.init(forward: command.forwardMetersPerSecond, right: command.rightMetersPerSecond,
+                       up: command.upMetersPerSecond, yawRate: command.yawRateDegreesPerSecond))
+            publishProgress(machine)
+        } catch {
+            pause(reason: "连续补拍控制失败：\(error.localizedDescription)")
+        }
+        return true
     }
 
     private func triggerPhoto(reason: String, position: SurveyGeoPoint) {
@@ -696,7 +786,7 @@ final class SurveyRuntimeController: ObservableObject {
         log.append("SURVEY", "拍照请求：\(reason) · 等待 DJI 相机真实回调")
         provider.takeSurveyPhoto { [weak self] error in
             Task { @MainActor in
-                guard let self else { return }
+                guard let self, self.photoRequestGeneration == generation, self.photoInFlight else { return }
                 if error == nil { self.capturePostTriggerDownlinkFrame(reason: reason) }
                 self.finishPhotoRequest(generation: generation, error: error)
             }
@@ -713,11 +803,12 @@ final class SurveyRuntimeController: ObservableObject {
         let missionSnapshot = mission
         let legIndex = machine.executionLegIndex
         let waypointIndex = machine.status.waypointIndex
+        let captureView = machine.currentTarget.captureView
         Task { [weak self] in
             guard let self else { return }
             defer { self.postTriggerFrameCapturesPending = max(0, self.postTriggerFrameCapturesPending - 1) }
             do {
-                let frame = try await self.provider.captureModelFrame()
+                let frame = try await self.provider.captureSurveyFrame()
                 let pose = self.provider.telemetry
                 self.log.captureSurveyFrame(
                     frame: frame, mission: missionSnapshot, reason: reason,
@@ -729,6 +820,7 @@ final class SurveyRuntimeController: ObservableObject {
                         switch result {
                         case .success(let record):
                             self.log.append("SURVEY", "手机已保存拍照后图传帧：\(record.imageURL.lastPathComponent)")
+                            self.onSurveyFrameSaved?(record, captureView)
                         case .failure(let error):
                             self.log.append("SURVEY", "手机图传帧保存失败（飞机拍照已成功）：\(error.localizedDescription)")
                         }
@@ -776,8 +868,12 @@ final class SurveyRuntimeController: ObservableObject {
         capture.onCaptureResult(position: position, nowElapsedMillis: now, success: error == nil)
         if let error {
             publishPhotoFeedback(success: false)
+            let failedContinuousPoint = mission?.recaptureFlightMode == .continuousExperimental
+                && pointCapturePendingLegIndex != nil
             pointCapturePendingLegIndex = nil
-            if SurveyRuntimeFaultPolicy.shouldPauseCameraAction(
+            if failedContinuousPoint {
+                pause(reason: "连续补拍拍照失败，已暂停：\(error.localizedDescription)")
+            } else if SurveyRuntimeFaultPolicy.shouldPauseCameraAction(
                 label: "航测相机", ok: false, message: error.localizedDescription
             ) {
                 pause(reason: "拍照超时，已自动暂停：\(error.localizedDescription)")
@@ -857,6 +953,17 @@ final class SurveyRuntimeController: ObservableObject {
             hilVirtualFramesEnabled: virtualFrameCaptureEnabled?() == true,
             simulatorActive: simulator.active
         )
+        if !usesVirtualCapture && camera.surveyGeometryRequired {
+            let sampleAge = Date().timeIntervalSince(camera.surveyCameraUpdatedAt)
+            let geometryMatches = camera.surveyCameraProfile.map { profile in
+                mission.activeMapping == nil
+                    ? SurveyCameraProfileCatalog.matchesMission(mission.cameraProfile, current: profile)
+                    : SurveyCameraProfileCatalog.compatibleRecapture(mission.cameraProfile, current: profile)
+            } ?? false
+            if !(0...2).contains(sampleAge) || !geometryMatches {
+                blocks.insert(.cameraGeometryUnverified)
+            }
+        }
         if !usesVirtualCapture && !camera.canCapturePhotos {
             blocks.insert(.cameraUnavailable)
         }
@@ -966,6 +1073,10 @@ final class SurveyRuntimeController: ObservableObject {
         pendingGimbalCaptureStartWaypointIndex = nil
         pointCapturePendingLegIndex = nil
         pointCaptureCompletedLegIndex = nil
+        capturePoseWaypointIndex = nil
+        capturePoseStableSinceElapsedMillis = 0
+        capturePoseVerificationStartedElapsedMillis = 0
+        capturePoseTimeoutHandled = false
         runtimeReadinessFaultSinceElapsedMillis = 0
         runtimeReadinessFaultSignature.removeAll()
         photoBusyUntil = 0; waypointDeadlineElapsedMillis = 0
@@ -977,6 +1088,10 @@ final class SurveyRuntimeController: ObservableObject {
     }
 
     private func resetGimbalVerification() {
+        capturePoseWaypointIndex = nil
+        capturePoseStableSinceElapsedMillis = 0
+        capturePoseVerificationStartedElapsedMillis = 0
+        capturePoseTimeoutHandled = false
         requestedGimbalPitch = .nan
         gimbalUnsettledSince = 0
         lastGimbalCommand = 0
@@ -1345,6 +1460,7 @@ final class SurveyRuntimeController: ObservableObject {
         case .unsupportedCoordinateFrame: return "任务不是 WGS-84"
         case .missionTooLong: return "任务航程超限"
         case .missionAltitudeUnsafe: return "任务高度不安全"
+        case .cameraGeometryUnverified: return "相机参数未确认或与航线不符，请检查镜头、照片比例、分辨率和变焦"
         case .cameraUnavailable: return "相机或拍照存储不可用"
         case .cameraTriggerUnsafe: return "相机拍照间隔跟不上当前航速"
         case .aircraftBatteryLow: return "飞机电量低于 30%"

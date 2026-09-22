@@ -198,6 +198,7 @@ struct SurveyPlannerView: View {
     @State private var mapShouldFrameMission = false
     @State private var message = AppLocalization.string("点击地图依次添加至少 3 个边界点")
     @State private var showingImporter = false
+    @State private var showingCloud = ProcessInfo.processInfo.arguments.contains("--survey-ui-cloud")
     @State private var showingTerrainImporter = false
     @State private var showingBuildingHeightImporter = false
     @State private var showingClearConfirmation = false
@@ -275,6 +276,10 @@ struct SurveyPlannerView: View {
         }
         .sheet(isPresented: $showingMoreActions) {
             moreActionsSheet
+        }
+        .sheet(isPresented: $showingCloud) {
+            SurveyCloudView(upload: flight.cloudUpload, suggestedCamera: flight.camera.surveyCameraProfile,
+                            editingLocked: editingLocked, importMission: importCloudMission)
         }
         .confirmationDialog("清空航线", isPresented: $showingClearConfirmation,
                             titleVisibility: .visible) {
@@ -666,6 +671,11 @@ struct SurveyPlannerView: View {
                     .disabled(selectedPanel == 4 || editingLocked)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
+            Button { showingCloud = true } label: {
+                Image(systemName: "cloud").font(.headline)
+            }
+            .accessibilityLabel("云端点云与航线")
+            .accessibilityIdentifier("survey.cloud.open")
             Button {
                 showingMoreActions = true
             } label: {
@@ -716,6 +726,13 @@ struct SurveyPlannerView: View {
                     }
 
                     VStack(spacing: 8) {
+                        moreActionButton(
+                            "云端点云与航线",
+                            subtitle: "连接远程重建服务，查看点云并下载航线到地图预览",
+                            systemImage: "cloud"
+                        ) {
+                            presentAfterClosingMoreActions { showingCloud = true }
+                        }
                         moreActionButton(
                             "保存当前航线到任务库",
                             subtitle: "生成航线时也会自动保存；再次保存会新增 r1、r2…历史版本",
@@ -2126,6 +2143,18 @@ struct SurveyPlannerView: View {
         } catch { message = AppLocalization.format("导入失败：%@", error.localizedDescription) }
     }
 
+    private func importCloudMission(_ raw: String) throws {
+        guard !editingLocked else {
+            throw SurveyCloudError.invalid("航线正在执行或已暂停待续飞；请先终止航线再导入任务")
+        }
+        let value = try SurveyCloudClient.validateMission(raw)
+        _ = try library.save(value)
+        stopReplay(message: nil)
+        apply(value)
+        selectedPanel = 0
+        message = AppLocalization.string("云端航线已校验、保存并载入地图；尚未执行，请核对坐标、高度及飞行前检查")
+    }
+
     private func apply(_ value: SurveyMission, persistActive: Bool = true) {
         guard OpenFlyBuildFeatures.terrainFollowing || value.terrainPlan == nil else {
             message = AppLocalization.string("当前发布版本未启用仿地飞行，不能载入带 terrainPlan 的任务")
@@ -2344,8 +2373,14 @@ struct SurveyPlannerView: View {
     }
 
     private var resolvedCamera: SurveyCameraProfileCatalog.Resolution {
-        SurveyCameraProfileCatalog.resolve(flight.telemetry.productModel,
-                                           flight.telemetry.cameraModel)
+        var resolution = SurveyCameraProfileCatalog.resolve(flight.telemetry.productModel,
+                                                            flight.telemetry.cameraModel)
+        if flight.camera.surveyGeometryRequired {
+            let age = Date().timeIntervalSince(flight.camera.surveyCameraUpdatedAt)
+            resolution.verifiedProfile = resolution.verifiedProfile && flight.camera.surveyCameraProfile != nil &&
+                age >= 0 && age <= 2
+        }
+        return resolution
     }
 
     private var gsdBinding: Binding<Double> {

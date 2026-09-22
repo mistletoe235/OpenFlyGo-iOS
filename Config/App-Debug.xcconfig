@@ -1,0 +1,2 @@
+#include? "../Pods/Target Support Files/Pods-DJIVLNiOS/Pods-DJIVLNiOS.debug.xcconfig"
+#include "OpenFlyGo.xcconfig"

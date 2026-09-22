@@ -287,9 +287,52 @@ final class SurveyLatestParityTests: XCTestCase {
         XCTAssertEqual(try SurveyCaptureSchedule.build(decoded).first?.captureView, .localOblique)
     }
 
+
+    func testCameraCatalogRejectsIdentityCollisionsAndUnspecifiedEnterpriseLens() {
+        for identity in ["M300_RTK", "Matrice 300 RTK", "M350_RTK", "MINI2SE", "M3E_UNKNOWN"] {
+            XCTAssertFalse(SurveyCameraProfileCatalog.resolve(identity).verifiedProfile, identity)
+        }
+        XCTAssertTrue(SurveyCameraProfileCatalog.resolve("DJI Mini 2", "DJI Mini 2 Camera").verifiedProfile)
+        XCTAssertFalse(SurveyCameraProfileCatalog.resolve("DJI_MINI_2", "DJI_MINI_4_PRO").verifiedProfile)
+        XCTAssertFalse(SurveyCameraProfileCatalog.resolve("DJI_MINI_2", "ZENMUSE_H20").verifiedProfile)
+        XCTAssertTrue(SurveyCameraProfileCatalog.resolve("DJI_MATRICE_4_SERIES", "M4E", "WIDE_CAMERA").verifiedProfile)
+        XCTAssertFalse(SurveyCameraProfileCatalog.resolve("DJI_MATRICE_4_SERIES", "M3E", "WIDE_CAMERA").verifiedProfile)
+        XCTAssertFalse(SurveyCameraProfileCatalog.resolve("DJI_MATRICE_4_SERIES", "WIDE_CAMERA").verifiedProfile)
+        for model in ["M3E", "M4T", "M30T", "M30_SERIES"] {
+            XCTAssertFalse(SurveyCameraProfileCatalog.resolve(model).verifiedProfile)
+            XCTAssertTrue(SurveyCameraProfileCatalog.resolve(model, "WIDE_CAMERA").verifiedProfile)
+            for source in ["ZOOM_CAMERA", "INFRARED_CAMERA", "MS_G_CAMERA"] {
+                XCTAssertFalse(SurveyCameraProfileCatalog.resolve(model, source).verifiedProfile)
+            }
+        }
+    }
+
+    func testCameraCaptureGeometryRequiresReadbackAndMatchingMission() {
+        let resolution = SurveyCameraProfileCatalog.resolve("DJI Mini 2")
+        XCTAssertNotNil(SurveyCameraProfileCatalog.validatedCaptureProfile(
+            resolution: resolution, aspectRatio: 4.0 / 3, zoomRatio: 1, zoomRequired: true,
+            highResolution: false, resolutionRequired: false))
+        for ratio in [nil, 16.0 / 9, Double.nan] {
+            XCTAssertNil(SurveyCameraProfileCatalog.validatedCaptureProfile(
+                resolution: resolution, aspectRatio: ratio, zoomRatio: 1, zoomRequired: true,
+                highResolution: false, resolutionRequired: false))
+        }
+        for zoom in [nil, 2.0, Double.nan] {
+            XCTAssertNil(SurveyCameraProfileCatalog.validatedCaptureProfile(
+                resolution: resolution, aspectRatio: 4.0 / 3, zoomRatio: zoom, zoomRequired: true,
+                highResolution: false, resolutionRequired: false))
+        }
+        XCTAssertNil(SurveyCameraProfileCatalog.validatedCaptureProfile(
+            resolution: resolution, aspectRatio: 4.0 / 3, zoomRatio: 1, zoomRequired: true,
+            highResolution: true, resolutionRequired: true))
+        var other = resolution.profile
+        other.horizontalFieldOfViewDegrees = 60
+        XCTAssertFalse(SurveyCameraProfileCatalog.matchesMission(resolution.profile, current: other))
+    }
+
     func testCameraCatalogResolvesAliasesAndFallsBackSafely() {
         XCTAssertEqual(SurveyCameraProfileCatalog.resolve("DJI Mini 2").profile.id, "dji-mini-2-photo-4x3")
-        XCTAssertTrue(SurveyCameraProfileCatalog.resolve("M3E").verifiedProfile)
+        XCTAssertTrue(SurveyCameraProfileCatalog.resolve("M3E", "WIDE_CAMERA").verifiedProfile)
         XCTAssertFalse(SurveyCameraProfileCatalog.resolve("UNKNOWN").verifiedProfile)
     }
 

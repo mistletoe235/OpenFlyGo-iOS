@@ -87,7 +87,7 @@ enum SurveyParameterPolicy {
 
 enum SurveyExecutionState: String, Codable { case idle = "IDLE", arming = "ARMING", running = "RUNNING", paused = "PAUSED", completed = "COMPLETED", aborted = "ABORTED" }
 enum SurveyExecutionPhase: String, Codable { case safeClimb = "SAFE_CLIMB", transitToStart = "TRANSIT_TO_START", recoveryToPause = "RECOVERY_TO_PAUSE", survey = "SURVEY", returnHome = "RETURN_HOME", returnToStart = "RETURN_TO_START" }
-enum SurveyExecutionBlock: String, Codable, Hashable { case aircraftDisconnected = "AIRCRAFT_DISCONNECTED", simulatorRequired = "SIMULATOR_REQUIRED", simulatorNotFlying = "SIMULATOR_NOT_FLYING", simulatorMustBeOff = "SIMULATOR_MUST_BE_OFF", realAircraftNotFlying = "REAL_AIRCRAFT_NOT_FLYING", realAircraftNotStablyHovering = "REAL_AIRCRAFT_NOT_STABLY_HOVERING", realRequiresManualTakeoff = "REAL_REQUIRES_MANUAL_TAKEOFF", telemetryStale = "TELEMETRY_STALE", gpsUnavailable = "GPS_UNAVAILABLE", manualTakeover = "MANUAL_TAKEOVER", virtualStickRequired = "VIRTUAL_STICK_REQUIRED", unsupportedCoordinateFrame = "UNSUPPORTED_COORDINATE_FRAME", missionTooLong = "MISSION_TOO_LONG", missionAltitudeUnsafe = "MISSION_ALTITUDE_UNSAFE", cameraUnavailable = "CAMERA_UNAVAILABLE", cameraTriggerUnsafe = "CAMERA_TRIGGER_UNSAFE", aircraftBatteryLow = "AIRCRAFT_BATTERY_LOW", rcBatteryLow = "RC_BATTERY_LOW", rcSignalWeak = "RC_SIGNAL_WEAK", gpsSatellitesLow = "GPS_SATELLITES_LOW", gpsSignalWeak = "GPS_SIGNAL_WEAK", homeLocationRequired = "HOME_LOCATION_REQUIRED", goHomeHeightUnsafe = "GO_HOME_HEIGHT_UNSAFE", maxFlightHeightTooLow = "MAX_FLIGHT_HEIGHT_TOO_LOW", maxFlightRadiusRequired = "MAX_FLIGHT_RADIUS_REQUIRED", maxFlightRadiusTooSmall = "MAX_FLIGHT_RADIUS_TOO_SMALL", flightControllerFailsafeActive = "FLIGHT_CONTROLLER_FAILSAFE_ACTIVE", terrainFeatureDisabled = "TERRAIN_FEATURE_DISABLED", terrainRealFlightNotVerified = "TERRAIN_REAL_FLIGHT_NOT_VERIFIED" }
+enum SurveyExecutionBlock: String, Codable, Hashable { case aircraftDisconnected = "AIRCRAFT_DISCONNECTED", simulatorRequired = "SIMULATOR_REQUIRED", simulatorNotFlying = "SIMULATOR_NOT_FLYING", simulatorMustBeOff = "SIMULATOR_MUST_BE_OFF", realAircraftNotFlying = "REAL_AIRCRAFT_NOT_FLYING", realAircraftNotStablyHovering = "REAL_AIRCRAFT_NOT_STABLY_HOVERING", realRequiresManualTakeoff = "REAL_REQUIRES_MANUAL_TAKEOFF", telemetryStale = "TELEMETRY_STALE", gpsUnavailable = "GPS_UNAVAILABLE", manualTakeover = "MANUAL_TAKEOVER", virtualStickRequired = "VIRTUAL_STICK_REQUIRED", unsupportedCoordinateFrame = "UNSUPPORTED_COORDINATE_FRAME", missionTooLong = "MISSION_TOO_LONG", missionAltitudeUnsafe = "MISSION_ALTITUDE_UNSAFE", cameraUnavailable = "CAMERA_UNAVAILABLE", cameraGeometryUnverified = "CAMERA_GEOMETRY_UNVERIFIED", cameraTriggerUnsafe = "CAMERA_TRIGGER_UNSAFE", aircraftBatteryLow = "AIRCRAFT_BATTERY_LOW", rcBatteryLow = "RC_BATTERY_LOW", rcSignalWeak = "RC_SIGNAL_WEAK", gpsSatellitesLow = "GPS_SATELLITES_LOW", gpsSignalWeak = "GPS_SIGNAL_WEAK", homeLocationRequired = "HOME_LOCATION_REQUIRED", goHomeHeightUnsafe = "GO_HOME_HEIGHT_UNSAFE", maxFlightHeightTooLow = "MAX_FLIGHT_HEIGHT_TOO_LOW", maxFlightRadiusRequired = "MAX_FLIGHT_RADIUS_REQUIRED", maxFlightRadiusTooSmall = "MAX_FLIGHT_RADIUS_TOO_SMALL", flightControllerFailsafeActive = "FLIGHT_CONTROLLER_FAILSAFE_ACTIVE", terrainFeatureDisabled = "TERRAIN_FEATURE_DISABLED", terrainRealFlightNotVerified = "TERRAIN_REAL_FLIGHT_NOT_VERIFIED" }
 
 struct SurveyExecutionGateResult: Equatable {
     var allowed: Bool
@@ -138,7 +138,9 @@ enum SurveyWaypointFollower {
         let headingError = wrapDegrees(target.headingDegrees - pose.headingDegrees)
         let reached = horizontalError <= horizontalToleranceMeters
             && abs(verticalError) <= verticalToleranceMeters
-            && abs(headingError) <= headingToleranceDegrees
+            && abs(headingError) <= ((target.captureAction == .startDistanceInterval ||
+                target.captureAction == .captureOnReach)
+                ? SurveyStoppedCapturePosePolicy.maxHeadingErrorDegrees : headingToleranceDegrees)
         if reached {
             return .init(reached: true, horizontalErrorMeters: horizontalError,
                          verticalErrorMeters: verticalError, forwardMetersPerSecond: 0,
@@ -268,6 +270,59 @@ enum SurveyGimbalSettlePolicy {
     }
     static func hasTimedOut(nowElapsedMillis: Int64, settlingStartedElapsedMillis: Int64) -> Bool {
         settlingStartedElapsedMillis > 0 && nowElapsedMillis - settlingStartedElapsedMillis >= timeoutMillis
+    }
+}
+
+/// V5-parity gate for stopped captures. A waypoint arrival callback is not a
+/// photo trigger until aircraft heading, position, speed and gimbal pose have
+/// all been fresh and stable for a short dwell.
+enum SurveyStoppedCapturePosePolicy {
+    static let requiredStableMillis: Int64 = 800
+    static let maxHorizontalSpeedMetersPerSecond = 0.35
+    static let maxHorizontalErrorMeters = 1.5
+    static let maxAltitudeErrorMeters = 1.0
+    static let maxHeadingErrorDegrees = 3.0
+    static let maxSampleAgeMillis: Int64 = 1_000
+
+    static func aligned(telemetry: FlightTelemetry, target: SurveyWaypoint,
+                        position: SurveyGeoPoint, now: Date = Date()) -> Bool {
+        guard telemetry.connected, telemetry.aircraftLocationValid,
+              telemetry.heading.isFinite, telemetry.gimbalPitch.isFinite,
+              telemetry.altitude.isFinite, telemetry.horizontalSpeed.isFinite else { return false }
+        let flightAge = now.timeIntervalSince(telemetry.flightStateTimestamp)
+        let gimbalAge = telemetry.gimbalStateTimestamp.map {
+            now.timeIntervalSince($0)
+        } ?? Double.infinity
+        guard (0...1).contains(flightAge), (0...1).contains(gimbalAge),
+              (0...maxHorizontalSpeedMetersPerSecond).contains(telemetry.horizontalSpeed),
+              horizontalDistance(position, target.point) <= maxHorizontalErrorMeters,
+              abs(telemetry.altitude - target.point.altitudeMeters) <= maxAltitudeErrorMeters,
+              angleDifference(telemetry.heading, target.headingDegrees) <= maxHeadingErrorDegrees else { return false }
+        return SurveyGimbalSettlePolicy.isSettled(
+            targetPitchDegrees: target.gimbalPitchDegrees,
+            actualPitchDegrees: telemetry.gimbalPitch
+        )
+    }
+
+    static func updateStableSince(aligned: Bool, previous: Int64, now: Int64) -> Int64 {
+        if !aligned { return 0 }
+        return previous > 0 ? previous : now
+    }
+
+    static func stable(since: Int64, now: Int64) -> Bool {
+        since > 0 && now - since >= requiredStableMillis
+    }
+
+    private static func horizontalDistance(_ first: SurveyGeoPoint, _ second: SurveyGeoPoint) -> Double {
+        let north = (second.latitude - first.latitude) * 111_132.0
+        let east = (second.longitude - first.longitude)
+            * 111_320.0 * cos((first.latitude + second.latitude) * .pi / 360.0)
+        return hypot(north, east)
+    }
+
+    private static func angleDifference(_ first: Double, _ second: Double) -> Double {
+        abs(((second - first).truncatingRemainder(dividingBy: 360.0) + 540.0)
+            .truncatingRemainder(dividingBy: 360.0) - 180.0)
     }
 }
 

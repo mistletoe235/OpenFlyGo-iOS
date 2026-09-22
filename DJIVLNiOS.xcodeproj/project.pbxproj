@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		017B91F0B0B13D757397514A /* SurveyCheckpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E4AFCE5BC8830C4328C5F63 /* SurveyCheckpoint.swift */; };
+		0312E2FB279CA62F3EAFD989 /* libPods-DJIVLNiOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B290B4A3AD49178860663FD2 /* libPods-DJIVLNiOS.a */; };
 		04A9D288189D7B37E6563A9B /* SurveyPlanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 561E8040636A1756A1B249AB /* SurveyPlanner.swift */; };
 		0D206CFE759190AB34CAD3E0 /* FlightControlSupervisor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDEB209E148696AF8D186C08 /* FlightControlSupervisor.swift */; };
 		0DB7EC216FC1101D7F7C0867 /* EventLogTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C6780CCA9D8B520BB91E65 /* EventLogTests.swift */; };
@@ -16,18 +17,24 @@
 		292EE97D3D05EEAE27777496 /* SurveyCoveragePlanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBBC55C7E067B724C14FCD5A /* SurveyCoveragePlanner.swift */; };
 		2E55D0DD5D4D32C13CD8893A /* SurveyRuntimeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B687D1A9196B36518DB404C /* SurveyRuntimeTests.swift */; };
 		32564ADCB9B6695863689C11 /* TerrariumTerrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077B054CFC740803E857D795 /* TerrariumTerrain.swift */; };
+		34E7CFBF1EC22B1C00A8DF86 /* SurveyCloudPointCloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB278B782D213EE1DDF2467A /* SurveyCloudPointCloud.swift */; };
 		359A001F801206166EEFDA7C /* FlightControlSupervisorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C1DF23F61B044CB70537CD3 /* FlightControlSupervisorTests.swift */; };
 		36EF178584F6A6B89DE9EC56 /* SurveyModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D563D7D36E4A5F5491970EE /* SurveyModels.swift */; };
 		3A6DF1746AB5F47C54CBD12D /* OpenFlyHILController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738984A488106828DBFCBC48 /* OpenFlyHILController.swift */; };
 		3D737352D9B7DAEAED1B7A5A /* ActiveRecaptureMission.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E79311E3330999E80AFFF7 /* ActiveRecaptureMission.swift */; };
+		3DD47627FBE54AA1A27FAA66 /* libPods-DJIVLNiOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E24095DD16C12320AFD7BE50 /* libPods-DJIVLNiOSTests.a */; };
 		4501F67EC56F7287B1D08685 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 31F9958EAD6A26D3747226D7 /* Localizable.xcstrings */; };
+		455D20BEC9B320B0339E5DEF /* SurveyCloudView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F72CA9AA892AE66C41C9701B /* SurveyCloudView.swift */; };
 		46A3064D34E6E18EBE912D44 /* SurveyReplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B0FCB3E5453A54DD55A884 /* SurveyReplay.swift */; };
 		475D19D1728958BB2326C5B0 /* FlightMapPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43DB4AF4E8809CAABE655012 /* FlightMapPanel.swift */; };
 		495CF4DCEA0A7E73225DC8FD /* Providers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC754A726BF1E4200EBEA98 /* Providers.swift */; };
 		4BBED046A24CCB729B15EE0B /* Overlays.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF918F488A1EA4C1016DB211 /* Overlays.swift */; };
 		4D35C39C356855B53F031066 /* SurveyLatestParityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C751F9145E725AE902E895 /* SurveyLatestParityTests.swift */; };
 		50EAEE1BE7BCEEB068A7FB93 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 769C9F6570AE33C2C4EDDD64 /* ContentView.swift */; };
+		5455B62F7BE826FA1389FB0E /* SurveyCloudUploadTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3CC386E28E8E3A4A50E15E0 /* SurveyCloudUploadTests.swift */; };
+		5806DCD015261AC8AE3F7D39 /* SurveyCloudClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F305CA01CB1E916CC9FF8B /* SurveyCloudClient.swift */; };
 		58AA4C6A16CA47F903D238E6 /* Clipper2 in Frameworks */ = {isa = PBXBuildFile; productRef = EB01509E83814161C176933C /* Clipper2 */; };
+		5AE20D1E94294B351BA4CA08 /* SurveyCloudUploadSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3841229ED2570C92817B4252 /* SurveyCloudUploadSection.swift */; };
 		5BD85AEDA63A9F4B145F9DCC /* SurveyReadiness.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00ABB7C38478CBC83BBF32B2 /* SurveyReadiness.swift */; };
 		5BF539E61173A7C35FC13DCE /* OpenFlyBuildFeatures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BCD13019B37F461A829B3EF /* OpenFlyBuildFeatures.swift */; };
 		606ED868B3009ACC1B1C89A7 /* SurveyPlannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8BD55EAAFF6A604731408FB /* SurveyPlannerView.swift */; };
@@ -37,11 +44,14 @@
 		7866F9FCBEDE8906E834F532 /* SurveyMissionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E821C33EAC45A7491B3D9866 /* SurveyMissionStore.swift */; };
 		7AA2DE297E5604A38FD64F34 /* UnavailableModelSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE1BC0BA7C3208F44BF3E1F /* UnavailableModelSupport.swift */; };
 		7C9FB6B55BE9ED53B97A5AF0 /* MockFlightFlowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62C0E97B4B6DE685E635CD0F /* MockFlightFlowTests.swift */; };
+		84AB5B10CB6938C1BD550810 /* SurveyContinuousRecaptureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B16668CCC42718B9504B815D /* SurveyContinuousRecaptureTests.swift */; };
 		88F055FBF4D0EB19777ECCCA /* SurveyMissionJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C56B33BCA28A492D47291E /* SurveyMissionJSON.swift */; };
 		8BC8251B0329478E87229428 /* SurveyCameraProfileCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAD38259015DE23D4B1DF9D /* SurveyCameraProfileCatalog.swift */; };
+		8DD8BAD89A2B64DEAB6C5F44 /* SurveyCloudUploadController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D744A7C13FADC001BF9E5D /* SurveyCloudUploadController.swift */; };
 		8E7899D33640DA9A19EDCCC6 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = BAF6E74DB029EAC050EF749E /* InfoPlist.xcstrings */; };
 		91714BFBE7AB133189AB83FC /* FlightViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F2232928705AD0AD2512F2 /* FlightViewModel.swift */; };
 		97EDCCD643BD14B1E449D3BB /* PositionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6335E55EA434000B69C1DBBF /* PositionController.swift */; };
+		9C6569EEAC7C6D5C35D8F4B2 /* SurveyCloudUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16C10622AC56297E6CC32CEF /* SurveyCloudUpload.swift */; };
 		A24BC6AD402D828722B84173 /* SurveyRuntimePoliciesLatest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2665A7AFCE0D65CDD250E3 /* SurveyRuntimePoliciesLatest.swift */; };
 		A4BE20598F571B71E30309A2 /* GeoTIFFTerrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22ADEA53B9CC31C83146B23B /* GeoTIFFTerrain.swift */; };
 		A4ECA90F0933D886257AFCF9 /* CloudUAVFlowModelInstaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48066BDA5DC7FF35EA36A550 /* CloudUAVFlowModelInstaller.swift */; };
@@ -60,9 +70,12 @@
 		D8ACD84D2C3BC299C5E90BAB /* FlightModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52663028DEF6E799843ECBC4 /* FlightModels.swift */; };
 		DB8B2FADF13BBAA9972881DD /* UAVFlowPolicyContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = E505EADB6B9B310C042CE5F7 /* UAVFlowPolicyContract.swift */; };
 		E16FADDAF1F44DE89914ED22 /* SurveyCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6819A38FD70B142A656910A3 /* SurveyCoreTests.swift */; };
+		E2EFCF0814BED4330550168C /* SurveyStoppedCapturePosePolicyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C8B21E9FEF59DC553B1910 /* SurveyStoppedCapturePosePolicyTests.swift */; };
 		EFFC2DB676AF27BD6CE8EEB2 /* MockFlightProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4516706FC680B154ACADA3 /* MockFlightProvider.swift */; };
 		F05BEE55AA1221887C32FD77 /* DJILiveVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2BE888BD01BD6DD62B1B133 /* DJILiveVideoView.swift */; };
 		F084BB5B52A1B85387A33CA1 /* LanguageSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9691CE8F92B2BCECC490EB6 /* LanguageSelectionView.swift */; };
+		F0C6A89556E0D540565E8000 /* SurveyContinuousRecapturePolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0189E035F339258B3407D4 /* SurveyContinuousRecapturePolicy.swift */; };
+		F52BE24FEE45D49A2A6AC57E /* SurveyCloudTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 712FFC145BE3F96487450F13 /* SurveyCloudTests.swift */; };
 		F5C1C8F0CC820987A186246D /* SurveyCaptureSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6633092BF78BFAD2A48DF4 /* SurveyCaptureSchedule.swift */; };
 		FDA50496D1D72168EDC6CC17 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 6A1F76EE74720BC091BDE0F5 /* PrivacyInfo.xcprivacy */; };
 		FE7C0A46649A9BA2B662DB7B /* AppLanguage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C9B79CBBC5165F37082C0C /* AppLanguage.swift */; };
@@ -85,20 +98,23 @@
 		077B054CFC740803E857D795 /* TerrariumTerrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TerrariumTerrain.swift; sourceTree = "<group>"; };
 		0E1740D61751DCCA6F98EB0B /* DJIFlightProviderV4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DJIFlightProviderV4.swift; sourceTree = "<group>"; };
 		11C2EFA61BFF17827AC3070A /* SurveyTerrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyTerrain.swift; sourceTree = "<group>"; };
+		16C10622AC56297E6CC32CEF /* SurveyCloudUpload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyCloudUpload.swift; sourceTree = "<group>"; };
 		18857E2CB694B239D8209F2F /* PositionControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositionControllerTests.swift; sourceTree = "<group>"; };
-		1A723588302EE9699249299E /* OpenFlyGo.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = OpenFlyGo.xcconfig; sourceTree = "<group>"; };
 		1E4AFCE5BC8830C4328C5F63 /* SurveyCheckpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyCheckpoint.swift; sourceTree = "<group>"; };
 		22ADEA53B9CC31C83146B23B /* GeoTIFFTerrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoTIFFTerrain.swift; sourceTree = "<group>"; };
 		26C751F9145E725AE902E895 /* SurveyLatestParityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyLatestParityTests.swift; sourceTree = "<group>"; };
 		31F9958EAD6A26D3747226D7 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		3841229ED2570C92817B4252 /* SurveyCloudUploadSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyCloudUploadSection.swift; sourceTree = "<group>"; };
 		388F4C680A3277B3529EF9CA /* DJIVLNiOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DJIVLNiOS.entitlements; sourceTree = "<group>"; };
 		3B87DAE593AC67E4E920AEF9 /* DJIVLN-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DJIVLN-Bridging-Header.h"; sourceTree = "<group>"; };
 		3CAD38259015DE23D4B1DF9D /* SurveyCameraProfileCatalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyCameraProfileCatalog.swift; sourceTree = "<group>"; };
 		43DB4AF4E8809CAABE655012 /* FlightMapPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightMapPanel.swift; sourceTree = "<group>"; };
+		45D735A09AFCFCBA1BE298D0 /* Tests-Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Tests-Release.xcconfig"; sourceTree = "<group>"; };
 		48066BDA5DC7FF35EA36A550 /* CloudUAVFlowModelInstaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudUAVFlowModelInstaller.swift; sourceTree = "<group>"; };
 		49B0FCB3E5453A54DD55A884 /* SurveyReplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyReplay.swift; sourceTree = "<group>"; };
 		4BCD13019B37F461A829B3EF /* OpenFlyBuildFeatures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenFlyBuildFeatures.swift; sourceTree = "<group>"; };
 		4DEDFA4EED7DB82BE2542886 /* SurveyMissionStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyMissionStoreTests.swift; sourceTree = "<group>"; };
+		50D744A7C13FADC001BF9E5D /* SurveyCloudUploadController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyCloudUploadController.swift; sourceTree = "<group>"; };
 		51F2232928705AD0AD2512F2 /* FlightViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightViewModel.swift; sourceTree = "<group>"; };
 		52663028DEF6E799843ECBC4 /* FlightModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightModels.swift; sourceTree = "<group>"; };
 		53CE4C3B5338C14771DF1491 /* DJIVLNiOSTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = DJIVLNiOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -113,8 +129,12 @@
 		6819A38FD70B142A656910A3 /* SurveyCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyCoreTests.swift; sourceTree = "<group>"; };
 		6A1F76EE74720BC091BDE0F5 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		6A33B5831B2D3116DE4C7EFB /* SafetyGateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafetyGateTests.swift; sourceTree = "<group>"; };
+		6B0189E035F339258B3407D4 /* SurveyContinuousRecapturePolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyContinuousRecapturePolicy.swift; sourceTree = "<group>"; };
+		712FFC145BE3F96487450F13 /* SurveyCloudTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyCloudTests.swift; sourceTree = "<group>"; };
 		738984A488106828DBFCBC48 /* OpenFlyHILController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenFlyHILController.swift; sourceTree = "<group>"; };
+		73B3F24521610D20A0B73D12 /* Pods-DJIVLNiOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DJIVLNiOSTests.release.xcconfig"; path = "Target Support Files/Pods-DJIVLNiOSTests/Pods-DJIVLNiOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		769C9F6570AE33C2C4EDDD64 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		775DFCFE73996157FD0AEF14 /* Pods-DJIVLNiOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DJIVLNiOS.release.xcconfig"; path = "Target Support Files/Pods-DJIVLNiOS/Pods-DJIVLNiOS.release.xcconfig"; sourceTree = "<group>"; };
 		7A0E3C0A713DBAF71FD6743B /* DJIVLNiOS.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = DJIVLNiOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F9A1A1B279E297F3EF1F8FB /* GlobalBuildingHeight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalBuildingHeight.swift; sourceTree = "<group>"; };
 		8B687D1A9196B36518DB404C /* SurveyRuntimeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyRuntimeTests.swift; sourceTree = "<group>"; };
@@ -123,22 +143,35 @@
 		91C6780CCA9D8B520BB91E65 /* EventLogTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventLogTests.swift; sourceTree = "<group>"; };
 		959D5C33A6CFD938D6A26309 /* OpenFlyHILProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenFlyHILProtocol.swift; sourceTree = "<group>"; };
 		986B3FC5710CE924C89C394E /* EventLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventLog.swift; sourceTree = "<group>"; };
+		99C8B21E9FEF59DC553B1910 /* SurveyStoppedCapturePosePolicyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyStoppedCapturePosePolicyTests.swift; sourceTree = "<group>"; };
 		9B6633092BF78BFAD2A48DF4 /* SurveyCaptureSchedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyCaptureSchedule.swift; sourceTree = "<group>"; };
+		9B7273ACBA5B230235B20342 /* Pods-DJIVLNiOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DJIVLNiOSTests.debug.xcconfig"; path = "Target Support Files/Pods-DJIVLNiOSTests/Pods-DJIVLNiOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A2BE888BD01BD6DD62B1B133 /* DJILiveVideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DJILiveVideoView.swift; sourceTree = "<group>"; };
 		AC2CF67DD88683F23CF727BA /* DJIVLNiOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DJIVLNiOSApp.swift; sourceTree = "<group>"; };
+		B16668CCC42718B9504B815D /* SurveyContinuousRecaptureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyContinuousRecaptureTests.swift; sourceTree = "<group>"; };
+		B290B4A3AD49178860663FD2 /* libPods-DJIVLNiOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DJIVLNiOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9691CE8F92B2BCECC490EB6 /* LanguageSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageSelectionView.swift; sourceTree = "<group>"; };
 		BAF6E74DB029EAC050EF749E /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
 		BB71C0AE3D5BB5A9152EAF34 /* SurveyPolicies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyPolicies.swift; sourceTree = "<group>"; };
+		C3CC386E28E8E3A4A50E15E0 /* SurveyCloudUploadTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyCloudUploadTests.swift; sourceTree = "<group>"; };
 		C8BD55EAAFF6A604731408FB /* SurveyPlannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyPlannerView.swift; sourceTree = "<group>"; };
 		CF918F488A1EA4C1016DB211 /* Overlays.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Overlays.swift; sourceTree = "<group>"; };
 		D4E79311E3330999E80AFFF7 /* ActiveRecaptureMission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveRecaptureMission.swift; sourceTree = "<group>"; };
 		D620887779B7FBBF50B166AC /* PromptPresetCatalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptPresetCatalog.swift; sourceTree = "<group>"; };
 		D7C07CEADB89091EAF8BABA4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		D9F305CA01CB1E916CC9FF8B /* SurveyCloudClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyCloudClient.swift; sourceTree = "<group>"; };
+		DA398340A67519211B3A97DA /* App-Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "App-Debug.xcconfig"; sourceTree = "<group>"; };
+		DB3D28F5608E16EFF41B0EBD /* App-Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "App-Release.xcconfig"; sourceTree = "<group>"; };
 		DCBBB014D0225686C715E22D /* SurveyMissionCaptureViewFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyMissionCaptureViewFilter.swift; sourceTree = "<group>"; };
 		DDEB209E148696AF8D186C08 /* FlightControlSupervisor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightControlSupervisor.swift; sourceTree = "<group>"; };
+		E24095DD16C12320AFD7BE50 /* libPods-DJIVLNiOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DJIVLNiOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E505EADB6B9B310C042CE5F7 /* UAVFlowPolicyContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UAVFlowPolicyContract.swift; sourceTree = "<group>"; };
 		E821C33EAC45A7491B3D9866 /* SurveyMissionStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyMissionStore.swift; sourceTree = "<group>"; };
+		EB278B782D213EE1DDF2467A /* SurveyCloudPointCloud.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyCloudPointCloud.swift; sourceTree = "<group>"; };
 		EF8E6347EEC20F9E56EE84C2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F4A548011B1474039BCAA60F /* Tests-Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Tests-Debug.xcconfig"; sourceTree = "<group>"; };
+		F72CA9AA892AE66C41C9701B /* SurveyCloudView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyCloudView.swift; sourceTree = "<group>"; };
+		F8737427823A0F69DE38B7B7 /* Pods-DJIVLNiOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DJIVLNiOS.debug.xcconfig"; path = "Target Support Files/Pods-DJIVLNiOS/Pods-DJIVLNiOS.debug.xcconfig"; sourceTree = "<group>"; };
 		FAE1BC0BA7C3208F44BF3E1F /* UnavailableModelSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnavailableModelSupport.swift; sourceTree = "<group>"; };
 		FBBC55C7E067B724C14FCD5A /* SurveyCoveragePlanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyCoveragePlanner.swift; sourceTree = "<group>"; };
 		FC87A40D479D4A033EEA6CB8 /* SurveyCaptureController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyCaptureController.swift; sourceTree = "<group>"; };
@@ -146,11 +179,20 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		0F3C800FB5DEF9E667A81548 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3DD47627FBE54AA1A27FAA66 /* libPods-DJIVLNiOSTests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C818718F0BAD0F6A494FC8CC /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				58AA4C6A16CA47F903D238E6 /* Clipper2 in Frameworks */,
+				0312E2FB279CA62F3EAFD989 /* libPods-DJIVLNiOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -164,6 +206,8 @@
 				39DB7BBAAF5C2C05BA386DFF /* Config */,
 				C0EA77C7057FAC1F372D7F1C /* Tests */,
 				709EEBE89F6004378D82A23D /* Products */,
+				D60740D583BC0D8FCF7F791B /* Pods */,
+				9DC7AAE06F68B883C7746192 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -179,7 +223,10 @@
 		39DB7BBAAF5C2C05BA386DFF /* Config */ = {
 			isa = PBXGroup;
 			children = (
-				1A723588302EE9699249299E /* OpenFlyGo.xcconfig */,
+				DA398340A67519211B3A97DA /* App-Debug.xcconfig */,
+				DB3D28F5608E16EFF41B0EBD /* App-Release.xcconfig */,
+				F4A548011B1474039BCAA60F /* Tests-Debug.xcconfig */,
+				45D735A09AFCFCBA1BE298D0 /* Tests-Release.xcconfig */,
 			);
 			path = Config;
 			sourceTree = "<group>";
@@ -202,6 +249,11 @@
 				FC87A40D479D4A033EEA6CB8 /* SurveyCaptureController.swift */,
 				9B6633092BF78BFAD2A48DF4 /* SurveyCaptureSchedule.swift */,
 				1E4AFCE5BC8830C4328C5F63 /* SurveyCheckpoint.swift */,
+				D9F305CA01CB1E916CC9FF8B /* SurveyCloudClient.swift */,
+				EB278B782D213EE1DDF2467A /* SurveyCloudPointCloud.swift */,
+				16C10622AC56297E6CC32CEF /* SurveyCloudUpload.swift */,
+				50D744A7C13FADC001BF9E5D /* SurveyCloudUploadController.swift */,
+				6B0189E035F339258B3407D4 /* SurveyContinuousRecapturePolicy.swift */,
 				FBBC55C7E067B724C14FCD5A /* SurveyCoveragePlanner.swift */,
 				024C2ECCB0ED99D22E80189E /* SurveyExecution.swift */,
 				DCBBB014D0225686C715E22D /* SurveyMissionCaptureViewFilter.swift */,
@@ -237,6 +289,15 @@
 			path = Inference;
 			sourceTree = "<group>";
 		};
+		9DC7AAE06F68B883C7746192 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B290B4A3AD49178860663FD2 /* libPods-DJIVLNiOS.a */,
+				E24095DD16C12320AFD7BE50 /* libPods-DJIVLNiOSTests.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		BEF7E8ACF8C6BE0617B8441B /* Bridge */ = {
 			isa = PBXGroup;
 			children = (
@@ -253,10 +314,14 @@
 				62C0E97B4B6DE685E635CD0F /* MockFlightFlowTests.swift */,
 				18857E2CB694B239D8209F2F /* PositionControllerTests.swift */,
 				6A33B5831B2D3116DE4C7EFB /* SafetyGateTests.swift */,
+				712FFC145BE3F96487450F13 /* SurveyCloudTests.swift */,
+				C3CC386E28E8E3A4A50E15E0 /* SurveyCloudUploadTests.swift */,
+				B16668CCC42718B9504B815D /* SurveyContinuousRecaptureTests.swift */,
 				6819A38FD70B142A656910A3 /* SurveyCoreTests.swift */,
 				26C751F9145E725AE902E895 /* SurveyLatestParityTests.swift */,
 				4DEDFA4EED7DB82BE2542886 /* SurveyMissionStoreTests.swift */,
 				8B687D1A9196B36518DB404C /* SurveyRuntimeTests.swift */,
+				99C8B21E9FEF59DC553B1910 /* SurveyStoppedCapturePosePolicyTests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -269,6 +334,8 @@
 				43DB4AF4E8809CAABE655012 /* FlightMapPanel.swift */,
 				B9691CE8F92B2BCECC490EB6 /* LanguageSelectionView.swift */,
 				CF918F488A1EA4C1016DB211 /* Overlays.swift */,
+				3841229ED2570C92817B4252 /* SurveyCloudUploadSection.swift */,
+				F72CA9AA892AE66C41C9701B /* SurveyCloudView.swift */,
 				C8BD55EAAFF6A604731408FB /* SurveyPlannerView.swift */,
 			);
 			path = Views;
@@ -281,6 +348,18 @@
 				959D5C33A6CFD938D6A26309 /* OpenFlyHILProtocol.swift */,
 			);
 			path = HIL;
+			sourceTree = "<group>";
+		};
+		D60740D583BC0D8FCF7F791B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F8737427823A0F69DE38B7B7 /* Pods-DJIVLNiOS.debug.xcconfig */,
+				775DFCFE73996157FD0AEF14 /* Pods-DJIVLNiOS.release.xcconfig */,
+				9B7273ACBA5B230235B20342 /* Pods-DJIVLNiOSTests.debug.xcconfig */,
+				73B3F24521610D20A0B73D12 /* Pods-DJIVLNiOSTests.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
 			sourceTree = "<group>";
 		};
 		DA5E16AC481285E41DE0C754 /* App */ = {
@@ -330,7 +409,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4AA2B2C3C394858592CA52A7 /* Build configuration list for PBXNativeTarget "DJIVLNiOSTests" */;
 			buildPhases = (
+				BB7290820BA01364B4E65479 /* [CP] Check Pods Manifest.lock */,
 				C48E3BBB82C3858BAD8DD985 /* Sources */,
+				0F3C800FB5DEF9E667A81548 /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -338,8 +419,6 @@
 				94AF09C96806CCA2CFCDE5BD /* PBXTargetDependency */,
 			);
 			name = DJIVLNiOSTests;
-			packageProductDependencies = (
-			);
 			productName = DJIVLNiOSTests;
 			productReference = 53CE4C3B5338C14771DF1491 /* DJIVLNiOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -348,9 +427,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6DE0A04575B61419C0C09BE1 /* Build configuration list for PBXNativeTarget "DJIVLNiOS" */;
 			buildPhases = (
+				19222BB2DF7291702ACAECD3 /* [CP] Check Pods Manifest.lock */,
 				DC6502137C31F16B6BED5186 /* Sources */,
 				F95F3F7B550A042E806E02E4 /* Resources */,
 				C818718F0BAD0F6A494FC8CC /* Frameworks */,
+				DE70216965A41E7ECFEB1169 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -421,6 +502,70 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		19222BB2DF7291702ACAECD3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DJIVLNiOS-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BB7290820BA01364B4E65479 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DJIVLNiOSTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DE70216965A41E7ECFEB1169 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DJIVLNiOS/Pods-DJIVLNiOS-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DJIVLNiOS/Pods-DJIVLNiOS-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DJIVLNiOS/Pods-DJIVLNiOS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		C48E3BBB82C3858BAD8DD985 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -431,10 +576,14 @@
 				7C9FB6B55BE9ED53B97A5AF0 /* MockFlightFlowTests.swift in Sources */,
 				A749044856A8A573AAD8508F /* PositionControllerTests.swift in Sources */,
 				CECBE1815C97456324901054 /* SafetyGateTests.swift in Sources */,
+				F52BE24FEE45D49A2A6AC57E /* SurveyCloudTests.swift in Sources */,
+				5455B62F7BE826FA1389FB0E /* SurveyCloudUploadTests.swift in Sources */,
+				84AB5B10CB6938C1BD550810 /* SurveyContinuousRecaptureTests.swift in Sources */,
 				E16FADDAF1F44DE89914ED22 /* SurveyCoreTests.swift in Sources */,
 				4D35C39C356855B53F031066 /* SurveyLatestParityTests.swift in Sources */,
 				7538763D70C6691A197AB66E /* SurveyMissionStoreTests.swift in Sources */,
 				2E55D0DD5D4D32C13CD8893A /* SurveyRuntimeTests.swift in Sources */,
+				E2EFCF0814BED4330550168C /* SurveyStoppedCapturePosePolicyTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -470,6 +619,13 @@
 				175ACF50A846727E4B9059D8 /* SurveyCaptureController.swift in Sources */,
 				F5C1C8F0CC820987A186246D /* SurveyCaptureSchedule.swift in Sources */,
 				017B91F0B0B13D757397514A /* SurveyCheckpoint.swift in Sources */,
+				5806DCD015261AC8AE3F7D39 /* SurveyCloudClient.swift in Sources */,
+				34E7CFBF1EC22B1C00A8DF86 /* SurveyCloudPointCloud.swift in Sources */,
+				9C6569EEAC7C6D5C35D8F4B2 /* SurveyCloudUpload.swift in Sources */,
+				8DD8BAD89A2B64DEAB6C5F44 /* SurveyCloudUploadController.swift in Sources */,
+				5AE20D1E94294B351BA4CA08 /* SurveyCloudUploadSection.swift in Sources */,
+				455D20BEC9B320B0339E5DEF /* SurveyCloudView.swift in Sources */,
+				F0C6A89556E0D540565E8000 /* SurveyContinuousRecapturePolicy.swift in Sources */,
 				292EE97D3D05EEAE27777496 /* SurveyCoveragePlanner.swift in Sources */,
 				65ACCA5FE921CF47C25A6E9C /* SurveyExecution.swift in Sources */,
 				CD77AF72CFDA1CE2E579B68D /* SurveyMissionCaptureViewFilter.swift in Sources */,
@@ -559,7 +715,7 @@
 		};
 		40548B56F46089DD96968539 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1A723588302EE9699249299E /* OpenFlyGo.xcconfig */;
+			baseConfigurationReference = F4A548011B1474039BCAA60F /* Tests-Debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -641,7 +797,7 @@
 		};
 		65C232840915ED62F87250EC /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1A723588302EE9699249299E /* OpenFlyGo.xcconfig */;
+			baseConfigurationReference = DA398340A67519211B3A97DA /* App-Debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = App/DJIVLNiOS.entitlements;
@@ -654,7 +810,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				OTHER_LDFLAGS = "$(inherited) -ObjC";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "$(OPENFLY_BUNDLE_ID)";
 				PRODUCT_NAME = DJIVLNiOS;
 				SDKROOT = iphoneos;
@@ -666,7 +825,7 @@
 		};
 		D53B77DDEB9346595DC0421A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1A723588302EE9699249299E /* OpenFlyGo.xcconfig */;
+			baseConfigurationReference = 45D735A09AFCFCBA1BE298D0 /* Tests-Release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -685,7 +844,7 @@
 		};
 		ED7D7A3D66A657D9C2783C33 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1A723588302EE9699249299E /* OpenFlyGo.xcconfig */;
+			baseConfigurationReference = DB3D28F5608E16EFF41B0EBD /* App-Release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = App/DJIVLNiOS.entitlements;
@@ -698,7 +857,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				OTHER_LDFLAGS = "$(inherited) -ObjC";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "$(OPENFLY_BUNDLE_ID)";
 				PRODUCT_NAME = DJIVLNiOS;
 				SDKROOT = iphoneos;

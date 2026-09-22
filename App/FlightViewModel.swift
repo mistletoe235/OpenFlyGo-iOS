@@ -109,6 +109,7 @@ final class FlightViewModel: ObservableObject {
 
     let log = EventLog()
     let surveyRuntime: SurveyRuntimeController
+    let cloudUpload = SurveyCloudUploadController()
     let hil: OpenFlyHILController
     let ueBridge = SurveyUeBridgeController()
     let promptPresets: [PromptPreset]
@@ -203,6 +204,9 @@ final class FlightViewModel: ObservableObject {
             self?.hil.latestFreshVirtualFrame(
                 maxAgeMilliseconds: OpenFlyHILController.virtualFrameFreshMilliseconds
             )
+        }
+        surveyRuntime.onSurveyFrameSaved = { [weak self] record, view in
+            self?.cloudUpload.accept(record, view: view)
         }
         surveyRuntime.onVirtualFrameCaptured = { [weak self] record in
             guard let self else { return }
@@ -1226,6 +1230,7 @@ final class FlightViewModel: ObservableObject {
         invalidateHILSimulatorActivation()
         hilInitialSimulatorActivationPending = shouldResumeInitialActivation
         surveyRuntime.appEnteredBackground()
+        cloudUpload.pause()
         normalStop("App 进入后台")
         if hil.status.running {
             hil.reportSimulatorSource("App 已进入后台；控制与 DJI VS 已暂停，HIL UDP/TCP 会话保持")
