@@ -26,13 +26,16 @@ native model runtimes. The corresponding UI is not compiled into the public buil
 ## Installation: TestFlight
 
 The iOS app is **not currently distributed on the App Store because of MFi-related
-authorization requirements** for the DJI accessory connection. Contact
-[@mistletoe235](https://github.com/mistletoe235) to request a **TestFlight invitation**;
-you can start with a [TestFlight invitation discussion](https://github.com/mistletoe235/OpenFlyScan/discussions/1). An invitation email is optional in the discussion. Comments are visible to everyone
-with repository access and may become public if the repository is opened later;
-only post an email if you accept that visibility, or request private follow-up.
-Never share account passwords or verification codes. No directly installable IPA
-is distributed here.
+authorization requirements** for its DJI accessory connection. Request access in
+the [TestFlight discussion](https://github.com/mistletoe235/OpenFlyScan/discussions/1)
+with your phone model, iOS version and aircraft/controller. The maintainer sends
+invitations when an eligible external-testing build is available; a request is
+not an invitation, and no installable IPA is provided here.
+
+An invitation email is optional. Discussion comments are visible to repository
+readers and may become public later. If you do not want to share an email there,
+omit it and wait for the maintainer to arrange a contact method; no dedicated
+private contact is configured yet. Never post passwords or verification codes.
 
 [Release/access information](https://github.com/mistletoe235/OpenFlyGo-iOS/releases/tag/testflight-20260922) · [Main project releases](https://github.com/mistletoe235/OpenFlyScan/releases/tag/preview-20260922)
 
