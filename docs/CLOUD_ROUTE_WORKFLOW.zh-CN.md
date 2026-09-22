@@ -1,45 +1,44 @@
 # Cloud point clouds and routes
 
-[English](CLOUD_ROUTE_WORKFLOW.md) · [Chinese reference](CLOUD_ROUTE_WORKFLOW.zh-CN.md)
+## 中文操作：连接工作站并执行已有补拍航线
 
-## Connect and review
+**工作站部署由项目总入口仓库统一说明**；本文只说明 App 端连接，不提供服务器安装命令。
+部署者需要给出手机可达的 HTTP/HTTPS 根地址、Bearer 访问码、已有会话 ID，以及兼容 iOS 的
+schema 1–14 航线。也可在本页上传区创建会话、上传航线触发图传帧 / 历史照片，再显式提交
+重建，详见 [图片上传指南](CLOUD_UPLOAD.md)。保存照片不代表已上传，上传不代表已提交。
 
-See the [main workstation guide](https://github.com/mistletoe235/OpenFlyScan/blob/main/docs/workstation.md)
-for deployment. Obtain the phone-reachable service root, bearer token and existing
-session ID. Alternatively, create/upload/finalize in the separate
-[upload section](CLOUD_UPLOAD.md). Saving a photo is not uploading it, and uploading
-is not submitting reconstruction.
+1. 打开“区域航线”，点标题旁云朵，或“更多 → 云端点云与航线”。
+2. 填服务根地址，例如 `https://reconstruction.example.com`，替换为真实可达地址；不要填
+   SSH 地址、`/api/sessions/...` 或 `127.0.0.1`（在 iPhone 上表示 iPhone 自己）。
+3. 访问码只填 token 本身，App 添加 Bearer 前缀；填目标服务器上的已有会话 ID，而非任务名。
+   使用 HTTPS；开源 iOS 没有私有生产 HTTP 地址白名单，公网 HTTP 可能被 ATS 拦截，
+   不以全局关闭 ATS / 证书校验处理。地址变化后使用对应的访问码。
+4. 点“连接并读取结果 / 刷新云端结果”，查看会话阶段和错误；点“下载并查看点云”，用手势
+   旋转缩放。读取的是已生成的 PLY，不是 SSH 桌面，不是直播视频，也不是实时避障地图。
+5. 点“下载云端航线”，核对摘要，再“导入任务库并在地图预览”。导入不申请控制权、不上传飞机、
+   不自动起飞或执行。运行 / 暂停任务锁存在时不能用新任务覆盖，下载结束仍会重查锁。
+6. **实飞前**检查起飞点与相对高度 / ASL 基准、WGS84、相机、补拍组、拍照点、往返路径和
+   电池预算；先用 HIL / 小任务验证，完成本地预检后才显式执行。Mini 2 执行保持 App 前台。
+7. `safe_to_execute` 缺失或 false 会显示警告；iOS 允许下载导入预览不等于允许实飞，也不等于
+   Android 的导入策略。不得篡改审核字段。`test_only` / `relative_height_test` 禁止下载为航线。
+8. schema 14 连续补拍通过 iOS 的 App 侧 Virtual Stick 执行，不使用 V5 KMZ。新建上传
+   会话可显式勾选“连续补拍（实验）”，默认仍停车拍照；不手改 schema，保持 App 前台和连接。
+   具体条件与验收范围见 [iOS schema 14 说明](SCHEMA14_CONTINUOUS_RECAPTURE_2026-09-22.md)。
+   iOS Release 不启用仿地，带 `terrainPlan` 的任务也会被拒绝。
+9. 执行后核对实际照片和任务记录；新一轮采集可在上传区另建会话。等待上传成功后显式
+   提交重建，再手动刷新结果；不会自动循环执行补拍。
 
-Enter the service root, not SSH, an API path or `127.0.0.1`. Supply the token only;
-the app adds the Bearer prefix. Use HTTPS and verify local-network permission,
-routing and certificates. Do not globally disable ATS or certificate checks.
-
-After connect/refresh, inspect session status and errors, view the generated PLY,
-and review the downloaded mission summary before importing to the library/map.
-Before flight, check takeoff location, relative-height/ASL datum, WGS84 coordinates,
-camera, groups/capture points, full return/transit paths and battery budget.
-Validate a small mission in HIL and complete local preflight; keep the app foreground
-for Mini 2 execution. Do not rewrite approval fields. iOS warning-based preview
-import is not flight authorization or the same policy as Android import.
-
-Schema 14 uses app-side Virtual Stick, not V5 KMZ. Select the experimental mode
-when creating a session; stopped capture remains the default. Do not manually
-change the schema. See the [schema 14 notes](SCHEMA14_CONTINUOUS_RECAPTURE_2026-09-22.md).
-After execution, check actual photos and mission records. A new upload session
-can start the next round; submit reconstruction and refresh explicitly. There is
-no automatic reacquisition loop.
-
-| Symptom | Check first |
+| 现象 | 优先检查 |
 | --- | --- |
-| Timeout / ATS error | Reachable root URL, routing/VPN, HTTPS certificate and local-network permission |
-| HTTP 401 / 403 | Token/session permissions; keep tokens out of logs and screenshots |
-| HTTP 404 / wrong session | Service/ID pairing and accidentally appended API paths |
-| Disabled download | Artifact readiness and test-session restrictions; SSH is not involved |
-| PLY not visible | Format, same-origin URL and the 32 MiB limit below |
-| Import/execution blocked | Schema, terrain feature gate, task lock, review and local preflight |
+| 连接超时 / ATS 错误 | 手机路由、VPN、真实服务地址、HTTPS 和证书；本地网络权限 |
+| HTTP 401 / 403 | token / 会话权限；不在截图和日志暴露访问码 |
+| 404 / session ID 不匹配 | 服务地址和 ID 是否属于同一个服务器，根地址是否多了 API 路径 |
+| 下载按钮不可用 | 服务是否已经生成产物，是否为测试会话；不是“SSH 未连接” |
+| PLY 不显示 | 文件限制 / 格式 / 同源 URL；下文列出支持格式与 32 MiB 上限 |
+| 导入被拒 / 执行灰色 | schema、仿地开关、任务锁、审核和本地飞行预检；不能靠修改保护条件解决 |
 
-Progressive output depends on the workstation. Browsing uses manual refresh and
-does not provide a server session-list interface.
+渐进预览是否可用取决于工作站；浏览区按手动读取 / 刷新结果工作，没有服务端会话列表入口。
+
 
 This route-related functionality is part of the public app. It does not depend on MNN, VLN,
 model inference, model downloads, or the private inference repository.
