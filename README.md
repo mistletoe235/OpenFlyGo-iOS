@@ -27,6 +27,12 @@ planning, simulator/HIL integration, resumable execution and reconstruction-orie
 The current public release intentionally excludes VLN, model inference, model distribution and all
 native model runtimes. The corresponding UI is not compiled into the public build.
 
+## App preview
+
+![OpenFly Go iOS cloud connection screen with local-upload controls and workstation URL, access-code and session fields.](docs/images/cloud-connection.webp)
+
+*iOS cloud connection screen, captured in the simulator with Chinese interface labels.*
+
 ## Installation: TestFlight
 
 The iOS app is **not currently distributed on the App Store because of MFi-related
