@@ -1,5 +1,9 @@
 # OpenFly Go for iOS
 
+Part of [OpenFlyScan](https://github.com/mistletoe235/OpenFlyScan) ·
+[Paper](https://arxiv.org/abs/2609.24253) ·
+[Citation](https://github.com/mistletoe235/OpenFlyScan#citation)
+
 > [!WARNING]
 > **Flight safety — read before flying**
 >
@@ -33,9 +37,8 @@ invitations when an eligible external-testing build is available; a request is
 not an invitation, and no installable IPA is provided here.
 
 Use the discussion for requests and follow-up; no separate contact email is
-required. An invitation email is optional in the initial request. Comments are
-visible to repository readers and may become public later, so only include an
-email if you accept that visibility. Never post passwords or verification codes.
+required. An invitation email is optional in the initial request. Comments are public,
+so only include an email if you accept that visibility. Never post passwords or verification codes.
 
 [Release/access information](https://github.com/mistletoe235/OpenFlyGo-iOS/releases/tag/testflight-20260922) · [Main project releases](https://github.com/mistletoe235/OpenFlyScan/releases/tag/preview-20260922)
 
