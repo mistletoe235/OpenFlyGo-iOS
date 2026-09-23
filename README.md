@@ -29,9 +29,9 @@ native model runtimes. The corresponding UI is not compiled into the public buil
 
 ## App preview
 
-![OpenFly Go iOS cloud connection screen with local-upload controls and workstation URL, access-code and session fields.](docs/images/cloud-connection.webp)
+![OpenFly Go iOS displaying a five-direction survey route, mission progress and a saved pause point on the map.](docs/images/five-direction-survey.webp)
 
-*iOS cloud connection screen, captured in the simulator with Chinese interface labels.*
+*Five-direction survey routes, capture progress and pause/resume status in the iOS app.*
 
 ## Installation: TestFlight
 
