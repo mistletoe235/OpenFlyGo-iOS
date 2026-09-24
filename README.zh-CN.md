@@ -1,5 +1,11 @@
 # OpenFly Go for iOS
 
+## 通过 TestFlight 安装
+
+[加入 iOS 测试](https://testflight.apple.com/join/br5vTV92)
+
+请在 iPhone 上打开链接，按页面提示安装 TestFlight 并加入测试，无需先在 GitHub 提交申请。可用名额和设备要求以 TestFlight 页面为准。使用前请阅读下方安全说明，并确认无人机与遥控器兼容。
+
 > [!WARNING]
 > **实飞前必读 / Flight safety — read before flying**
 >

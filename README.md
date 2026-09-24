@@ -35,22 +35,21 @@ native model runtimes. The corresponding UI is not compiled into the public buil
 
 ## Installation: TestFlight
 
-The iOS app is **not currently distributed on the App Store because of MFi-related
-authorization requirements** for its DJI accessory connection. Request access in
-the [TestFlight discussion](https://github.com/mistletoe235/OpenFlyScan/discussions/1)
-with your phone model, iOS version and aircraft/controller. The maintainer sends
-invitations when an eligible external-testing build is available; a request is
-not an invitation, and no installable IPA is provided here.
+[Join the iOS beta on TestFlight](https://testflight.apple.com/join/br5vTV92)
 
-Use the discussion for requests and follow-up; no separate contact email is
-required. An invitation email is optional in the initial request. Comments are public,
-so only include an email if you accept that visibility. Never post passwords or verification codes.
+Open this link on your iPhone and follow the instructions to install TestFlight
+and join the beta. No GitHub access request is needed. Availability depends on
+the testing capacity and device requirements shown on TestFlight.
+
+The app is not currently listed on the App Store. Check aircraft compatibility
+and the flight-safety notes before use. For help, use the
+[project discussion](https://github.com/mistletoe235/OpenFlyScan/discussions/1);
+do not post passwords or verification codes.
 
 [Release/access information](https://github.com/mistletoe235/OpenFlyGo-iOS/releases/tag/testflight-20260922) · [Main project releases](https://github.com/mistletoe235/OpenFlyScan/releases/tag/preview-20260922)
 
-The source-build instructions below are for developers and do not constitute a
-TestFlight invitation or an App Store release. Read the flight-safety warning above
-before using the app with hardware.
+The source-build instructions below are for developers. To install the beta,
+use the TestFlight link above.
 
 ## Client selection and aircraft support
 
