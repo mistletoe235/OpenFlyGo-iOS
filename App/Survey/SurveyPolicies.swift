@@ -277,6 +277,10 @@ enum SurveyGimbalSettlePolicy {
 /// photo trigger until aircraft heading, position, speed and gimbal pose have
 /// all been fresh and stable for a short dwell.
 enum SurveyStoppedCapturePosePolicy {
+    static func requiresStoppedPose(action: SurveyCaptureAction) -> Bool {
+        action == .captureOnReach
+    }
+
     static let requiredStableMillis: Int64 = 800
     static let maxHorizontalSpeedMetersPerSecond = 0.35
     static let maxHorizontalErrorMeters = 1.5

@@ -206,6 +206,20 @@ final class SurveyContinuousRuntimeTests: XCTestCase {
         await feed(runtime, provider)
         XCTAssertEqual(runtime.snapshot.waypointIndex, 3)
         XCTAssertEqual(runtime.snapshot.photoCount, 1)
+        XCTAssertEqual(provider.surveyFrameRequests, 0)
+    }
+
+    func testExplicitCloudOptInRequestsFrameWithoutDelayingPhotoAck() async throws {
+        let (runtime, provider, mission) = try await prepare()
+        defer { runtime.abort("test cleanup") }
+        runtime.surveyFrameCaptureRequested = { true }
+        provider.telemetry.aircraft.latitude = mission.waypoints[2].point.latitude
+        await feed(runtime, provider)
+        try XCTUnwrap(provider.pendingPhotoCompletions.first)(nil)
+        await feed(runtime, provider)
+        XCTAssertEqual(provider.surveyFrameRequests, 1)
+        XCTAssertEqual(runtime.snapshot.photoCount, 1)
+        XCTAssertEqual(runtime.snapshot.waypointIndex, 3)
     }
 
     func testPhotoFailurePausesAndDoesNotAdvance() async throws {

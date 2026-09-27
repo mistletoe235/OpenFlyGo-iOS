@@ -1,5 +1,11 @@
 # OpenFly Go for iOS
 
+[Q&A: capture checks, simulator cooling and recovery after interruption](docs/FAQ.md).
+
+**Phone image storage:** ordinary capture no longer saves extra downlink JPEG/JSON copies by default.
+Aircraft SD photos are unaffected; explicitly enabled cloud collection keeps only the required retry
+queue. See [storage defaults and exceptions](docs/PHONE_IMAGE_STORAGE_2026-09-25.md).
+
 Part of [OpenFlyScan](https://github.com/mistletoe235/OpenFlyScan) ·
 [Paper](https://arxiv.org/abs/2609.24253) ·
 [Citation](https://github.com/mistletoe235/OpenFlyScan#citation)
@@ -17,7 +23,7 @@ Part of [OpenFlyScan](https://github.com/mistletoe235/OpenFlyScan) ·
 
 > Quick links: [Client selection](#client-selection-and-aircraft-support) · [HIL](docs/HIL_QUICKSTART.md) · [Cloud workflow](docs/CLOUD_ROUTE_WORKFLOW.md)
 >
-> [Project home](https://github.com/mistletoe235/OpenFlyScan) · [English](README.md) · [Chinese reference](README.zh-CN.md)
+> [Project home](https://github.com/mistletoe235/OpenFlyScan) · [English](README.md) · [中文](README.zh-CN.md)
 
 
 OpenFly Go is an open-source mobile ground application for low-cost DJI aircraft. This repository
@@ -35,6 +41,8 @@ native model runtimes. The corresponding UI is not compiled into the public buil
 
 ## Installation: TestFlight
 
+Latest GitHub source release: **1.0 / 20260927.1**. This source release does not upload a new TestFlight build; the build available through Apple may differ.
+
 [Join the iOS beta on TestFlight](https://testflight.apple.com/join/br5vTV92)
 
 Open this link on your iPhone and follow the instructions to install TestFlight
@@ -46,7 +54,7 @@ and the flight-safety notes before use. For help, use the
 [project discussion](https://github.com/mistletoe235/OpenFlyScan/discussions/1);
 do not post passwords or verification codes.
 
-[Release/access information](https://github.com/mistletoe235/OpenFlyGo-iOS/releases/tag/testflight-20260922) · [Main project releases](https://github.com/mistletoe235/OpenFlyScan/releases/tag/preview-20260922)
+[Release/access information](https://github.com/mistletoe235/OpenFlyGo-iOS/releases/tag/v1.0-build20260927.1) · [Main project releases](https://github.com/mistletoe235/OpenFlyScan/releases/tag/mobile-20260927)
 
 The source-build instructions below are for developers. To install the beta,
 use the TestFlight link above.
@@ -100,7 +108,7 @@ are not separate aircraft models.
 - V5 supports DJI WPMZ/KMZ execution. V4/iOS Mini 2 missions use app-side control: **keep the app in the foreground and connected**, rather than treating them as offline onboard missions.
 - Default reacquisition uses stable stop-and-capture points (schema 13). All three clients support experimental schema 14: V4/iOS use Virtual Stick and V5 uses DJI KMZ. Only eligible intermediate capture points pass continuously; boundaries and turns may still stop. V4/iOS require the September 22, 2026 adaptation or a later compatible build. This is not merely relaxed version parsing or a new real-flight acceptance claim.
 - The source excludes MNN, VLN, model downloads and private inference runtimes. Cloud routes and point clouds do not depend on them.
-- Android retains experimental terrain following, disabled by default. iOS Release rejects missions with `terrainPlan`.
+- Release installers do not provide terrain following: Android V4/V5 and iOS hide the entry and do not activate missions with `terrainPlan`. Android V4 Debug retains the experimental implementation.
 - Debug is for development; Release is a build configuration, not an all-aircraft acceptance label. Supply your own keys/signing for local builds. Maintainer installation packages use private signing; different signatures cannot overwrite one another. Do not erase app data merely to switch packages.
 
 See the [schema 14 implementation and validation notes](docs/SCHEMA14_CONTINUOUS_RECAPTURE_2026-09-22.md).
@@ -223,7 +231,7 @@ their own terms; see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
 
 Read the [camera compatibility guide](docs/CAMERA_PROFILE_COMPATIBILITY.md) before
 changing aircraft, lens or photo mode. SDK connectivity does not verify the camera
-profile; unconfirmed geometry must not authorize mission execution.
+profile; unconfirmed geometry is a coverage/GSD advisory, not a mission-execution block.
 
 ## License and third-party software
 

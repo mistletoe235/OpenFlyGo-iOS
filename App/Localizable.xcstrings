@@ -1,6 +1,26 @@
 {
   "sourceLanguage": "zh-Hans",
   "strings": {
+    "参数估算": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Estimated parameters"
+          }
+        }
+      }
+    },
+    "相机参数未完全确认或与航线不同，覆盖率和 GSD 仅供估算；不阻止执行": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Camera parameters are unconfirmed or differ from this mission; coverage and GSD are estimates. Execution remains available."
+          }
+        }
+      }
+    },
     "取消": {
       "localizations": {
         "en": {

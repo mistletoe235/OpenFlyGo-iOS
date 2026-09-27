@@ -1,6 +1,6 @@
 # iOS image uploads and cloud reconstruction
 
-[English](CLOUD_UPLOAD.md) · [Chinese reference](CLOUD_UPLOAD.zh-CN.md)
+[English](CLOUD_UPLOAD.md) · [中文](CLOUD_UPLOAD.zh-CN.md)
 
 Use a source build containing this feature; older installation/TestFlight builds
 do not update automatically. Private and source-release clients share the protocol
@@ -28,8 +28,9 @@ Frames preserve their aspect ratio and use a maximum long edge of 1920 pixels;
 model-stretched images are not reused. Networking does not block flight control.
 Fresh flight state and valid GPS/ASL are required; fresh actual gimbal attitude is
 attached when available. Coordinates are not fabricated. HIL/DJI Simulator/Mock
-frames are excluded from real sessions. Rejected records may remain in survey
-logs, and the UI reports their count; they are not uploaded images.
+frames are excluded from real sessions. Rejected frames are counted and their temporary source files are removed; they are not uploaded
+images and do not have a default session-folder backup. Ordinary capture without live collection
+does not request or store these extra frames. See [storage behavior](PHONE_IMAGE_STORAGE_2026-09-25.md).
 
 **Historical photos:** select JPEG/PNG from Files or Photos, at most 100 per batch.
 Original EXIF latitude, longitude and absolute altitude are used, not the phone's

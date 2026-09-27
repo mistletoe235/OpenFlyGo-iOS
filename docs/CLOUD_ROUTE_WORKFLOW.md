@@ -1,6 +1,6 @@
 # Cloud point clouds and routes
 
-[English](CLOUD_ROUTE_WORKFLOW.md) · [Chinese reference](CLOUD_ROUTE_WORKFLOW.zh-CN.md)
+[English](CLOUD_ROUTE_WORKFLOW.md) · [中文](CLOUD_ROUTE_WORKFLOW.zh-CN.md)
 
 ## Connect and review
 
@@ -98,3 +98,9 @@ fails the capture-pose gate rather than faking freshness.
 
 Protocol tests use controlled responses, not a production login. A valid service credential and
 session are still required for an end-to-end check against your reconstruction server.
+
+## Phone copies and upload storage
+
+Extra phone image archives are off by default. Cloud collection is explicit and still uses a bounded
+local retry queue; it does not require an extra permanent downlink-image archive. See
+[phone image storage behavior](PHONE_IMAGE_STORAGE_2026-09-25.md). Old images are not deleted.

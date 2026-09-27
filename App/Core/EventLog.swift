@@ -10,6 +10,18 @@ struct SurveyFrameCaptureRecord: Sendable {
     var waypointIndex: Int
     var imageURL: URL
     var metadataURL: URL
+    var isTemporary = false
+
+    func removeTemporaryFiles() {
+        guard isTemporary else { return }
+        let files = FileManager.default
+        try? files.removeItem(at: imageURL)
+        try? files.removeItem(at: metadataURL)
+        let directory = imageURL.deletingLastPathComponent()
+        if (try? files.contentsOfDirectory(atPath: directory.path).isEmpty) == true {
+            try? files.removeItem(at: directory)
+        }
+    }
 }
 
 private final class SessionCaptureStore: @unchecked Sendable {
@@ -86,13 +98,16 @@ private final class SessionCaptureStore: @unchecked Sendable {
     }
 
     func captureSurveyFrame(
-        frame: CameraFrame, missionID: String, telemetry: FlightTelemetry,
+        frame: CameraFrame, missionID: String, telemetry: FlightTelemetry, retainLocally: Bool,
         metadata: @escaping @Sendable (_ imageURL: URL, _ metadataURL: URL) throws -> Data,
                             completion: @escaping @Sendable (Result<(URL, URL), Error>) -> Void) {
+        let temporary = FileManager.default.temporaryDirectory
+            .appendingPathComponent("openfly-survey-\(UUID().uuidString)", isDirectory: true)
         queue.async { [directory] in
             do {
                 let safeMissionID = missionID.filter { $0.isLetter || $0.isNumber || $0 == "-" || $0 == "_" }
-                let captures = directory.appendingPathComponent("survey/\(safeMissionID)", isDirectory: true)
+                let captures = retainLocally
+                    ? directory.appendingPathComponent("survey/\(safeMissionID)", isDirectory: true) : temporary
                 try FileManager.default.createDirectory(at: captures, withIntermediateDirectories: true)
                 let stamp = Int(frame.capturedAt.timeIntervalSince1970 * 1_000)
                 let persistedFrameID = frame.sourceFrameID ?? UInt64(frame.sequence)
@@ -104,6 +119,7 @@ private final class SessionCaptureStore: @unchecked Sendable {
                 try metadata(imageURL, metadataURL).write(to: metadataURL, options: .atomic)
                 DispatchQueue.main.async { completion(.success((imageURL, metadataURL))) }
             } catch {
+                if !retainLocally { try? FileManager.default.removeItem(at: temporary) }
                 DispatchQueue.main.async { completion(.failure(error)) }
             }
         }
@@ -217,10 +233,10 @@ final class EventLog: ObservableObject {
 
     func captureSurveyFrame(frame: CameraFrame, mission: SurveyMission, reason: String,
                             telemetry: FlightTelemetry, executionLegIndex: Int,
-                            waypointIndex: Int,
+                            waypointIndex: Int, retainLocally: Bool = true,
                             completion: @escaping @Sendable (Result<SurveyFrameCaptureRecord, Error>) -> Void) {
         store.captureSurveyFrame(
-            frame: frame, missionID: mission.id, telemetry: telemetry,
+            frame: frame, missionID: mission.id, telemetry: telemetry, retainLocally: retainLocally,
             metadata: { imageURL, metadataURL in
                 let record = SurveyFrameCaptureRecord(
                     frame: frame, missionID: mission.id, reason: reason,
@@ -236,7 +252,7 @@ final class EventLog: ObservableObject {
                         frame: frame, missionID: mission.id, reason: reason,
                         telemetry: telemetry, executionLegIndex: executionLegIndex,
                         waypointIndex: waypointIndex, imageURL: urls.0,
-                        metadataURL: urls.1
+                        metadataURL: urls.1, isTemporary: !retainLocally
                     )
                 })
             }

@@ -1,6 +1,13 @@
 # OpenFly Go for iOS
 
+[常见问题 Q&A：拍照确认、仿真散热与异常中断恢复](docs/FAQ.zh-CN.md)。
+
+**手机图片存储更新：** 普通拍照默认不再额外往手机保存图传 JPEG / JSON。飞机 SD 卡拍照不变；
+主动开启云端采集仍保留必要的待传缓存。详见 [默认行为与例外](docs/PHONE_IMAGE_STORAGE_2026-09-25.md)。
+
 ## 通过 TestFlight 安装
+
+GitHub 最新源码版本：**1.0 / 20260927.1**。本次 GitHub 发布不等于上传新 TestFlight 构建；Apple 当前可安装版本可能不同。
 
 [加入 iOS 测试](https://testflight.apple.com/join/br5vTV92)
 
@@ -87,7 +94,7 @@ SDK 版本、Android/iOS 平台、飞机固件和遥控器**，不要只看网�
   V4 / iOS 需要 2026-09-22 或之后包含此适配的构建；并非仅放宽版本号，也不代表新增实飞验收。
   详见 [iOS schema 14 连续补拍与验证范围](docs/SCHEMA14_CONTINUOUS_RECAPTURE_2026-09-22.md)。
 - 开源版不含 MNN / VLN / 模型下载及私有推理运行时；云端航线与点云功能不依赖这些模块。
-- Android 保留实验仿地但默认关闭；iOS Release 未启用仿地，拒绝带 `terrainPlan` 的任务。
+- 正式安装包不提供仿地：Android V4/V5 与 iOS 均不显示入口，也不激活带 `terrainPlan` 的任务。Android V4 Debug 保留实验实现。
 - Debug 供开发，Release 是构建配置而不是“全部机型已验收”。自行编译需自己的 Key / 签名；
   安装版由维护者在私有环境签名，功能以该包说明为准。签名不同不能直接覆盖，勿为换包盲目清数据。
 
@@ -214,7 +221,7 @@ their own terms; see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
 ## 相机参数匹配
 
 换机、切镜头或改拍照模式前，请阅读 [航线相机参数匹配与限制](docs/CAMERA_PROFILE_COMPATIBILITY.md)。
-官方支持连接不等于本项目已验证该相机；未确认的参数不能用于授权航线执行。
+官方支持连接不等于本项目已验证该相机；未确认的几何参数仅提示覆盖率/GSD误差，不再阻止执行；飞行与相机可用性检查仍保留。
 
 ## License and third-party software
 

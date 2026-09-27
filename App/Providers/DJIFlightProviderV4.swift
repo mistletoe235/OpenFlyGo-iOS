@@ -2487,8 +2487,6 @@ extension DJIFlightProviderV4: DJICameraDelegate {
                               self.surveyReadbackRequests[parameter] == now else { return }
                         if let result, error == nil {
                             self.surveyReadbackValues[parameter] = (result, Date())
-                        } else {
-                            self.surveyReadbackValues.removeValue(forKey: parameter)
                         }
                     }
                 })

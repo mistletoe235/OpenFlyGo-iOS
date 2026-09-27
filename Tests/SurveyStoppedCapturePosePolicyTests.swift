@@ -2,6 +2,13 @@ import XCTest
 @testable import DJIVLNiOS
 
 final class SurveyStoppedCapturePosePolicyTests: XCTestCase {
+    func testOnlyPointPhotosRequireStoppedPose() {
+        XCTAssertTrue(SurveyStoppedCapturePosePolicy.requiresStoppedPose(action: .captureOnReach))
+        XCTAssertFalse(SurveyStoppedCapturePosePolicy.requiresStoppedPose(action: .startDistanceInterval))
+        XCTAssertFalse(SurveyStoppedCapturePosePolicy.requiresStoppedPose(action: .stopDistanceInterval))
+        XCTAssertFalse(SurveyStoppedCapturePosePolicy.requiresStoppedPose(action: .none))
+    }
+
     private let now = Date(timeIntervalSince1970: 1_000)
     private let target = SurveyWaypoint(
         point: .init(latitude: 31, longitude: 121, altitudeMeters: 40),

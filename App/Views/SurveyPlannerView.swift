@@ -946,7 +946,7 @@ struct SurveyPlannerView: View {
                 Text(resolvedCamera.displayName).font(.caption2).foregroundStyle(.secondary)
             }
             Spacer()
-            Text(LocalizedStringKey(resolvedCamera.verifiedProfile ? "自动识别" : "固定相机"))
+            Text(LocalizedStringKey(resolvedCamera.verifiedProfile ? "自动识别" : "参数估算"))
                 .font(.caption.bold()).foregroundStyle(.blue)
         }
         .surveyField()
@@ -2485,6 +2485,11 @@ private struct SurveyRuntimePanel: View {
             Text(AppLocalization.string(runtime.snapshot.message))
                 .font(.caption).foregroundStyle(.secondary)
                 .fixedSize(horizontal: false, vertical: true)
+            if let warning = runtime.snapshot.cameraGeometryWarning {
+                Text(AppLocalization.string(warning))
+                    .font(.caption).foregroundStyle(.orange)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
             if let seconds = runtime.snapshot.lowBatteryReturnSeconds {
                 HStack {
                     Text("低电量：\(seconds) 秒后自动返航")

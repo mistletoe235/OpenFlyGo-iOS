@@ -205,8 +205,12 @@ final class FlightViewModel: ObservableObject {
                 maxAgeMilliseconds: OpenFlyHILController.virtualFrameFreshMilliseconds
             )
         }
+        surveyRuntime.surveyFrameCaptureRequested = { [weak self] in
+            self?.cloudUpload.wantsLiveFrames == true
+        }
         surveyRuntime.onSurveyFrameSaved = { [weak self] record, view in
-            self?.cloudUpload.accept(record, view: view)
+            guard let self else { record.removeTemporaryFiles(); return }
+            self.cloudUpload.accept(record, view: view)
         }
         surveyRuntime.onVirtualFrameCaptured = { [weak self] record in
             guard let self else { return }

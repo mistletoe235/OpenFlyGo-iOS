@@ -8,6 +8,7 @@ struct SurveyRuntimeSnapshot: Equatable {
     var waypointIndex = 0
     var message = "未载入航测任务"
     var gateBlocks = Set<SurveyExecutionBlock>()
+    var cameraGeometryWarning: String?
     var horizontalErrorMeters = 0.0
     var verticalErrorMeters = 0.0
     var lastCommand = VelocityCommand.zero
@@ -51,6 +52,7 @@ final class SurveyRuntimeController: ObservableObject {
     var latestVirtualFrame: (() -> CameraFrame?)?
     var onVirtualFrameCaptured: ((SurveyFrameCaptureRecord) -> Void)?
     var onSurveyFrameSaved: ((SurveyFrameCaptureRecord, SurveyCaptureView) -> Void)?
+    var surveyFrameCaptureRequested: (() -> Bool)?
 
     private let provider: DJIFlightProvider
     private let log: EventLog
@@ -625,7 +627,7 @@ final class SurveyRuntimeController: ObservableObject {
                 publishProgress(machine)
                 return
             }
-            if (startsCapture || target.captureAction == .captureOnReach) &&
+            if SurveyStoppedCapturePosePolicy.requiresStoppedPose(action: target.captureAction) &&
                 !deferCaptureStart && !capturePoseReady {
                 if capturePoseVerificationStartedElapsedMillis == 0 {
                     capturePoseVerificationStartedElapsedMillis = now
@@ -794,6 +796,7 @@ final class SurveyRuntimeController: ObservableObject {
     }
 
     private func capturePostTriggerDownlinkFrame(reason: String) {
+        guard OpenFlyBuildFeatures.saveSurveyFramesLocally || surveyFrameCaptureRequested?() == true else { return }
         guard let mission, let machine else { return }
         guard postTriggerFrameCapturesPending < 2 else {
             log.append("SURVEY", "手机图传帧保存队列繁忙；飞机拍照不受影响")
@@ -813,14 +816,19 @@ final class SurveyRuntimeController: ObservableObject {
                 self.log.captureSurveyFrame(
                     frame: frame, mission: missionSnapshot, reason: reason,
                     telemetry: pose, executionLegIndex: legIndex,
-                    waypointIndex: waypointIndex
+                    waypointIndex: waypointIndex, retainLocally: OpenFlyBuildFeatures.saveSurveyFramesLocally
                 ) { [weak self] result in
                     Task { @MainActor in
-                        guard let self else { return }
+                        guard let self else {
+                            if case .success(let record) = result { record.removeTemporaryFiles() }
+                            return
+                        }
                         switch result {
                         case .success(let record):
-                            self.log.append("SURVEY", "手机已保存拍照后图传帧：\(record.imageURL.lastPathComponent)")
-                            self.onSurveyFrameSaved?(record, captureView)
+                            self.log.append("SURVEY", record.isTemporary ? "拍照后图传帧已准备，交由上传流程处理"
+                                : "手机已保存拍照后图传帧：\(record.imageURL.lastPathComponent)")
+                            if let consumer = self.onSurveyFrameSaved { consumer(record, captureView) }
+                            else { record.removeTemporaryFiles() }
                         case .failure(let error):
                             self.log.append("SURVEY", "手机图传帧保存失败（飞机拍照已成功）：\(error.localizedDescription)")
                         }
@@ -953,6 +961,7 @@ final class SurveyRuntimeController: ObservableObject {
             hilVirtualFramesEnabled: virtualFrameCaptureEnabled?() == true,
             simulatorActive: simulator.active
         )
+        var geometryWarning: String?
         if !usesVirtualCapture && camera.surveyGeometryRequired {
             let sampleAge = Date().timeIntervalSince(camera.surveyCameraUpdatedAt)
             let geometryMatches = camera.surveyCameraProfile.map { profile in
@@ -961,7 +970,13 @@ final class SurveyRuntimeController: ObservableObject {
                     : SurveyCameraProfileCatalog.compatibleRecapture(mission.cameraProfile, current: profile)
             } ?? false
             if !(0...2).contains(sampleAge) || !geometryMatches {
-                blocks.insert(.cameraGeometryUnverified)
+                geometryWarning = "相机参数未完全确认或与航线不同，覆盖率和 GSD 仅供估算；不阻止执行"
+            }
+        }
+        if geometryWarning != snapshot.cameraGeometryWarning {
+            snapshot.cameraGeometryWarning = geometryWarning
+            if let geometryWarning {
+                log.append("SURVEY", "相机参数提示（非阻断）：\(geometryWarning)")
             }
         }
         if !usesVirtualCapture && !camera.canCapturePhotos {

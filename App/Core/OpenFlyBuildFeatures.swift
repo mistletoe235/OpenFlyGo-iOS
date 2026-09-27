@@ -3,6 +3,12 @@ import Foundation
 /// Compile-time publication gates. Add either symbol to
 /// `SWIFT_ACTIVE_COMPILATION_CONDITIONS` to include that feature.
 enum OpenFlyBuildFeatures {
+#if OPENFLY_SAVE_TRIGGER_FRAMES
+    static let saveSurveyFramesLocally = true
+#else
+    static let saveSurveyFramesLocally = false
+#endif
+
 #if OPENFLY_ENABLE_VLN
     static let vlnInference = true
 #else

@@ -19,7 +19,7 @@
     <key>CFBundleShortVersionString</key>
     <string>1.0</string>
     <key>CFBundleVersion</key>
-	<string>20260922</string>
+	<string>20260927.1</string>
     <key>DJISDKAppKey</key>
     <string>$(DJI_SDK_APP_KEY)</string>
     <key>ITSAppUsesNonExemptEncryption</key>

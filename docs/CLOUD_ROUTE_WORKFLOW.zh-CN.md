@@ -97,3 +97,9 @@ fails the capture-pose gate rather than faking freshness.
 
 Protocol tests use controlled responses, not a production login. A valid service credential and
 session are still required for an end-to-end check against your reconstruction server.
+
+## 手机图片副本
+
+默认不再保存额外的手机图传图片档案。只有主动开启的云端采集才生成必要的待传缓存；
+V5 的“额外保存图传帧到手机”开关默认关闭。旧照片不会被自动删除，手动导出与 HIL 不受影响。
+具体见 [手机图片存储说明](PHONE_IMAGE_STORAGE_2026-09-25.md)。

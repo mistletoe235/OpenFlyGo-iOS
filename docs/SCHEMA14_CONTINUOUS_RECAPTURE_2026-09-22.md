@@ -1,6 +1,6 @@
 # iOS schema 14 continuous reacquisition
 
-[English](SCHEMA14_CONTINUOUS_RECAPTURE_2026-09-22.md) · [Chinese reference](SCHEMA14_CONTINUOUS_RECAPTURE_2026-09-22.zh-CN.md)
+[English](SCHEMA14_CONTINUOUS_RECAPTURE_2026-09-22.md) · [中文](SCHEMA14_CONTINUOUS_RECAPTURE_2026-09-22.zh-CN.md)
 
 Updated September 22, 2026. Both private and source-release clients are adapted;
 app version 1.0, build 20260922.

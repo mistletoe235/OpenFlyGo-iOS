@@ -42,6 +42,7 @@ final class SurveyCloudUploadController: ObservableObject {
     deinit { worker?.cancel() }
 
     var canAdd: Bool { ready && !busy && manifest != nil && manifest?.finalized != true && manifest?.cancelled != true }
+    var wantsLiveFrames: Bool { liveEnabled && canAdd && intakeCount < 2 }
     var canFinalize: Bool {
         canAdd && !uploading && !liveEnabled && !historyImporting && intakeCount == 0 && manifest?.pendingCount == 0 && manifest?.jobs.isEmpty == false
     }
@@ -78,15 +79,19 @@ final class SurveyCloudUploadController: ObservableObject {
     }
 
     func accept(_ record: SurveyFrameCaptureRecord, view: SurveyCaptureView) {
+        var handedOff = false
+        defer { if !handedOff { record.removeTemporaryFiles() } }
         guard liveEnabled, canAdd, let sessionID = manifest?.sessionID else { return }
         guard record.frame.capturedAt >= liveStartedAt else { return }
-        guard intakeCount < 2 else { rejectedCount += 1; status = "本地写入繁忙，未入队的原始记录仍在会话日志目录。"; return }
+        guard intakeCount < 2 else { rejectedCount += 1; status = "上传队列繁忙，本帧未入队；飞机拍照不受影响。"; return }
         do {
             let headers = try SurveyUploadImage.liveHeaders(record, view: view)
             let url = record.imageURL
             let identifier = "live:\(record.missionID):\(url.lastPathComponent)"
             intakeCount += 1
+            handedOff = true
             Task { [weak self] in
+                defer { record.removeTemporaryFiles() }
                 guard let self else { return }
                 defer { self.intakeCount -= 1 }
                 do {
