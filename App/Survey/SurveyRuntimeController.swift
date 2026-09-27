@@ -813,29 +813,21 @@ final class SurveyRuntimeController: ObservableObject {
             do {
                 let frame = try await self.provider.captureSurveyFrame()
                 let pose = self.provider.telemetry
-                self.log.captureSurveyFrame(
-                    frame: frame, mission: missionSnapshot, reason: reason,
-                    telemetry: pose, executionLegIndex: legIndex,
-                    waypointIndex: waypointIndex, retainLocally: OpenFlyBuildFeatures.saveSurveyFramesLocally
-                ) { [weak self] result in
-                    Task { @MainActor in
-                        guard let self else {
-                            if case .success(let record) = result { record.removeTemporaryFiles() }
-                            return
-                        }
-                        switch result {
-                        case .success(let record):
-                            self.log.append("SURVEY", record.isTemporary ? "拍照后图传帧已准备，交由上传流程处理"
-                                : "手机已保存拍照后图传帧：\(record.imageURL.lastPathComponent)")
-                            if let consumer = self.onSurveyFrameSaved { consumer(record, captureView) }
-                            else { record.removeTemporaryFiles() }
-                        case .failure(let error):
-                            self.log.append("SURVEY", "手机图传帧保存失败（飞机拍照已成功）：\(error.localizedDescription)")
-                        }
+                let record: SurveyFrameCaptureRecord = try await withCheckedThrowingContinuation { continuation in
+                    self.log.captureSurveyFrame(
+                        frame: frame, mission: missionSnapshot, reason: reason,
+                        telemetry: pose, executionLegIndex: legIndex,
+                        waypointIndex: waypointIndex, retainLocally: OpenFlyBuildFeatures.saveSurveyFramesLocally
+                    ) { result in
+                        continuation.resume(with: result)
                     }
                 }
+                self.log.append("SURVEY", record.isTemporary ? "拍照后图传帧已准备，交由上传流程处理"
+                    : "手机已保存拍照后图传帧：\(record.imageURL.lastPathComponent)")
+                if let consumer = self.onSurveyFrameSaved { consumer(record, captureView) }
+                else { record.removeTemporaryFiles() }
             } catch {
-                self.log.append("SURVEY", "未取得拍照后的新图传帧（飞机拍照已成功）：\(error.localizedDescription)")
+                self.log.append("SURVEY", "拍照后的图传帧处理失败（飞机拍照已成功）：\(error.localizedDescription)")
             }
         }
     }

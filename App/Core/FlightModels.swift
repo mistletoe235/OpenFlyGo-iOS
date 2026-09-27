@@ -367,6 +367,81 @@ struct FlightTelemetry: Codable, Equatable {
     }
 }
 
+struct ResolvedCameraOrientation: Equatable {
+    var rollDegrees: Double?
+    var pitchDegrees: Double?
+    var yawDegrees: Double?
+    var yawSource: String?
+    var yawConsistencyErrorDegrees: Double?
+}
+
+enum CameraOrientationResolver {
+    static let headingPlusRelativeGimbal = "aircraft_heading_plus_gimbal_relative"
+    static let absoluteGimbalCrossChecked = "absolute_gimbal_attitude_cross_checked"
+    static let headingPlusRelativeGimbalConflict =
+        "aircraft_heading_plus_gimbal_relative_absolute_conflict"
+    static let absoluteGimbal = "absolute_gimbal_attitude"
+    static let aircraftHeadingFallback = "aircraft_heading_fallback"
+
+    static func resolve(
+        aircraftHeadingDegrees: Double?,
+        gimbalRollDegrees: Double?,
+        gimbalPitchDegrees: Double?,
+        absoluteGimbalYawDegrees: Double?,
+        relativeGimbalYawDegrees: Double?
+    ) -> ResolvedCameraOrientation {
+        let heading = finite(aircraftHeadingDegrees).map(normalizeHeading)
+        let absoluteYaw = finite(absoluteGimbalYawDegrees).map(normalizeHeading)
+        let relativeYaw = finite(relativeGimbalYawDegrees)
+        let composedYaw = heading.flatMap { heading in
+            relativeYaw.map { normalizeHeading(heading + $0) }
+        }
+        let consistency = composedYaw.flatMap { composed in
+            absoluteYaw.map { abs(shortestAngle(composed - $0)) }
+        }
+        let yaw: Double?
+        let source: String?
+        if let composedYaw, let absoluteYaw, let consistency,
+           consistency <= maximumCrossCheckErrorDegrees {
+            yaw = absoluteYaw; source = absoluteGimbalCrossChecked
+        } else if let composedYaw, absoluteYaw != nil {
+            yaw = composedYaw; source = headingPlusRelativeGimbalConflict
+        } else if let composedYaw {
+            yaw = composedYaw; source = headingPlusRelativeGimbal
+        } else if let absoluteYaw {
+            yaw = absoluteYaw; source = absoluteGimbal
+        } else if let heading {
+            yaw = heading; source = aircraftHeadingFallback
+        } else {
+            yaw = nil; source = nil
+        }
+        return ResolvedCameraOrientation(
+            rollDegrees: finite(gimbalRollDegrees),
+            pitchDegrees: finite(gimbalPitchDegrees),
+            yawDegrees: yaw,
+            yawSource: source,
+            yawConsistencyErrorDegrees: consistency
+        )
+    }
+
+    private static func finite(_ value: Double?) -> Double? {
+        value?.isFinite == true ? value : nil
+    }
+
+    private static func normalizeHeading(_ value: Double) -> Double {
+        let remainder = value.truncatingRemainder(dividingBy: 360)
+        return remainder < 0 ? remainder + 360 : remainder
+    }
+
+    private static func shortestAngle(_ value: Double) -> Double {
+        var result = (value + 180).truncatingRemainder(dividingBy: 360)
+        if result < 0 { result += 360 }
+        return result - 180
+    }
+
+    private static let maximumCrossCheckErrorDegrees = 5.0
+}
+
 struct CameraStatus: Equatable {
     var connected = true
     var recording = false

@@ -2071,7 +2071,14 @@ final class SurveyUeBridgeController: ObservableObject {
     }
 
     nonisolated private static func pose(_ telemetry: FlightTelemetry) -> [String: Any] {
-        ["latitude_wgs84_deg": telemetry.aircraft.latitude,
+        let camera = CameraOrientationResolver.resolve(
+            aircraftHeadingDegrees: telemetry.heading,
+            gimbalRollDegrees: telemetry.gimbalRoll,
+            gimbalPitchDegrees: telemetry.gimbalPitch,
+            absoluteGimbalYawDegrees: telemetry.gimbalYaw,
+            relativeGimbalYawDegrees: telemetry.gimbalYawRelativeToAircraftHeading
+        )
+        var values: [String: Any] = ["latitude_wgs84_deg": telemetry.aircraft.latitude,
          "longitude_wgs84_deg": telemetry.aircraft.longitude,
          "aircraft_location_valid": telemetry.aircraftLocationValid,
          "flight_state_timestamp_epoch_ms": Int64(telemetry.flightStateTimestamp.timeIntervalSince1970 * 1_000),
@@ -2080,6 +2087,7 @@ final class SurveyUeBridgeController: ObservableObject {
          "downward_height_m": telemetry.downwardHeight,
          "downward_height_valid": telemetry.downwardHeightValid,
          "heading_cw_from_north_deg": telemetry.heading,
+         "aircraft_heading_deg": telemetry.heading,
          "gimbal_pitch_deg": telemetry.gimbalPitch,
          "velocity_north_mps": telemetry.velocityNorth,
          "velocity_east_mps": telemetry.velocityEast,
@@ -2087,6 +2095,25 @@ final class SurveyUeBridgeController: ObservableObject {
          "ground_speed_mps": hypot(telemetry.velocityNorth, telemetry.velocityEast),
          "gps_satellite_count": telemetry.satellites,
          "gps_signal_level": telemetry.gpsSignalLevel]
+        if let value = telemetry.aircraftRoll { values["aircraft_roll_deg"] = value }
+        if let value = telemetry.aircraftPitch { values["aircraft_pitch_deg"] = value }
+        if let value = telemetry.aircraftYaw { values["aircraft_yaw_deg"] = value }
+        if let value = telemetry.gimbalRoll { values["gimbal_roll_deg"] = value }
+        if let value = telemetry.gimbalYaw { values["gimbal_yaw_deg_ned"] = value }
+        if let value = telemetry.gimbalYawRelativeToAircraftHeading {
+            values["gimbal_yaw_relative_to_aircraft_deg"] = value
+        }
+        if let value = telemetry.gimbalStateTimestamp {
+            values["gimbal_state_timestamp_epoch_ms"] = Int64(value.timeIntervalSince1970 * 1_000)
+        }
+        if let value = camera.rollDegrees { values["camera_roll_deg"] = value }
+        if let value = camera.pitchDegrees { values["camera_pitch_deg"] = value }
+        if let value = camera.yawDegrees { values["camera_yaw_deg_true"] = value }
+        if let value = camera.yawSource { values["camera_yaw_source"] = value }
+        if let value = camera.yawConsistencyErrorDegrees {
+            values["camera_yaw_consistency_error_deg"] = value
+        }
+        return values
     }
 
     private static func waypoint(_ value: SurveyWaypoint) -> [String: Any] {

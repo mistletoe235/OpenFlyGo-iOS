@@ -4,6 +4,35 @@ import ImageIO
 @testable import DJIVLNiOS
 
 final class SurveyLatestParityTests: XCTestCase {
+    func testCameraOrientationUsesHeadingPlusRelativeGimbalYaw() {
+        let resolved = CameraOrientationResolver.resolve(
+            aircraftHeadingDegrees: 350,
+            gimbalRollDegrees: 0.5,
+            gimbalPitchDegrees: -45,
+            absoluteGimbalYawDegrees: 12,
+            relativeGimbalYawDegrees: 20
+        )
+        XCTAssertEqual(resolved.yawDegrees, 12)
+        XCTAssertEqual(resolved.yawSource, "absolute_gimbal_attitude_cross_checked")
+        XCTAssertEqual(resolved.yawConsistencyErrorDegrees, 2)
+        XCTAssertEqual(resolved.pitchDegrees, -45)
+        XCTAssertEqual(resolved.rollDegrees, 0.5)
+    }
+
+    func testCameraOrientationUsesComposedYawWhenAbsoluteYawConflicts() {
+        let resolved = CameraOrientationResolver.resolve(
+            aircraftHeadingDegrees: 350,
+            gimbalRollDegrees: 0,
+            gimbalPitchDegrees: -45,
+            absoluteGimbalYawDegrees: 100,
+            relativeGimbalYawDegrees: 20
+        )
+        XCTAssertEqual(resolved.yawDegrees, 10)
+        XCTAssertEqual(resolved.yawSource,
+                       "aircraft_heading_plus_gimbal_relative_absolute_conflict")
+        XCTAssertEqual(resolved.yawConsistencyErrorDegrees, 90)
+    }
+
     func testSimulatorMapProjectionKeepsAircraftVisibleWithoutDJIGPS() throws {
         let simulator = FlightSimulatorStatus(
             available: true, active: true, stateReceived: true,
@@ -350,6 +379,13 @@ final class SurveyLatestParityTests: XCTestCase {
         telemetry.altitude = 32
         telemetry.heading = 48
         telemetry.gimbalPitch = -45
+        telemetry.aircraftRoll = 1.5
+        telemetry.aircraftPitch = -3
+        telemetry.aircraftYaw = 48
+        telemetry.gimbalRoll = 0.5
+        telemetry.gimbalYaw = 55
+        telemetry.gimbalYawRelativeToAircraftHeading = 7
+        telemetry.gimbalStateTimestamp = telemetry.flightStateTimestamp
 
         try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<Void, Error>) in
             log.captureSurveyFrame(frame: frame, mission: mission, reason: "endpoint",
@@ -379,7 +415,11 @@ final class SurveyLatestParityTests: XCTestCase {
         XCTAssertEqual(try XCTUnwrap(gps[kCGImagePropertyGPSLongitude] as? NSNumber).doubleValue,
                        121.4737, accuracy: 0.000001)
         XCTAssertEqual(try XCTUnwrap(gps[kCGImagePropertyGPSImgDirection] as? NSNumber).doubleValue,
-                       48, accuracy: 0.01)
+                       55, accuracy: 0.01)
+        let exif = try XCTUnwrap(properties[kCGImagePropertyExifDictionary] as? [CFString: Any])
+        let userComment = try XCTUnwrap(exif[kCGImagePropertyExifUserComment] as? String)
+        XCTAssertTrue(userComment.contains("\"camera_yaw_deg_true\":55"))
+        XCTAssertTrue(userComment.contains("\"camera_yaw_source\":\"absolute_gimbal_attitude_cross_checked\""))
         let object = try XCTUnwrap(try JSONSerialization.jsonObject(
             with: Data(contentsOf: metadata)) as? [String: Any])
         XCTAssertEqual(object["schema"] as? String, SurveyUeBridgeController.schema)
@@ -394,7 +434,12 @@ final class SurveyLatestParityTests: XCTestCase {
         XCTAssertEqual((execution["waypoint_index"] as? NSNumber)?.intValue, 3)
         XCTAssertEqual(object["saved_path"] as? String, image.path)
         XCTAssertNotNil(object["coordinate_contract"] as? [String: Any])
-        XCTAssertNotNil(object["pose"] as? [String: Any])
+        let pose = try XCTUnwrap(object["pose"] as? [String: Any])
+        XCTAssertEqual((pose["camera_yaw_deg_true"] as? NSNumber)?.doubleValue, 55)
+        XCTAssertEqual(pose["camera_yaw_source"] as? String,
+                       "absolute_gimbal_attitude_cross_checked")
+        XCTAssertEqual((pose["camera_yaw_consistency_error_deg"] as? NSNumber)?.doubleValue, 0)
+        XCTAssertEqual((pose["gimbal_yaw_relative_to_aircraft_deg"] as? NSNumber)?.doubleValue, 7)
     }
 
     @MainActor

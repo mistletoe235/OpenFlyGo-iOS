@@ -24,14 +24,72 @@ struct SurveyFrameCaptureRecord: Sendable {
     }
 }
 
-private final class SessionCaptureStore: @unchecked Sendable {
+final class SurveyFrameWriteBudget: @unchecked Sendable {
+    final class Lease: @unchecked Sendable {
+        private let lock = NSLock()
+        private var owner: SurveyFrameWriteBudget?
+
+        fileprivate init(owner: SurveyFrameWriteBudget) { self.owner = owner }
+
+        func release() {
+            lock.lock()
+            let previous = owner
+            owner = nil
+            lock.unlock()
+            previous?.finish()
+        }
+
+        deinit { release() }
+    }
+
+    private let lock = NSLock()
+    private let maximumPending: Int
+    private var pending = 0
+
+    init(maximumPending: Int = 2) {
+        precondition(maximumPending > 0)
+        self.maximumPending = maximumPending
+    }
+
+    var pendingCount: Int {
+        lock.lock()
+        defer { lock.unlock() }
+        return pending
+    }
+
+    func tryAcquire() -> Lease? {
+        lock.lock()
+        defer { lock.unlock() }
+        guard pending < maximumPending else { return nil }
+        pending += 1
+        return Lease(owner: self)
+    }
+
+    private func finish() {
+        lock.lock()
+        pending -= 1
+        lock.unlock()
+    }
+}
+
+enum SurveyFrameWriteError: LocalizedError {
+    case busy
+    var errorDescription: String? { "手机图像保存队列繁忙，已跳过副本；飞机拍照不受影响" }
+}
+
+final class SessionCaptureStore: @unchecked Sendable {
     let directory: URL
-    private let queue = DispatchQueue(label: "org.openfly.session-capture", qos: .utility)
+    private let queue: DispatchQueue
+    private let surveyWrites = SurveyFrameWriteBudget()
     private let logURL: URL
     private var capturedFrames = 0
 
-    init(fileManager: FileManager = .default) {
-        let root = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
+    var pendingSurveyFrameWrites: Int { surveyWrites.pendingCount }
+
+    init(fileManager: FileManager = .default, rootDirectory: URL? = nil,
+         queue: DispatchQueue = DispatchQueue(label: "org.openfly.session-capture", qos: .utility)) {
+        self.queue = queue
+        let root = rootDirectory ?? fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
             .appendingPathComponent("OpenFlyGo/sessions", isDirectory: true)
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "en_US_POSIX")
@@ -101,6 +159,10 @@ private final class SessionCaptureStore: @unchecked Sendable {
         frame: CameraFrame, missionID: String, telemetry: FlightTelemetry, retainLocally: Bool,
         metadata: @escaping @Sendable (_ imageURL: URL, _ metadataURL: URL) throws -> Data,
                             completion: @escaping @Sendable (Result<(URL, URL), Error>) -> Void) {
+        guard let lease = surveyWrites.tryAcquire() else {
+            completion(.failure(SurveyFrameWriteError.busy))
+            return
+        }
         let temporary = FileManager.default.temporaryDirectory
             .appendingPathComponent("openfly-survey-\(UUID().uuidString)", isDirectory: true)
         queue.async { [directory] in
@@ -117,10 +179,16 @@ private final class SessionCaptureStore: @unchecked Sendable {
                 let imageData = SurveyJPEGMetadataWriter.write(frame.jpeg, frame: frame, telemetry: telemetry)
                 try imageData.write(to: imageURL, options: .atomic)
                 try metadata(imageURL, metadataURL).write(to: metadataURL, options: .atomic)
-                DispatchQueue.main.async { completion(.success((imageURL, metadataURL))) }
+                DispatchQueue.main.async {
+                    defer { lease.release() }
+                    completion(.success((imageURL, metadataURL)))
+                }
             } catch {
                 if !retainLocally { try? FileManager.default.removeItem(at: temporary) }
-                DispatchQueue.main.async { completion(.failure(error)) }
+                DispatchQueue.main.async {
+                    defer { lease.release() }
+                    completion(.failure(error))
+                }
             }
         }
     }
@@ -166,6 +234,41 @@ private enum SurveyJPEGMetadataWriter {
         updated[kCGImagePropertyTIFFDictionary] = tiff
 
         let gpsAge = captured.timeIntervalSince(telemetry.flightStateTimestamp)
+        let cameraOrientation = CameraOrientationResolver.resolve(
+            aircraftHeadingDegrees: telemetry.heading,
+            gimbalRollDegrees: telemetry.gimbalRoll,
+            gimbalPitchDegrees: telemetry.gimbalPitch,
+            absoluteGimbalYawDegrees: telemetry.gimbalYaw,
+            relativeGimbalYawDegrees: telemetry.gimbalYawRelativeToAircraftHeading
+        )
+        var poseComment: [String: Any] = [
+            "aircraft_heading_deg": telemetry.heading,
+            "gimbal_pitch_deg": telemetry.gimbalPitch,
+        ]
+        if let value = telemetry.aircraftRoll { poseComment["aircraft_roll_deg"] = value }
+        if let value = telemetry.aircraftPitch { poseComment["aircraft_pitch_deg"] = value }
+        if let value = telemetry.aircraftYaw { poseComment["aircraft_yaw_deg"] = value }
+        if let value = telemetry.gimbalRoll { poseComment["gimbal_roll_deg"] = value }
+        if let value = telemetry.gimbalYaw { poseComment["gimbal_yaw_deg_ned"] = value }
+        if let value = telemetry.gimbalYawRelativeToAircraftHeading {
+            poseComment["gimbal_yaw_relative_to_aircraft_deg"] = value
+        }
+        if let value = telemetry.gimbalStateTimestamp {
+            poseComment["gimbal_state_timestamp_epoch_ms"] = Int64(value.timeIntervalSince1970 * 1_000)
+            poseComment["gimbal_age_ms"] = Int64(captured.timeIntervalSince(value) * 1_000)
+        }
+        if let value = cameraOrientation.rollDegrees { poseComment["camera_roll_deg"] = value }
+        if let value = cameraOrientation.pitchDegrees { poseComment["camera_pitch_deg"] = value }
+        if let value = cameraOrientation.yawDegrees { poseComment["camera_yaw_deg_true"] = value }
+        if let value = cameraOrientation.yawSource { poseComment["camera_yaw_source"] = value }
+        if let value = cameraOrientation.yawConsistencyErrorDegrees {
+            poseComment["camera_yaw_consistency_error_deg"] = value
+        }
+        if let data = try? JSONSerialization.data(withJSONObject: poseComment, options: [.sortedKeys]),
+           let comment = String(data: data, encoding: .utf8) {
+            exif[kCGImagePropertyExifUserComment] = comment
+            updated[kCGImagePropertyExifDictionary] = exif
+        }
         if telemetry.aircraftLocationValid, gpsAge >= -0.25, gpsAge <= 2,
            telemetry.aircraft.latitude.isFinite, abs(telemetry.aircraft.latitude) <= 90,
            telemetry.aircraft.longitude.isFinite, abs(telemetry.aircraft.longitude) <= 180,
@@ -177,7 +280,8 @@ private enum SurveyJPEGMetadataWriter {
                 kCGImagePropertyGPSLongitudeRef: telemetry.aircraft.longitude >= 0 ? "E" : "W",
                 kCGImagePropertyGPSAltitude: abs(telemetry.asl),
                 kCGImagePropertyGPSAltitudeRef: telemetry.asl >= 0 ? 0 : 1,
-                kCGImagePropertyGPSImgDirection: normalizedHeading(telemetry.heading),
+                kCGImagePropertyGPSImgDirection: cameraOrientation.yawDegrees
+                    ?? normalizedHeading(telemetry.heading),
                 kCGImagePropertyGPSImgDirectionRef: "T",
                 kCGImagePropertyGPSSpeed: hypot(telemetry.velocityNorth, telemetry.velocityEast) * 3.6,
                 kCGImagePropertyGPSSpeedRef: "K",
